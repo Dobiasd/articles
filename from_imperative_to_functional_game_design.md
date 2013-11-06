@@ -28,7 +28,6 @@ The pureness of Elm forces us to split it into three parts.
 Let us have a look at how this can look in a [very much simplified version](http://share-elm.com/sprout/527ac4dde4b06194fd2d16ed) of our desired game:
 
 ```haskell
--- (Unchanged)
 import Keyboard
 import Window
 

@@ -252,6 +252,6 @@ OK, that's it. Since at the moment of writing, I'm quite new to all this, I gues
 
 ## Conclusion
 
-Writing Breakout in Elm was surprisingly easy and very fun. I am really looking forward to learning more about it and FP in general, and how this awesome language will develop in the next years.
+Writing Breakout in Elm was surprisingly easy and very fun. It was the one experience I needed to get some practice and thus gain confidence in programming purely functional. I am really looking forward to learning more about Elm (and FP in general), and how this awesome language will develop in the next years.
 
 And David, you were right. FP really rocks. ;-)

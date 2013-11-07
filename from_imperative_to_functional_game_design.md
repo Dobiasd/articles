@@ -111,7 +111,7 @@ Changing the x value of our player with the keyboard is of course already quite 
 
 OK, how do we now get from [this skeleton](http://share-elm.com/sprout/527ac4dde4b06194fd2d16ed) to [the final game](https://github.com/Dobiasd/Breakout)?
 
-First let's complete our model and our view, and then write the update code to will everyhing with life.
+First let us complete our model and our view, and then write the update code to will everyhing with life.
 
 
 ### Model
@@ -155,17 +155,94 @@ This does not mean, that the game is rendered to 600x400 and then the resulting 
 
 The Updates should be the coolest part, since it is here where all the action actually happens.
 
+Let's see, we `foldp` over our `defaultGame` with `stepGame`, so let's look at this.
 
+```haskell
+stepGame : Input -> Game -> Game
+stepGame ({dir,delta} as input) ({state,player} as game) =
+  let
+    func = if | state == Play  -> stepPlay
+              | state == Serve -> stepServe
+              | otherwise      -> stepGameOver
+  in
+    func input { game | player <- stepPlayer delta dir player }
+```
 
+Since the paddle can be moved regardless of the game state, players position is already updated here. Every other actions are state specific, so the remaining tasks are dispatched by the current state.
 
+`stepServe` and `stepGameOver` do nothing special, so let's look at `stepPlay`:
 
+```haskell
+stepPlay : Input -> Game -> Game
+stepPlay {delta} ({gameBall,player,bricks,spareBalls,contacts} as game) =
+  let
+    ballLost = gameBall.y - gameBall.r < -halfHeight
+    gameOver = ballLost && spareBalls == 0
+    spareBalls' = if ballLost then spareBalls - 1 else spareBalls
+    state' = if | gameOver -> Lost
+                | ballLost -> Serve
+                | isEmpty bricks -> Won
+                | otherwise -> Play
+    ((ball', bricks'), contacts') =
+      stepBall delta gameBall player bricks contactscontacts)
+  in
+    { game | state      <- state'
+           , gameBall   <- ball'
+           , bricks     <- bricks'
+           , spareBalls <- max 0 spareBalls' -- No -1 when game is lost.
+           , contacts   <- contacts' }
+```
 
+If our ball is lost and we do not have any spare balls left, the game is over. Simple. `stepBall` seems to be the place where the collision is handled.
+It's type already tells us a lot about it:
+`stepBall : Time -> Ball -> Player -> [Brick] -> Int -> ((Ball,[Brick]), Int)`
+Using a time delta, it takes values of the ball, player and bricks and returns new values for them. The number of paddle ball contacts may also be increased.
 
+```haskell
+stepBall : Time -> Ball -> Player -> [Brick] -> Int -> ((Ball,[Brick]), Int)
+stepBall t ({x,y,vx,vy} as ball) p bricks contacts =
+  let
+    hitPlayer = (ball `within` p)
+    contacts' = if hitPlayer then contacts + 1 else contacts
+    newVx = if hitPlayer then
+               weightedAvg [p.vx, vx] [traction, 1-traction] else
+               stepV vx (x < (ball.r-halfWidth)) (x > halfWidth-ball.r)
+    hitCeiling = (y > halfHeight - ball.r)
+    ball' = stepObj t { ball | vx <- newVx ,
+                               vy <- stepV vy hitPlayer hitCeiling }
+  in
+    (foldr goBrickHits (ball',[]) bricks, contacts')
+```
 
+First it checks for paddle player collisions and updated the balls velocity and the contact count accordingly.
 
+The return type (`((Ball,[Brick]), Int)`) may look somethat odd at first glance, but thanks to [pattern matching](http://elm-lang.org/learn/Pattern-Matching.elm) it did not pose a problem for the caller (stepPlay):
+`((ball', bricks'), contacts') = stepBall ...`
+And it renders itself quite handy when looking at `(foldr goBrickHits (ball',[]) bricks, contacts')`
+
+OK, what does `foldr goBrickHits (ball',[])` do?
+I will not explain the behaviour of [folds in general](http://www.haskell.org/haskellwiki/Fold#List_folds_as_structural_transformations) here, but in our case our used function `goBrickHits` takes one single brick at a time and the accumulator, which we initially set to `(Ball,[Brick])`:
+
+```haskell
+goBrickHits : Brick -> (Ball,[Brick]) -> (Ball,[Brick])
+goBrickHits brick (ball,bricks) =
+  let
+    hit = ball `within` brick
+    bricks' = if hit then bricks else brick::bricks
+    ball' = if hit then { ball | vy <- -ball.vy } else ball
+  in
+    (if hit then speedUp ball' else ball', bricks')
+```
+
+First we check if the ball is colliding with the current brick, and this is true we do put this brick in our accumulator, since it just was destroyed by the ball, and we invert the balls vertical speed. If no hit occured, we just [cons](http://en.wikipedia.org/wiki/Cons) the brick to remaining bricks, that are still in the game. And thats it. Who needs `for`-loops anymore? :-)
+
+---------------------------------------
+
+OK, that's it. Since at the moment of writing, I'm quite new to all this, I guess there is still much room for improvement of the code and this article. If have a suggestion, please [let me know](mailto:harry@daiw.de). :-)
 
 
 ## Conclusion
-Writing Breakout in Elm was surprisingly easy and very fun. I am really looking forward to how this awesome language will develop in the next years.
+
+Writing Breakout in Elm was surprisingly easy and very fun. I am really looking forward to learning more about it and FP in general, and how this awesome language will develop in the next years.
 
 And David, you were right. FP really rocks. ;-)

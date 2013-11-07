@@ -1,6 +1,6 @@
-# From imperative to functional game design
+# Switching from imperative to functional programming with games in Elm
 
-Imperative programming was my thing since I was a school boy. Recently it was mainly C++ and some Python. During the last year, [David](https://raw.github.com/quchen), a good friend and Haskell guru, tried to evangelize me with the benefits of functional programming (FP). So I read [SICP](http://mitpress.mit.edu/sicp) and LYAH (http://learnyouahaskell.com). I actually understood some parts, alghough not all, and solved few and very small [toy problems](http://projecteuler.net/problems) in Scheme and Haskell, but I did not see, how one could use such a programming style voluntarily, because the imperative solutions came about an order of magnitide quicker to my mind than the functional ones did.
+Imperative programming was my thing since I was a school boy. I wrote some small small games and [demoscene](http://en.wikipedia.org/wiki/Demoscene) effects, and now develop software (mainly computer vision stuff) for a living. Recently it was mainly C++ and some Python. During the last year, [David](https://raw.github.com/quchen), a good friend and Haskell guru, tried to evangelize me with the benefits of functional programming (FP). So I read [SICP](http://mitpress.mit.edu/sicp) and LYAH (http://learnyouahaskell.com). I actually understood some parts, alghough not all, and solved few and very small [toy problems](http://projecteuler.net/problems) in Scheme and Haskell, but I did not see, how one could use such a programming style voluntarily, because the imperative solutions came about an order of magnitide quicker to my mind than the functional ones did.
 
 Of course, in C++ I now used a bit more from the [algorithm header](http://en.cppreference.com/w/cpp/algorithm) and also tried [some functional things](http://docs.python.org/3/howto/functional.html) in Python, but I just did not feel how digging deeper into this paradigm could really be worth the trouble. E.g. why should I `foldr` a list if I can `for`-loop over an array? In retrospect it perhaps also was the uncomfortable situation of again being a complete newbie, that kept me from continuing.
 
@@ -8,19 +8,28 @@ Whatever it was, I more or less accidentally stumbled upon [Elm](http://elm-lang
 
 After solving the challenges in the [pong tutorial](http://elm-lang.org/blog/games-in-elm/part-0/Making-Pong.html) I decided to write this [Breakout clone](https://github.com/Dobiasd/Breakout), which turned out to be a very interesting and fun undertaking. :-)
 
-The rest of the article will describe my learning experience with that project, how it is structured and why it finally convinced me of the advantages of functional (reactive) programming, and motivated me to immediately continue with [a second game project](https://github.com/Dobiasd/Maze).
+Even though some of the following things will sound naive to experiences FP developers (or even to me in some months or years), the rest of the article will describe my learning experience with that project, how it is structured and why it finally convinced me of the advantages of functional (reactive) programming, and motivated me to immediately continue with [a second game project](https://github.com/Dobiasd/Maze).
 
 
 ## Differences to a hypothetical imperative implementation in C++
 
-If I had written this game (resp. a non browser version of it) in C++, I probably would have used [SFML](http://www.sfml-dev.org), which is a very good library for making games like this. I already used it to write a [Snake like game](https://github.com/Dobiasd/Dron). My cost estimations for that project would have been about 10 man-days, I guess. Surprisingly it took me less time to do it in Elm, a language I had no experience with at all!
+If I had written this game (resp. a non browser version of it) in C++, I probably would have used [SFML](http://www.sfml-dev.org), which is a very good library for making games like this. I already used it to write a [Snake like game](https://github.com/Dobiasd/Dron). My cost estimations for that project would probably be more man-days than it surprisingly took me to do it in Elm, a language I had no experience with at all!
 
 One reason for that is the much shorter edit/complie cycle in Elm, which reduces to just one click in your browser. But OK except the [hot-swapping](http://elm-lang.org/blog/Interactive-Programming.elm) that is also possible with some imperative languages.
 The much more astonishing fact for me was, that I did not need many of these cycles. Sometimes I wrote code for nearly an hour, and as soon as [Elm's Haskell like type system](http://elm-lang.org/learn/Getting-started-with-Types.elm) did not give me errors any more while compiling, the code just worked! There was very rarely a need to debug it at all! I guess this comes from the notion, that if you look at a pure functions, you just have to think about what it stands for and not what I will do to something else under certain circumstances etc. Also when just thinking in expressions and no more in statements, there is not so much control flow you have to emulate in your head. And it is easier to structure your code. The temptation to write spaghetti code functions is not that big and if one still grows too long, it is very easy to factor out the parts that can stand meaningful for their own.
+Also everything is much more concise. Just compare the two following source codes:
+
+```c++
+std::list<float> l; for ( int i = 1; i <= 10; ++ i ) l.push_back( i * i );
+```
+
+```haskell
+l = map (**2) [1..10]
+```
 
 Also many design patterns involving inheritance and boilerplate code in C++ just disintegrate into thin air when you have functions as first class citizen in FP.
 
-Dont't get me wrong. I still think C++ is a great language if it comes to performance critical system programming, and I will continue to use it for appropriate tasks, but the high control over nearly every byte in your system comes at the cost of increased developement time. So every tool has its usage, and you can probably get a screw into a wall using a hammer, but if you feel that a big part of your effort is wasted energy, there is probably a better solution. ;-)
+Don't get me wrong. I don't want to bash C++, and I still think it is a great language if it comes to performance critical system programming, and I will continue to use it for appropriate tasks, but the high control over nearly every byte in your system comes at the cost of increased developement time. So every tool has its usage, and you can probably get a screw into a wall using a hammer, but if you feel that a big part of your effort is wasted energy, there is probably a better solution. ;-)
 
 Sure, with Python things would have probably been much different compared to C++, but also the advantages of pure FP can not be utilized so easy, and still targetting the browser so easily in a very clean and abstract way is as far is I know a unique characteristic of Elm.
 

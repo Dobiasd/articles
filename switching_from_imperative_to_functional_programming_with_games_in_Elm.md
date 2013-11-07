@@ -21,7 +21,9 @@ The much more astonishing fact for me was, that I did not need many of these cyc
 Also everything is much more concise. Just compare the two following source codes:
 
 ```c++
-std::list<float> l; for ( int i = 1; i <= 10; ++ i ) l.push_back( i * i );
+std::list<float> l;
+for ( int i = 1; i <= 10; ++ i )
+    l.push_back( i * i );
 ```
 
 ```haskell

@@ -1,6 +1,6 @@
 # Switching from imperative to functional programming with games in Elm
 
-Imperative programming was my thing since I was a school boy. I wrote some small small games and [demoscene](http://en.wikipedia.org/wiki/Demoscene) effects, and now develop software (mainly computer vision stuff) for a living. Recently it was mainly C++ and some Python I worked with. During the last year, [David](https://raw.github.com/quchen), a good friend and Haskell expert, tried to evangelize me with the benefits of functional programming (FP). So I read [SICP](http://mitpress.mit.edu/sicp) and [LYAH](http://learnyouahaskell.com). I actually understood some parts, alghough not all, and solved few and very small [toy problems](http://projecteuler.net/problems) in Scheme and Haskell. But I did not see how one could use such a programming style voluntarily, because the imperative solutions came about an order of magnitude quicker to my mind than the functional ones did.
+Imperative programming was my thing since I was a school boy. I wrote some small small games and [demoscene](http://en.wikipedia.org/wiki/Demoscene) effects, and now develop software (mainly computer vision stuff) for a living. Recently it was mainly C++ and some Python I worked with. During the last year, [David](https://raw.github.com/quchen), a good friend and Haskell expert, tried to evangelize me with the benefits of functional programming (FP). So I read [SICP](http://mitpress.mit.edu/sicp) and [LYAH](http://learnyouahaskell.com). I actually understood some parts, although not all, and solved few and very small [toy problems](http://projecteuler.net/problems) in Scheme and Haskell. But I did not see how one could use such a programming style voluntarily, because the imperative solutions came about an order of magnitude quicker to my mind than the functional ones did.
 
 Of course, in C++ I now used a bit more from the [algorithm header](http://en.cppreference.com/w/cpp/algorithm) and also tried [some functional things](http://docs.python.org/3/howto/functional.html) in Python, yet I just did not feel how digging deeper into this paradigm could really be worth the trouble. E.g. why should I `foldr` over a list if I can `for`-loop over an array? In retrospect it perhaps also was the uncomfortable situation of again being a complete newbie that kept me from continuing.
 
@@ -15,7 +15,7 @@ Even though some of the following things will sound naive to experiences FP deve
 
 If I had written this game (resp. a non browser version of it) in C++, I probably would have used [SFML](http://www.sfml-dev.org), which is a very good library for making games like this. I already used it to write a [Snake like game](https://github.com/Dobiasd/Dron). My cost estimations for that project would probably be more man-days than it surprisingly took me to do it in Elm, a language I had no experience with at all!
 
-One reason for that is the much shorter edit/complie cycle in Elm, which reduces to just one click in your browser. But OK, except the [hot-swapping](http://elm-lang.org/blog/Interactive-Programming.elm), that is also possible with some imperative languages.
+One reason for that is the much shorter edit/compile cycle in Elm, which reduces to just one click in your browser. But OK, except the [hot-swapping](http://elm-lang.org/blog/Interactive-Programming.elm), that is also possible with some imperative languages.
 The much more astonishing fact for me was, that I did not need many of these cycles. Sometimes I wrote code for nearly an hour and as soon as [Elm's Haskell like type system](http://elm-lang.org/learn/Getting-started-with-Types.elm) did not give me errors any more while compiling, the code just worked! There was very rarely a need to debug it at all! I guess this comes from the notion, that if you look at a pure functions you just have to think about what it stands for and not what I will do to something else under certain circumstances etc. Also when just thinking in [expressions and no more in statements](http://stackoverflow.com/questions/4728073/what-is-the-difference-between-an-expression-and-a-statement-in-python), there is not so much control flow you have to emulate in your head. And it is easier to structure your code. The temptation to write spaghetti code functions is not that big and if one still grows too long, it is very easy to factor out the parts that can stand meaningful for their own. And the refactoring is not scary at all. I didn't introduce one single bug while factoring out stuff to add new functionality, like the traction between the paddle and the ball.
 
 Also everything is much more concise. Just compare the two following snippets:
@@ -32,7 +32,7 @@ l = map (**2) [1..10]
 
 And many design patterns involving inheritance and boilerplate code in C++ just disintegrate into thin air when you have functions as first class citizen in FP.
 
-Don't get me wrong. I don't want to bash C++, and I still think it is a great language if it comes to performance critical system programming, and I will continue to use it for appropriate tasks, but the high control over nearly every byte in your system comes at the cost of increased developement time. So every tool has its usage. You probably *can* get a screw into a wall using a hammer, but if you feel that a big part of your effort is wasted energy, there is presumably a better solution. ;-)
+Don't get me wrong. I don't want to bash C++, and I still think it is a great language if it comes to performance critical system programming, and I will continue to use it for appropriate tasks, but the high control over nearly every byte in your system comes at the cost of increased development time. So every tool has its usage. You probably *can* get a screw into a wall using a hammer, but if you feel that a big part of your effort is wasted energy, there is presumably a better solution. ;-)
 
 Sure, with Python things would likely have been much different compared to C++, but also there the advantages of pure FP can not be utilized fully, and still targetting the browser so easily in a very clean and abstract way is as far is I know a unique characteristic of Elm.
 
@@ -123,7 +123,7 @@ Changing the x value of our player with the keyboard is of course already extrem
 
 So how do we now get from [this skeleton](http://share-elm.com/sprout/527ac4dde4b06194fd2d16ed) to [the final game](https://github.com/Dobiasd/Breakout/blob/master/Main.elm)?
 
-First let us complete our model and our view, and then write the update code to will everyhing with life.
+First let us complete our model and our view, and then write the update code to will everything with life.
 
 
 ### Model
@@ -138,7 +138,7 @@ type Game = { state:State
             , spareBalls:Int
             , contacts:Int }
 ```
-It should be obvious for what the single record entries stand, and their particular types are in the [source](https://github.com/Dobiasd/Breakout/blob/master/Main.elm). (`contacts` ist just used to count the number of paddle ball collisions for the overall score.)
+It should be obvious for what the single record entries stand, and their particular types are in the [source](https://github.com/Dobiasd/Breakout/blob/master/Main.elm). (`contacts` is just used to count the number of paddle ball collisions for the overall score.)
 
 The `state` is a more interesting (especially later in the update section). Our game can wait to begin (`Serve`), be in the actual playing phase (`Play`) or be over and thus be `Won` or `Lost`.
 
@@ -169,7 +169,7 @@ main = lift2 displayFullScreen Window.dimensions <| dropRepeats gameState
 ```
 
 `displayFullScreen` just calls [`scale`](http://docs.elm-lang.org/library/Graphics/Collage.elm#scale) with our filled `Form` and the needed scale factor.
-This does not mean, that the game is rendered to 600x400 and then the resulting image is scaled, no. The whole game is scaled before it is actually rendered onto the sceen. This means that there will be no image scaling artifacts, even on displays with scale factors far away from '1.0'. :)
+This does not mean, that the game is rendered to 600x400 and then the resulting image is scaled, no. The whole game is scaled before it is actually rendered onto the screen. This means that there will be no image scaling artifacts, even on displays with scale factors far away from '1.0'. :)
 
 
 ### Updates
@@ -237,7 +237,7 @@ stepBall t ({x,y,vx,vy} as ball) p bricks contacts =
 
 First it checks for paddle player collisions and updates the ball's velocity and the contact count accordingly.
 
-The return type (`((Ball,[Brick]), Int)`) may look somethat odd at first glance, but thanks to [pattern matching](http://elm-lang.org/learn/Pattern-Matching.elm) it did not pose a problem for the caller (stepPlay):
+The return type (`((Ball,[Brick]), Int)`) may look somewhat odd at first glance, but thanks to [pattern matching](http://elm-lang.org/learn/Pattern-Matching.elm) it did not pose a problem for the caller (stepPlay):
 `((ball', bricks'), contacts') = stepBall ...`
 And it renders itself quite handy when looking at `(foldr goBrickHits (ball',[]) bricks, contacts')`
 
@@ -255,7 +255,7 @@ goBrickHits brick (ball,bricks) =
     (if hit then speedUp ball' else ball', bricks')
 ```
 
-Initially it checks if the ball is colliding with the current brick, and if this is true we do not put this brick in our accumulator since it just was destroyed by the ball. We also invert the balls vertical speed. If no hit occured, we just [cons](http://en.wikipedia.org/wiki/Cons) the brick to the bricks that are still in the game. Et voilà. Who needs `for`-loops anymore? :-)
+Initially it checks if the ball is colliding with the current brick, and if this is true we do not put this brick in our accumulator since it just was destroyed by the ball. We also invert the balls vertical speed. If no hit occurred, we just [cons](http://en.wikipedia.org/wiki/Cons) the brick to the bricks that are still in the game. Et voilà. Who needs `for`-loops anymore? :-)
 
 ---------------------------------------
 

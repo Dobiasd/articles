@@ -99,7 +99,7 @@ class citizen](http://en.wikipedia.org/wiki/First-class_function) in FP.
 
 Don't get me wrong. I don't want to bash C++, and I
 still think it is a great language if it comes to performance critical system
-programming, and I will continue to use it for appropriate tasks, but the high
+programming, and I will continue to use it for appropriate tasks. But the high
 control over nearly every byte in your system comes at the cost of increased
 development time. So every tool has its usage. You probably *can* get a screw
 into a wall using a hammer, but if you feel that a big part of your effort is

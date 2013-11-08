@@ -204,8 +204,7 @@ Our `Game` just holds the players information, nothing else, and
 the default game has a player positioned at 0/0.
 
 
-###
-Updates
+### Updates
 
 `stepGame` is the one function describing all the changes our game
 state can ever experience. Given an input and the current game state, it

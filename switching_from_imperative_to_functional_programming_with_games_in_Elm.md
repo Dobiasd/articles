@@ -84,7 +84,7 @@ Also everything is much more concise. Just compare the
 two following snippets:
 
 ```c++
-std::list<float> l;
+std::list<int> l;
 for ( int i = 1; i <= 10; ++ i )
     l.push_back( i * i );
 ```

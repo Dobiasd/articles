@@ -85,14 +85,12 @@ two following snippets:
 
 ```c++
 std::list<float> l;
-for ( int i = 1; i <=
-10; ++ i )
+for ( int i = 1; i <= 10; ++ i )
     l.push_back( i * i );
 ```
 
 ```haskell
-l = map (**2)
-[1..10]
+l = map (**2) [1..10]
 ```
 
 And many design patterns involving inheritance and boilerplate
@@ -141,48 +139,38 @@ import Window
 
 -- model
 
-direction
-: Signal Int
+direction : Signal Int
 direction = lift .x Keyboard.arrows
 
-type Input = { dir:Int,
-delta:Time }
+type Input = { dir:Int, delta:Time }
 
 input : Signal Input
-input = (Input <~ direction ~ fps
-60)
+input = (Input <~ direction ~ fps 60)
 
 type Positioned a = { a | x:Float, y:Float }
 
-type Player =
-Positioned {}
+type Player = Positioned {}
 
 player : Float -> Float -> Player
-player x y = { x=x, y=y
-}
+player x y = { x=x, y=y }
 
 type Game = { player:Player }
 
 defaultGame : Game
-defaultGame = {
-player = player 0 0 }
+defaultGame = { player = player 0 0 }
 
 
 -- updates
 
-stepGame : Input -> Game ->
-Game
+stepGame : Input -> Game -> Game
 stepGame {dir,delta} ({player} as game) =
   let
-    player' = {
-player | x <- player.x + delta * toFloat dir }
+    player' = { player | x <- player.x + delta * toFloat dir }
   in
-    { game | player <-
-player' }
+    { game | player <- player' }
 
 gameState : Signal Game
-gameState = foldp stepGame defaultGame
-input
+gameState = foldp stepGame defaultGame input
 
 
 -- view
@@ -260,15 +248,13 @@ ball and the number of spare balls.
 
 ```haskell
 type Game = { state:State
-
-           , gameBall:Ball
+            , gameBall:Ball
             , player:Player
-            ,
-bricks:[Brick]
+            , bricks:[Brick]
             , spareBalls:Int
-            , contacts:Int
-}
+            , contacts:Int }
 ```
+
 It should be obvious for what the single record entries stand, and
 their particular types are in the
 [source](https://github.com/Dobiasd/Breakout/blob/master/Main.elm).
@@ -308,21 +294,16 @@ actually lift to handle our `gameState` signal is
 `displayFullScreen`.
 
 ```haskell
-main = lift2 displayFullScreen
-Window.dimensions <| dropRepeats gameState
+main = lift2 displayFullScreen Window.dimensions <| dropRepeats gameState
 
-displayFullScreen : (Int,Int) ->
-Game -> Element
+displayFullScreen : (Int,Int) -> Game -> Element
 displayFullScreen (w,h) game =
   let
-    gameScale = min
-(toFloat w / gameWidth) (toFloat h / gameHeight)
+    gameScale = min (toFloat w / gameWidth) (toFloat h / gameHeight)
   in
-    collage w h
-[display game |> scale gameScale]
+    collage w h [display game |> scale gameScale]
 
-main = lift2 displayFullScreen
-Window.dimensions <| dropRepeats gameState
+main = lift2 displayFullScreen Window.dimensions <| dropRepeats gameState
 ```
 
 `displayFullScreen` just
@@ -346,19 +327,14 @@ Let's see, we
 `defaultGame` with `stepGame`, so let's look at this.
 
 ```haskell
-stepGame
-: Input -> Game -> Game
-stepGame ({dir,delta} as input) ({state,player} as
-game) =
+stepGame : Input -> Game -> Game
+stepGame ({dir,delta} as input) ({state,player} as game) =
   let
     func = if | state == Play  -> stepPlay
-              |
-state == Serve -> stepServe
+              | state == Serve -> stepServe
               | otherwise      -> stepGameOver
-
-in
-    func input { game | player <- stepPlayer delta dir player
-}
+  in
+    func input { game | player <- stepPlayer delta dir player }
 ```
 
 Since the paddle can be moved regardless of the game state, the
@@ -371,33 +347,23 @@ state.
 
 ```haskell
 stepPlay : Input -> Game -> Game
-stepPlay {delta}
-({gameBall,player,bricks,spareBalls,contacts} as game) =
+stepPlay {delta} ({gameBall,player,bricks,spareBalls,contacts} as game) =
   let
-    ballLost
-= gameBall.y - gameBall.r < -halfHeight
-    gameOver = ballLost && spareBalls
-== 0
+    ballLost = gameBall.y - gameBall.r < -halfHeight
+    gameOver = ballLost && spareBalls == 0
     spareBalls' = if ballLost then spareBalls - 1 else spareBalls
-
-state' = if | gameOver -> Lost
+    state' = if | gameOver -> Lost
                 | ballLost -> Serve
-
-       | isEmpty bricks -> Won
+                | isEmpty bricks -> Won
                 | otherwise -> Play
-
-((ball', bricks'), contacts') =
-      stepBall delta gameBall player
-bricks contactscontacts)
+    ((ball', bricks'), contacts') =
+      stepBall delta gameBall player bricks contactscontacts)
   in
     { game | state      <- state'
-
-, gameBall   <- ball'
+           , gameBall   <- ball'
            , bricks     <- bricks'
-           ,
-spareBalls <- max 0 spareBalls' -- No -1 when game is lost.
-           ,
-contacts   <- contacts' }
+           , spareBalls <- max 0 spareBalls' -- No -1 when game is lost.
+           , contacts   <- contacts' }
 ```
 
 If our ball is lost and we do not have any
@@ -412,27 +378,19 @@ returns new values for them. The number of paddle ball contacts may also be
 increased.
 
 ```haskell
-stepBall : Time -> Ball -> Player -> [Brick] -> Int
--> ((Ball,[Brick]), Int)
-stepBall t ({x,y,vx,vy} as ball) p bricks contacts
-=
+stepBall : Time -> Ball -> Player -> [Brick] -> Int -> ((Ball,[Brick]), Int)
+stepBall t ({x,y,vx,vy} as ball) p bricks contacts =
   let
     hitPlayer = (ball `within` p)
-    contacts' = if hitPlayer
-then contacts + 1 else contacts
+    contacts' = if hitPlayer then contacts + 1 else contacts
     newVx = if hitPlayer then
-
-weightedAvg [p.vx, vx] [traction, 1-traction] else
-               stepV vx (x
-< (ball.r-halfWidth)) (x > halfWidth-ball.r)
-    hitCeiling = (y > halfHeight
-- ball.r)
+               weightedAvg [p.vx, vx] [traction, 1-traction] else
+               stepV vx (x < (ball.r-halfWidth)) (x > halfWidth-ball.r)
+    hitCeiling = (y > halfHeight - ball.r)
     ball' = stepObj t { ball | vx <- newVx ,
-
-          vy <- stepV vy hitPlayer hitCeiling }
+                               vy <- stepV vy hitPlayer hitCeiling }
   in
-    (foldr goBrickHits
-(ball',[]) bricks, contacts')
+    (foldr goBrickHits (ball',[]) bricks, contacts')
 ```
 
 First it checks for paddle player
@@ -458,18 +416,14 @@ contains the already changed ball and at first no bricks at
 all:
 
 ```haskell
-goBrickHits : Brick -> (Ball,[Brick]) ->
-(Ball,[Brick])
+goBrickHits : Brick -> (Ball,[Brick]) -> (Ball,[Brick])
 goBrickHits brick (ball,bricks) =
   let
-    hit = ball
-`within` brick
+    hit = ball `within` brick
     bricks' = if hit then bricks else brick::bricks
-
-ball' = if hit then { ball | vy <- -ball.vy } else ball
+    ball' = if hit then { ball | vy <- -ball.vy } else ball
   in
-    (if hit
-then speedUp ball' else ball', bricks')
+    (if hit then speedUp ball' else ball', bricks')
 ```
 
 Initially it checks if the

@@ -90,7 +90,7 @@ for ( int i = 1; i <= 10; ++ i )
 ```
 
 ```haskell
-l = map (**2) [1..10]
+l = map ((^)2) [1..10]
 ```
 
 And many design patterns involving inheritance and boilerplate

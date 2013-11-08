@@ -94,8 +94,8 @@ l = map (**2) [1..10]
 ```
 
 And many design patterns involving inheritance and boilerplate
-code in C++ just disintegrate into thin air when you have functions as first
-class citizen in FP.
+code in C++ just disintegrate into thin air when you have functions as [first
+class citizen](http://en.wikipedia.org/wiki/First-class_function) in FP.
 
 Don't get me wrong. I don't want to bash C++, and I
 still think it is a great language if it comes to performance critical system

@@ -34,8 +34,8 @@ After
 solving the challenges in the [pong
 tutorial](http://elm-lang.org/blog/games-in-elm/part-0/Making-Pong.html) I
 decided to write this [Breakout clone](https://github.com/Dobiasd/Breakout),
-which turned out to be a very interesting and fun undertaking. [Try it
-out!](http://daiw.de/games/breakout) :-)
+which turned out to be a very interesting and fun undertaking. **[Try it
+out!](http://daiw.de/games/breakout)** :-)
 
 Even though some of the following
 things will sound naive to experiences FP developers (or even to me in some

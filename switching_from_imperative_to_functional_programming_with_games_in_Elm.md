@@ -47,8 +47,7 @@ project](https://github.com/Dobiasd/Maze). But that's another story. Here we
 are talking Breakout. ;)
 
 
-## Differences to a hypothetical imperative
-implementation in C++
+## Differences to a hypothetical imperative implementation in C++
 
 If I had written this game (resp. a non browser
 version of it) in C++, I probably would have used
@@ -236,8 +235,7 @@ the view just displays the players coordinates as text. Not very fancy, but
 enough to see that `stepGame` correctly updates our model.
 
 
-## Making the
-game a game
+## Making the game a game
 
 Changing the x value of our player with the keyboard is of
 course already extremely awesome, and we could spend countless hours exploring

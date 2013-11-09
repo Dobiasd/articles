@@ -93,6 +93,24 @@ for ( int i = 1; i <= 10; ++ i )
 l = map ((^)2) [1..10]
 ```
 
+Sure, what is more readable/pretty is also a matter or habit/taste, but
+beside the terseness, there come other benefits with this abstraction,
+e.g. if you want to decide from the outside what to do with the values:
+
+```haskell
+l1 = buildPairs [1..5] ((^)2),
+l2 = buildPairs [1..5] sqrt,
+l3 = buildPairs [1..5] ((*)2),
+l4 = buildPairs [1..5] ((+)1)
+```
+
+You can also decide which direction you prefer to read:
+```haskell
+l1 = map ((^)2) [1..10], -- normal function application
+l1 = ((^)2) `map` [1..10], -- infix notation
+l1 = [1..10] |> map ((^)2) -- forward application
+```
+
 And many design patterns involving inheritance and boilerplate
 code in C++ just disintegrate into thin air when you have functions as [first
 class citizen](http://en.wikipedia.org/wiki/First-class_function) in FP.
@@ -105,11 +123,13 @@ development time. So every tool has its usage. You probably *can* get a screw
 into a wall using a hammer, but if you feel that a big part of your effort is
 wasted energy, there is presumably a better solution. ;-)
 
-Sure, with Python
-things would likely have been much different compared to C++, but also there
-the advantages of pure FP can not be utilized fully, and still targetting the
-browser so easily in a very clean and abstract way is as far is I know a
-unique characteristic of Elm.
+Sure, with Python things would likely have been much different
+compared to C++, but also there the advantages of pure FP
+(like [referential transparency]
+(http://en.wikipedia.org/wiki/Referential_transparency_%28computer_science%29))
+can not always be utilized fully, and still targetting the browser so easily
+in a very clean and abstract way is as far is I know a unique characteristic
+of Elm.
 
 
 ## Concept
@@ -407,8 +427,8 @@ goBrickHits (ball',[]) bricks, contacts')`
 
 OK, what does `foldr
 goBrickHits (ball',[])` do?
-I will not explain the behaviour of [folds in
-general](http://www.haskell.org/haskellwiki/Fold#List_folds_as_structural_transformations)
+I will not explain the behaviour of [folds in general]
+(http://www.haskell.org/haskellwiki/Fold#List_folds_as_structural_transformations)
 here, but in our case the used function `goBrickHits` takes one single brick
 at a time and the accumulator, which we initially set to `(ball',[])`. It
 contains the already changed ball and at first no bricks at

@@ -95,17 +95,21 @@ l = map ((^)2) [1..10]
 
 Sure, what is more readable/pretty is also a matter or habit/taste. But
 beside the terseness there come other benefits with the abstract separation
-of the control structure, e.g. if you want to decide from the outside what
-to do with the values:
+of the control structure, e.g. if you want to decide [from the outside]
+(http://share-elm.com/sprout/527e00f0e4b06194fd2d191f) what to do with the
+values:
 
 ```haskell
+buildPairs l f = zip l <| map f l
 l1 = buildPairs [1..5] ((^)2)
 l2 = buildPairs [1..5] sqrt
 l3 = buildPairs [1..5] ((*)2)
 l4 = buildPairs [1..5] ((+)1)
 ```
 
-You can also decide which direction you prefer to read:
+You can also decide [which direction]
+(http://share-elm.com/sprout/527e0130e4b06194fd2d1920) you prefer to read:
+
 ```haskell
 la = map ((^)2) [1..10]    -- normal function application
 lb = ((^)2) `map` [1..10]  -- infix notation

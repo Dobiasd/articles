@@ -75,7 +75,7 @@ statements](http://stackoverflow.com/questions/4728073/what-is-the-difference-be
 there is not so much control flow you have to emulate in your head. And it is
 easier to structure your code. The temptation to write spaghetti code
 functions is not that big and if one still grows too long, it is very easy to
-factor out the parts that can stand meaningful for their own. And the
+factor out the parts that can stand meaningful for their own. Furthermore the
 refactoring is not scary at all. I didn't introduce one single bug while
 factoring out stuff to add new functionality, like the traction between the
 paddle and the ball.

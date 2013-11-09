@@ -94,8 +94,9 @@ l = map ((^)2) [1..10]
 ```
 
 Sure, what is more readable/pretty is also a matter or habit/taste. But
-beside the terseness there come other benefits with this abstraction,
-e.g. if you want to decide from the outside what to do with the values:
+beside the terseness there come other benefits with the abstract separation
+of the control structure, e.g. if you want to decide from the outside what
+to do with the values:
 
 ```haskell
 l1 = buildPairs [1..5] ((^)2)
@@ -106,8 +107,8 @@ l4 = buildPairs [1..5] ((+)1)
 
 You can also decide which direction you prefer to read:
 ```haskell
-la = map ((^)2) [1..10]   -- normal function application
-lb = ((^)2) `map` [1..10] -- infix notation
+la = map ((^)2) [1..10]    -- normal function application
+lb = ((^)2) `map` [1..10]  -- infix notation
 lc = [1..10] |> map ((^)2) -- forward application
 ```
 

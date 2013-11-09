@@ -125,12 +125,11 @@ into a wall using a hammer, but if you feel that a big part of your effort is
 wasted energy, there is presumably a better solution. ;-)
 
 Sure, with Python things would likely have been much different
-compared to C++, but also there the advantages of pure FP
-(like [referential transparency]
-(http://en.wikipedia.org/wiki/Referential_transparency_%28computer_science%29))
-can not always be utilized fully, and still targetting the browser so easily
-in a very clean and abstract way is as far is I know a unique characteristic
-of Elm.
+compared to C++, but also there the [advantages of pure FP]
+(http://www.haskell.org/haskellwiki/Functional_programming
+#Benefits_of_functional_programming) can not always be utilized fully,
+and still targetting the browser so easily in a very clean and abstract way
+is as far is I know a unique characteristic of Elm.
 
 
 ## Concept

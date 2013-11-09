@@ -93,8 +93,8 @@ for ( int i = 1; i <= 10; ++ i )
 l = map ((^)2) [1..10]
 ```
 
-Sure, what is more readable/pretty is also a matter or habit/taste, but
-beside the terseness, there come other benefits with this abstraction,
+Sure, what is more readable/pretty is also a matter or habit/taste. But
+beside the terseness there come other benefits with this abstraction,
 e.g. if you want to decide from the outside what to do with the values:
 
 ```haskell
@@ -107,8 +107,8 @@ l4 = buildPairs [1..5] ((+)1)
 You can also decide which direction you prefer to read:
 ```haskell
 l1 = map ((^)2) [1..10], -- normal function application
-l1 = ((^)2) `map` [1..10], -- infix notation
-l1 = [1..10] |> map ((^)2) -- forward application
+l2 = ((^)2) `map` [1..10], -- infix notation
+l3 = [1..10] |> map ((^)2) -- forward application
 ```
 
 And many design patterns involving inheritance and boilerplate

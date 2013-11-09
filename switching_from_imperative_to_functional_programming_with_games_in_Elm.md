@@ -126,10 +126,10 @@ wasted energy, there is presumably a better solution. ;-)
 
 Sure, with Python things would likely have been much different
 compared to C++, but also there the [advantages of pure FP]
-(http://www.haskell.org/haskellwiki/Functional_programming
-#Benefits_of_functional_programming) can not always be utilized fully,
-and still targetting the browser so easily in a very clean and abstract way
-is as far is I know a unique characteristic of Elm.
+(http://www.haskell.org/haskellwiki/Functional_programming#Benefits_of_functional_programming)
+can not always be utilized fully, and still targetting the browser so easily
+in a very clean and abstract way is as far is I know a unique characteristic
+of Elm.
 
 
 ## Concept

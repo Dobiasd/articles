@@ -98,17 +98,17 @@ beside the terseness there come other benefits with this abstraction,
 e.g. if you want to decide from the outside what to do with the values:
 
 ```haskell
-l1 = buildPairs [1..5] ((^)2),
-l2 = buildPairs [1..5] sqrt,
-l3 = buildPairs [1..5] ((*)2),
+l1 = buildPairs [1..5] ((^)2)
+l2 = buildPairs [1..5] sqrt
+l3 = buildPairs [1..5] ((*)2)
 l4 = buildPairs [1..5] ((+)1)
 ```
 
 You can also decide which direction you prefer to read:
 ```haskell
-l1 = map ((^)2) [1..10], -- normal function application
-l2 = ((^)2) `map` [1..10], -- infix notation
-l3 = [1..10] |> map ((^)2) -- forward application
+la = map ((^)2) [1..10]   -- normal function application
+lb = ((^)2) `map` [1..10] -- infix notation
+lc = [1..10] |> map ((^)2) -- forward application
 ```
 
 And many design patterns involving inheritance and boilerplate

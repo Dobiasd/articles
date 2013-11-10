@@ -30,21 +30,21 @@ gave it a shot and read trough all the
 [tutorials/articles](http://elm-lang.org/Learn.elm) while constantly [playing
 around](http://elm-lang.org/try) with the stuff I just found out.
 
-After
-solving the challenges in the [pong
-tutorial](http://elm-lang.org/blog/games-in-elm/part-0/Making-Pong.html) I
+After solving the challenges in the [pongtutorial]
+(http://elm-lang.org/blog/games-in-elm/part-0/Making-Pong.html) I
 decided to write this [Breakout clone](https://github.com/Dobiasd/Breakout),
 which turned out to be a very interesting and fun undertaking. **[Try it
 out!](http://daiw.de/games/breakout)** :-)
 
-Even though some of the following
-things will sound naive to experiences FP developers (or even to me in some
-months or years), the rest of the article will describe my learning experience
+Even though some of the following things will sound naive to experienced
+FP developers (or even to me in some months or years),
+the rest of this little essay will describe my learning experience
 with that project, how it is structured and why it finally convinced me of the
 advantages of functional (reactive) programming and motivated me to
-immediately continue with [a second game
-project](https://github.com/Dobiasd/Maze). But that's another story. Here we
-are talking Breakout. ;)
+immediately continue with [a second game project]
+(https://github.com/Dobiasd/Maze). It is not meant to serve as a
+full FP or game development tutorial, but perhaps it can inspire you to have
+a deeper look into the FP paradigm and then maybe share my excitement. :-)
 
 
 ## Differences to a hypothetical imperative implementation in C++
@@ -459,10 +459,10 @@ still in the game. Et voilà. Who needs `for`-loops anymore?
 
 ---------------------------------------
 
-OK, that's it. Since at the
-moment of writing I'm quite new to all this, I guess there is still much room
-for improvement of the code and this article. If you have suggestions please
-[let me know](mailto:harry@daiw.de). :-)
+OK, that's it. Since at the moment of writing I'm quite new to all this,
+I guess there is still much room for improvement of the code and this
+article.
+If you have suggestions please[let me know](mailto:harry@daiw.de). :-)
 
 
 ## Conclusion

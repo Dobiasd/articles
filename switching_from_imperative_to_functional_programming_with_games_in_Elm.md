@@ -380,7 +380,7 @@ stepPlay {delta} ({gameBall,player,bricks,spareBalls,contacts} as game) =
                 | isEmpty bricks -> Won
                 | otherwise -> Play
     ((ball', bricks'), contacts') =
-      stepBall delta gameBall player bricks contactscontacts)
+      stepBall delta gameBall player bricks contacts
   in
     { game | state      <- state'
            , gameBall   <- ball'
@@ -462,7 +462,7 @@ still in the game. Et voilà. Who needs `for`-loops anymore?
 OK, that's it. Since at the moment of writing I'm quite new to all this,
 I guess there is still much room for improvement of the code and this
 article.
-If you have suggestions please[let me know](mailto:harry@daiw.de). :-)
+If you have suggestions please [let me know](mailto:harry@daiw.de). :-)
 
 
 ## Conclusion

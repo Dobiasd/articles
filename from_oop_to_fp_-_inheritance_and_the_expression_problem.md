@@ -439,11 +439,12 @@ main =
         displayAll l'
 ```
 
+## Conclusion
+
 Yeah, and that is it. Thanks to the fact that we can handle functions
 like data in FP, we can have our desired comfort for software that often gets
 new types and rarely new functions, despite the presence of a
 stong static type system. We now can invent hundret new subtypes like
 [baz and qux](http://en.wikipedia.org/wiki/List_of_recurring_Mario_franchise_enemies)
 and easily add them to our world. We do not have to edit a central monster
-module with spaghetti functions for the actions of all the types. Everything
-is neatly arranged in the modules of the actual type.
+module with spaghetti functions for the actions of all the different types. Everything is neatly arranged in the modules of the actual type.

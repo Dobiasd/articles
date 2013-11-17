@@ -220,8 +220,8 @@ It's nice and terse and does everything we want.
 
 ## The expression problem
 
-The subtle difference gets obvious when you want to add new classes
-or new functions to our software:
+The subtle difference gets obvious when you want to add new
+subclasses/subtypes or new functions to our software:
 - **Only the OOP solution makes it easy to add a new class.**
 We just have to create one and all our typing will happen in this one file.
 - **Only the FP solution makes it easy to add a new function.**
@@ -247,7 +247,7 @@ functional language? Let's see if we can manage this.
 ## A naive Haskell attempt to solve our problem
 
 A first attempt could be to move the functions into separate modules for
-every class.
+every "class".
 
 ```haskell
 -- Base.hs

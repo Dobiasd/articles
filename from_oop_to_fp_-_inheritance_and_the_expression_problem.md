@@ -348,6 +348,7 @@ boilerplate dispatch code for every new class we invent. Not cool.
 So perhaps our [ADT](http://en.wikipedia.org/wiki/Algebraic_data_type) is
 not of the right kind for this job.
 OK, let's try to represent our types just by the functions we need:
+(Many thanks to Jeff Smits from the [Elm mailing list](https://groups.google.com/forum/?fromgroups#!forum/elm-discuss) for this.)
 
 ```haskell
 -- Base.hs
@@ -448,3 +449,7 @@ stong static type system. We now can invent hundret new subtypes like
 [baz and qux](http://en.wikipedia.org/wiki/List_of_recurring_Mario_franchise_enemies)
 and easily add them to our world. We do not have to edit a central monster
 module with spaghetti functions for the actions of all the different types. Everything is neatly arranged in the modules of the actual type.
+
+If there already is a more idiomatic solution in Haskell for this, or you
+have an Idea for a more elegant approach, please [tell](mailto:harry@daiw.de)
+[me](https://www.facebook.com/Dohbi). :)

@@ -46,10 +46,10 @@ and one constant function `display`.
 
 
 ## C++ solution
-Since C++ support Object Oriented Programming (OOP) we can have a look
-at a typical solution.
-First the interface of the abstract base class (pure virtual).
+Since C++ supports Object Oriented Programming (OOP) we can have a look
+at a typical solution with it.
 
+First the interface of the abstract base class (pure virtual).
 ```c++
 // Base.h
 #ifndef BASE_H
@@ -102,7 +102,7 @@ class Bar : public Base
 #endif
 ```
 
-And finally some code to test all this
+And finally some code to test all this:
 
 ```c++
 // main.cpp
@@ -220,7 +220,7 @@ It's nice and terse and does everything we want.
 
 ## The expression problem
 
-The subtle difference gets obvious when you want to add new
+The subtle difference only gets obvious when you want to add new
 subclasses/subtypes or new functions to our software:
 - **Only the OOP solution makes it easy to add a new class.**
 We just have to create one and all our typing will happen in this one file.
@@ -230,9 +230,9 @@ We just have to write it beneath `step` and `display`.
 In case `Base.hs` would get too long in our Haskell version
 we could split in into `Step.hs` and `Display.hs`.
 But still, if we would like to add a new object, we would have to edit
-all the functions. There would not be one single point to do it.
+*all* the functions. There would not be one single point to do it.
 Vice versa, the OOP solution would make it difficult to add a new
-function. We would have to edit the filed of all derived classes.
+function. We would have to edit the files of all derived classes.
 
 Perhaps this is not a big surprise. In OOP our code is structured by objects,
 in FP it is structured by functions.

@@ -222,15 +222,15 @@ It's nice and terse and does everything we want.
 
 The subtle difference gets obvious when you want to add new classes
 or new functions to our software:
-- **The OOP solution makes it easy to add a new class.**
+- **Only the OOP solution makes it easy to add a new class.**
 We just have to create one and all our typing will happen in this one file.
-- **The FP solution makes it easy to add a new function.**
+- **Only the FP solution makes it easy to add a new function.**
 We just have to write it beneath `step` and `display`.
 
 In case `Base.hs` would get too long in our Haskell version
 we could split in into `Step.hs` and `Display.hs`.
 But still, if we would like to add a new object, we would have to edit
-all the functions. There would not be a single point to do it.
+all the functions. There would not be one single point to do it.
 Vice versa, the OOP solution would make it difficult to add a new
 function. We would have to edit the filed of all derived classes.
 

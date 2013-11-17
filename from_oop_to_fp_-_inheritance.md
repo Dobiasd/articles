@@ -167,7 +167,7 @@ The output of this program is:
 
 ## A typical Haskell implementation
 
-The usual haskell approach to this could look like this:
+The usual haskell approach to this could look like so:
 
 ```haskell
 -- Base.hs

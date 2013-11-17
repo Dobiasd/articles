@@ -169,7 +169,7 @@ The output of this program is:
 
 Since one requirement for a solution is the ability to store objects
 of different subtypes in the same list,
-[typeclasses](http://codepad.org/6boPlYTK) are not the answer here.
+[typeclasses](http://codepad.org/6boPlYTK) are not the answer here. (It also would be cool if it can be used in [Elm](http://elm-lang.org/) too. ^_-)
 
 So the usual haskell approach could look like this:
 

@@ -289,21 +289,17 @@ displayFoo (Foo intVal) = show intVal
 ```
 
 ```haskell
-// Bar.h
-#ifndef BAR_H
-#define BAR_H
-#include "Base.h"
-class Bar : public Base
-{
-    public:
-        Bar(const std::string& s) : strVal_(s) {}
-        // Concat delta as string to internal state.
-        virtual void step(int delta) { strVal_ += std::to_string(delta); }
-        virtual std::string display() { return strVal_; }
-    private:
-        std::string strVal_;
-};
-#endif
+-- Bar.hs
+module Bar where
+
+import Base
+
+-- Concat delta as string to internal state.
+stepBar :: Base -> Int -> Base
+stepBar (Bar strVal) delta = Bar $ strVal ++ show delta
+
+displayBar :: Base -> String
+displayBar (Bar strVal) = strVal
 ```
 
 ```haskell

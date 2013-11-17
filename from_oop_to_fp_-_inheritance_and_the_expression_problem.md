@@ -410,6 +410,7 @@ stepBar s delta = bar $ s ++ show delta
 displayBar :: String -> String
 displayBar s = s
 ```
+In a real application the state of course could be any arbitrary more complicated data type, and not just an Int or String as in this example.
 
 Our `Main.hs` only has to be changed in one line, since we now have our
 constructor functions `foo` and `bar` (instead of `Foo` and `Bar` in the

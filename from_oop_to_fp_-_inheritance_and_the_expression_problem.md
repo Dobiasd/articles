@@ -167,7 +167,11 @@ The output of this program is:
 
 ## A typical Haskell implementation
 
-The usual haskell approach to this could look like so:
+Since one requirement for a solution is the ability to store objects
+of different subtypes in the same list,
+[typeclasses](http://codepad.org/6boPlYTK) are not the answer here.
+
+So the usual haskell approach could look like this:
 
 ```haskell
 -- Base.hs

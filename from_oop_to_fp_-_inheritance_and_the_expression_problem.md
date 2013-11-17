@@ -4,10 +4,10 @@ During my currently running undertaking of learning
 functional programming (FP) I stumbled upon a challange related to the
 [expression problem](http://c2.com/cgi/wiki?ExpressionProblem).
 Let's say you write a platform game with different types of enemies.
-They all have respond to certain actions, like being jumped on,
-in distinct ways etc. We want to be able to store them together
-in a homogeneous list, so we give them a common base class.
-The according class diagram to this could look as follows:
+They all have to respond to certain actions, like being jumped on etc.,
+in distinct ways. Also, we want to be able to store them together
+in a homogeneous list, so we give them a common base class which defines
+their interface. The according class diagram to this could look as follows:
 
 ```
              ---------
@@ -21,10 +21,10 @@ The according class diagram to this could look as follows:
  | Boo |   | Goomba |   | Wiggler |
  -------   ----------   -----------
 ```
-The functions every class derived from `Enemy` could be `walk`, `jumpedOn`,
-`spinJumpedOn`, `getPosition`.
+The functions every class derived from `Enemy` has to implement
+could be `walk`, `jumpedOn`, `spinJumpedOn`, `getPosition`.
 The first three would be non const member functions, they mutate the object.
-The last one would be a const function, it only return a property.
+The last one would be a const function, it only returns a property.
 
 To make everything a bit easier,
 let's say we just have two derived subclasses:

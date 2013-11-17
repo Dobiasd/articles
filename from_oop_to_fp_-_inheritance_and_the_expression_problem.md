@@ -1,4 +1,4 @@
-# From Object Oriented Programming to Functional Programming - Inheritance
+# From Object Oriented Programming to Functional Programming - Inheritance and the Expression Problem
 
 During my currently running undertaking of learning
 functional programming (FP) I stumbled upon a challange related to the

@@ -79,8 +79,8 @@ class Foo : public Base
     public:
         Foo(const int i) : intVal_(i) {}
         // Add delta to internal state.
-        virtual void step(int delta) { intVal_ += delta; }
-        virtual std::string display() const { return std::to_string(intVal_); }
+        void step(int delta) override { intVal_ += delta; }
+        std::string display() const override { return std::to_string(intVal_); }
     private:
         int intVal_;
 };
@@ -97,8 +97,8 @@ class Bar : public Base
     public:
         Bar(const std::string& s) : strVal_(s) {}
         // Concat delta as string to internal state.
-        virtual void step(int delta) { strVal_ += std::to_string(delta); }
-        virtual std::string display() const { return strVal_; }
+        void step(int delta) override { strVal_ += std::to_string(delta); }
+        std::string display() const override { return strVal_; }
     private:
         std::string strVal_;
 };
@@ -125,10 +125,10 @@ typedef vector<BasePtr> BasePtrVec;
 // Steps every object in l by 1.
 void stepAll(BasePtrVec& l)
 {
-    for_each(begin(l), end(l), [](BasePtr& basePtr)
+    for (BasePtr& basePtr : l)
     {
         basePtr->step(1);
-    });
+    }
 }
 
 // Displays all objects in l beneath each other.
@@ -173,8 +173,8 @@ The output of this program is:
 Since one requirement for a solution is the ability to store objects
 of different subtypes in the same list,
 [typeclasses](http://codepad.org/6boPlYTK) are not the answer here.
-It also would be cool if it can be used in [Elm](http://elm-lang.org/) too,
-so let us
+It also would be cool if it can be used in
+[Elm](http://elm-lang.org/learn/Syntax.elm) too, so let us
 [avoid](http://lukepalmer.wordpress.com/2010/01/24/haskell-antipattern-existential-typeclass/)
 [existential types](http://www.haskell.org/haskellwiki/Existential_type)
 for now. ^_-)

@@ -455,6 +455,81 @@ main =
         displayAll l'
 ```
 
+Finally let's check if this can be translated to
+[Elm](http://elm-lang.org/learn/Syntax.elm)
+
+```haskell
+-- Base.elm
+module Base where
+
+data Base = Base {step : (Int -> Base), display : String}
+```
+
+```haskell
+-- Foo.elm
+module Foo where
+
+import Base(Base)
+
+foo : Int -> Base
+foo i = Base {step=(stepFoo i), display=(displayFoo i)}
+
+-- Add delta to internal state.
+stepFoo : Int -> Int -> Base
+stepFoo i delta = foo <| i + delta
+
+displayFoo : Int -> String
+displayFoo i = show i
+```
+
+```haskell
+-- Bar.elm
+module Bar where
+
+import Base(Base)
+
+bar : String -> Base
+bar s = Base {step=(stepBar s), display=(displayBar s)}
+
+-- Concat delta as string to internal state.
+stepBar : String -> Int -> Base
+stepBar s delta = bar <| s ++ show delta
+
+displayBar : String -> String
+displayBar s = s
+```
+
+```haskell
+-- Main.elm
+import Base(Base)
+import Foo(foo)
+import Bar(bar)
+
+stepOne : Base -> Base
+stepOne (Base b) = b.step 1
+
+-- Steps every object in l by 1.
+stepAll : [Base] -> [Base]
+stepAll l = map (\(Base b) -> b.step 1) l
+
+-- Displays all objects in l beneath each other.
+displayAll : [Base] -> String
+displayAll l = concat (intersperse "\n" <| map (\(Base b) -> b.display) l)
+
+main =
+    let
+        -- Fill a list with "derived instances".
+        l : [Base]
+        l = [foo 0, bar ""]
+
+        -- Step every object two times.
+        l' = (stepAll . stepAll) l
+    in
+        -- Show result.
+        plainText <| displayAll l'
+```
+It does.
+
 ## Conclusion
 
 Yeah, and that is it.

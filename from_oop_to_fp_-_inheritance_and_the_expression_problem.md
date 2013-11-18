@@ -480,7 +480,7 @@ have an Idea for a more elegant approach, please [tell](mailto:harry@daiw.de)
 
 ## Elm version
 
-If you are interested to use this in
+In case you are interested to use this in
 [Elm](http://elm-lang.org/learn/Syntax.elm), the translation looks as
 follows:
 

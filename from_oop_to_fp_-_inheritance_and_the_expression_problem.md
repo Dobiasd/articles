@@ -2,7 +2,10 @@
 
 During my currently running undertaking of learning
 functional programming (FP) I stumbled upon a challange related to the
-[expression problem](http://c2.com/cgi/wiki?ExpressionProblem).
+[expression problem](http://c2.com/cgi/wiki?ExpressionProblem) while
+working on a small
+[Elm](http://elm-lang.org/)
+[project](https://github.com/Dobiasd/Demoscene-Concentration).
 Let's say you write a platform game with different types of enemies.
 They all have to respond to certain actions, like being jumped on etc.,
 in distinct ways. Also, we want to be able to store them together
@@ -169,7 +172,12 @@ The output of this program is:
 
 Since one requirement for a solution is the ability to store objects
 of different subtypes in the same list,
-[typeclasses](http://codepad.org/6boPlYTK) are not the answer here. (It also would be cool if it can be used in [Elm](http://elm-lang.org/) too. ^_-)
+[typeclasses](http://codepad.org/6boPlYTK) are not the answer here.
+It also would be cool if it can be used in [Elm](http://elm-lang.org/) too,
+so let us
+[avoid](http://lukepalmer.wordpress.com/2010/01/24/haskell-antipattern-existential-typeclass/)
+[existential types](http://www.haskell.org/haskellwiki/Existential_type)
+for now. ^_-)
 
 So the usual haskell approach could look like this:
 
@@ -248,7 +256,7 @@ But what if we want to have the OOP advantage but still use a purely
 functional language? Let's see if we can manage this.
 
 
-## A naive Haskell attempt to solve our problem
+## A naive Haskell attempt
 
 A first attempt could be to move the functions into separate modules for
 every "class".
@@ -410,7 +418,9 @@ stepBar s delta = bar $ s ++ show delta
 displayBar :: String -> String
 displayBar s = s
 ```
-In a real application the state of course could be any arbitrary more complicated data type, and not just an Int or String as in this example.
+In a real world application the state of course could be any arbitrary more
+complicated data type (nested records or whatever),
+and not just an Int or String as in this example.
 
 Our `Main.hs` only has to be changed in one line, since we now have our
 constructor functions `foo` and `bar` (instead of `Foo` and `Bar` in the
@@ -447,12 +457,18 @@ main =
 
 ## Conclusion
 
-Yeah, and that is it. Thanks to the fact that we can handle functions
-as data in FP, we can have our desired comfort for software that often gets
+Yeah, and that is it.
+Of course, we did not *solve* the expression problem, but thanks to the fact
+that we can handle functions as data in FP,
+at least we can now choose which side of the problem we want to face.
+We can have our desired comfort for software that often gets
 new types and rarely new functions, despite the presence of a
 stong static type system. We now can invent hundreds of new subtypes like
 [baz and qux](http://en.wikipedia.org/wiki/List_of_recurring_Mario_franchise_enemies)
-and easily add them to our world. We do not have to edit central monster functions for the actions of all the different types. Everything is neatly arranged in the modules of the actual type.
+and easily add them to our world.
+We do not have to edit central monster functions for the actions of all the
+different types.
+Everything is neatly arranged in the modules of the actual type.
 
 ---------------------------------------
 

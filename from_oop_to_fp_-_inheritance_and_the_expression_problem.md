@@ -232,6 +232,16 @@ It's nice and terse and does everything we want.
 
 ## The expression problem
 
+```
+                              ------------------
+-----------         /----->   | A1, A2, B1, B2 |
+| A1 | A2 |        /          ------------------
+-----------   ----<
+| B1 | B2 |        \          ------------------
+-----------         \----->   | A1, B1, A2, B2 |
+                              ------------------
+```
+
 The subtle difference only gets obvious when you want to add new
 subclasses/subtypes or new functions to our software:
 - **Only the OOP solution makes it easy to add a new class.**

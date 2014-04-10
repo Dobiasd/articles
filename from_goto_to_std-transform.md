@@ -147,7 +147,7 @@ std::transform  - elapsed time: 0.464696s
 ```
 
 ## Conclusion
-For better maintainability of your C++ software make use of the stuff in the [`<algorithm>` header](http://en.cppreference.com/w/cpp/algorithm). Once you get used to it you will enjoy every for loop you do *not* have to read. ;-)
+For better maintainability of your C++ software make use of the cool stuff in the [`<algorithm>` header](http://en.cppreference.com/w/cpp/algorithm). Once you get used to it you will enjoy every for loop you do *not* have to read. ;-)
 
 With [effective stl](http://www.amazon.com/dp/0201749629) Scott Meyers has written a very nice book covering this and more in depths.
 Herb Sutter's [talk about lambdas](https://www.youtube.com/watch?v=rcgRY7sOA58) can also help to get more into this topic.

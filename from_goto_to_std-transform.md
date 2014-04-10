@@ -1,13 +1,13 @@
 # C++ - From goto to std::transform
 
-In most programming languages there are often many different possibilities to write code that in the end does exactly the same thing. In most cases we want to use the version that is the easiest to understand to a human reader.
+In nearly every programming languages there are often many different possibilities to write code that in the end does exactly the same thing. In most cases we want to use the version that is the easiest to understand to a human reader.
 
 Let's say we have a vector of integers and want another one with all elements being the square of the elements in the first one.
 `[4, 1, 7] -> [8, 1, 49]`
 
 
 ## Goto
-Sure, one could use gotos for this, but I guess nobody would do this voluntarily, unless for trolling somebody:
+Sure, one could use gotos for this, but I guess nobody in their right mind would do this voluntarily, unless for trolling:
 
 ```c++
 vector<int> squareVec1(const vector<int>& v)
@@ -25,7 +25,7 @@ vector<int> squareVec1(const vector<int>& v)
     return result;
 }
 ```
-On the first look you have no idea what this code is doing. You have to kind of interpret it in your head and follow the control flow.
+On the first look you have no idea what this code is doing. You have to kind of interpret it in your head and follow the control flow manually to find out what's going on.
 
 
 ## While loop
@@ -76,7 +76,7 @@ vector<int> squareVec4(const vector<int>& v)
     return result;
 }
 ```
-This time the `for` line already tells the reader that probably every element of `v` is used, but only probably. One still has to look into the body of the for loop and look for `continue` or even `break` statements to really know that `result` is guaranteed to have the same size as `v` in the end.
+This time the `for` line already tells the reader that probably every element of `v` is used, but still only probably. One still has to look into the body of the for loop and look for `if`, `continue` or even `break` statements to really know that `result` is guaranteed to have the same size as `v` in the end.
 
 Many people stop here, but we can do better in terms of readability ease.
 
@@ -94,7 +94,7 @@ vector<int> squareVec5(const vector<int>& v)
     });
 }
 ```
-We use `std::accumulate`. Everybody reading this knows without thinking, that every element of `v` will be iterated over and even that these values will be used to generate one resulting value. But apart from the performance problem of this solution, the "loop header" still does not say something about the shape of the result.
+We use `std::accumulate`. Everybody reading this knows without thinking, that every element of `v` will be iterated over and that these values probably will be used to generate one resulting value. But apart from the performance problem of this solution, the "loop header" still does not say something about the shape of the result.
 
 
 ## std::transform
@@ -111,10 +111,11 @@ vector<int> squareVec6(const vector<int>& v)
     return result;
 }
 ```
-`std::transform` tells the reader at a glance, `result` will have the same size as `v` and that every single element from `v` will be used to generate exactly one element of `result`.
+`std::transform` tells the reader at one glance that `result` will have the same size as `v` and that every single element from `v` will be used to generate exactly one element for `result`.
 Now one just has to look at `return i*i` and he directly knows everything.
-Much easier than to decypher a for loop every time.
-A for loop also beginning with `for (int i : v)` could so something totally unrelated to `std::transform`. E.g. it could implement a filter:
+This is much easier than to decypher a for loop every time.
+
+A for loop also beginning with `for (int i : v)` could do something totally unrelated to `std::transform`. E.g. it could implement a filter:
 ```c++
 for (int i : v)
 {
@@ -130,13 +131,13 @@ copy_if(begin(v), end(v), back_inserter(result), [](int i)
     return i % 2 == 0;
 });
 ```
-`transform` and `copy_if` show the difference more clearly than the two for loops with the same header and just a differing body.
+`transform` and `copy_if` show the [map](http://en.wikipedia.org/wiki/Map_%28higher-order_function%29) [filter](http://en.wikipedia.org/wiki/Filter_%28higher-order_function%29) difference more clearly than the two for loops with the same header and just a differing body.
 
 ## Performance
 "But I have to use the hand written for loop for better performance!" - Nope, you do not have to.
-Even if the `std::transform` version looks like much function call overhead, especially with the lambda function, there is none. It is all optimized away.
+Even if the `std::transform` version looks like much abstraction induced function call overhead, especially with the lambda function, there is none. It is all optimized away by the compiler.
 
-For 100 million values the different implementations ([source code](https://gist.github.com/Dobiasd/839acc2bc7a1f48a5063) took the following cpu times on my machine:
+For 100 million values the different implementations ([source code](https://gist.github.com/Dobiasd/839acc2bc7a1f48a5063)) took the following cpu times on my machine:
 ```
 goto            - elapsed time: 0.465151s
 while           - elapsed time: 0.464604s

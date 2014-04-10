@@ -3,7 +3,7 @@
 In nearly every programming languages there are often many different possibilities to write code that in the end does exactly the same thing. In most cases we want to use the version that is the easiest to understand to a human reader.
 
 Let's say we have a vector of integers and want another one with all elements being the square of the elements in the first one.
-`[4, 1, 7] -> [8, 1, 49]`
+`[4, 1, 7] -> [16, 1, 49]`
 
 
 ## Goto

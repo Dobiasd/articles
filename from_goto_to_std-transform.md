@@ -163,7 +163,7 @@ vector<int> squareVec7(const vector<int>& v)
     });
 }
 ```
-Remark:
+
 
 ## Performance
 "But I have to use the hand written for loop for better performance!" - Nope, you do not have to.

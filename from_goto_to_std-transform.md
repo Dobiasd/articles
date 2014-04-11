@@ -111,7 +111,7 @@ vector<int> squareVec6(const vector<int>& v)
     return result;
 }
 ```
-`std::transform` tells the reader at one glance that `result` will have the same size as `v` and that every single element from `v` will be used to generate exactly one element for `result`.
+`std::transform` tells the reader at one glance that `v.size()` elements will be pushed into `result` and that every single element from `v` will be used to generate exactly one new element for `result`.
 Now one just has to look at `return i*i` and he directly knows everything.
 This is much easier than to decypher a for loop every time.
 

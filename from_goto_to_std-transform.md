@@ -139,12 +139,13 @@ Even if the `std::transform` version looks like much abstraction induced functio
 
 For 100 million values the different implementations ([source code](https://gist.github.com/Dobiasd/839acc2bc7a1f48a5063)) took the following cpu times on my machine:
 ```
-goto            - elapsed time: 0.465151s
-while           - elapsed time: 0.464604s
-for             - elapsed time: 0.465315s
-range based for - elapsed time: 0.463258s
-std::transform  - elapsed time: 0.464696s
+goto            - elapsed time: 0.470183s
+while           - elapsed time: 0.470266s
+for             - elapsed time: 0.471321s
+range based for - elapsed time: 0.471496s
+std::transform  - elapsed time: 0.470662s
 ```
+
 
 ## Conclusion
 For better maintainability of your C++ software make use of the cool stuff in the [`<algorithm>` header](http://en.cppreference.com/w/cpp/algorithm). Once you get used to it you will enjoy every for loop you do *not* have to read. ;-)

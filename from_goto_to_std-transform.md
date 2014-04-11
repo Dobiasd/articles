@@ -183,7 +183,7 @@ std::transform  - elapsed time: 0.903244s
 Sure, readability also has something to with taste or to be precise familiarity, for in my opinion you should avoid explicit loops and make use of the cool stuff in the [`<algorithm>` header](http://en.cppreference.com/w/cpp/algorithm) for better maintainability of your C++ software. Once you get used to it you will enjoy every for loop you do *not* have to read. ;-)
 
 
-## Further readings
+## Further reading
 With [effective stl](http://www.amazon.com/dp/0201749629) Scott Meyers has written a very nice book covering this and more in depths.
 Herb Sutter's [talk about lambdas](https://www.youtube.com/watch?v=rcgRY7sOA58) can also help to get more into this topic.
 Also you can [discuss this article on reddit](http://www.reddit.com/r/programming/comments/22q18m/c_from_goto_to_stdtransform/).

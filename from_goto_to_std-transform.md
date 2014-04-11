@@ -115,6 +115,8 @@ vector<int> squareVec6(const vector<int>& v)
 Now one just has to look at `return i*i` and he directly knows everything.
 This is much easier than to decypher a for loop every time.
 
+## Range-based for vs. `<algorithm>`
+
 A for loop also beginning with `for (int i : v)` could do something totally unrelated to `std::transform`. E.g. it could implement a filter:
 ```c++
 for (int i : v)
@@ -133,6 +135,11 @@ copy_if(begin(v), end(v), back_inserter(result), [](int i)
 ```
 `transform` and `copy_if` show the [map](http://en.wikipedia.org/wiki/Map_%28higher-order_function%29) [filter](http://en.wikipedia.org/wiki/Filter_%28higher-order_function%29) difference more clearly than the two for loops with the same header and just a differing body.
 
+"But the range-based for loop is shorter and thus more readable." you say? In this very small example, this may be the case, but if the loop body would be much longer, the character count difference dissolves and you will be happy that you do not have to look at the body at all in the `transform`/`find_if` version to figure out what it is doing.
+
+Also passing along a strategy in form of a [`std::function`](http://en.cppreference.com/w/cpp/utility/functional/function) will become easier, since you can just plug it in.
+
+
 ## Performance
 "But I have to use the hand written for loop for better performance!" - Nope, you do not have to.
 Even if the `std::transform` version looks like much abstraction induced function call overhead, especially with the lambda function, there is none. It is all optimized away by the compiler.
@@ -148,7 +155,10 @@ std::transform  - elapsed time: 0.470662s
 
 
 ## Conclusion
-For better maintainability of your C++ software make use of the cool stuff in the [`<algorithm>` header](http://en.cppreference.com/w/cpp/algorithm). Once you get used to it you will enjoy every for loop you do *not* have to read. ;-)
+Sure, readability has also something to with taste or to be precise familiarity, for in my opinion you should avoid explicit loops and make use of the cool stuff in the [`<algorithm>` header](http://en.cppreference.com/w/cpp/algorithm) for better maintainability of your C++ software. Once you get used to it you will enjoy every for loop you do *not* have to read. ;-)
 
+
+## Further readings
 With [effective stl](http://www.amazon.com/dp/0201749629) Scott Meyers has written a very nice book covering this and more in depths.
 Herb Sutter's [talk about lambdas](https://www.youtube.com/watch?v=rcgRY7sOA58) can also help to get more into this topic.
+Also you can [discuss this article on reddit](http://www.reddit.com/r/programming/comments/22q18m/c_from_goto_to_stdtransform/).

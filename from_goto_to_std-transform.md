@@ -115,8 +115,8 @@ vector<int> squareVec6(const vector<int>& v)
 Now one just has to look at `return i*i` and he directly knows everything.
 This is much easier than to decypher a for loop every time.
 
-## Range-based for vs. [`<algorithm>`](http://en.cppreference.com/w/cpp/algorithm)
 
+## Range-based for vs. [`<algorithm>`](http://en.cppreference.com/w/cpp/algorithm)
 A for loop also beginning with `for (int i : v)` could do something totally unrelated to `std::transform`. E.g. it could implement a filter:
 ```c++
 for (int i : v)
@@ -139,6 +139,31 @@ copy_if(begin(v), end(v), back_inserter(result), [](int i)
 
 Also passing along a strategy in form of a [`std::function`](http://en.cppreference.com/w/cpp/utility/functional/function) will become easier, since you can just plug it in.
 
+
+## Convenience wrappers
+If you just can not stand the manual usage of `begin(v)` and `end(v)` you are free to write a wrapper in case you have to use `std::transform` often enough:
+```c++
+template <typename T>
+vector<T> transformVec(const vector<T>& v, const function<T(T)>& op)
+{
+    vector<T> result;
+    result.reserve(v.size());
+    transform(begin(v), end(v), back_inserter(result), [&op](int i)
+    {
+        return op(i);
+    });
+    return result;
+}
+
+vector<int> squareVec7(const vector<int>& v)
+{
+    return transformVec<int>(v, [](int i)
+    {
+        return i*i;
+    });
+}
+```
+Remark:
 
 ## Performance
 "But I have to use the hand written for loop for better performance!" - Nope, you do not have to.

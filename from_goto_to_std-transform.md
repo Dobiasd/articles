@@ -10,19 +10,17 @@ Let's say we have a vector of integers and want another one with all elements be
 Sure, one could use gotos for this, but I guess nobody in their right mind would do this voluntarily, unless for trolling:
 
 ```c++
-vector<int> squareVec1(const vector<int>& v)
+vector<int> squareVec1(vector<int> v)
 {
-    vector<int> result;
-    result.reserve(v.size());
     auto it = begin(v);
     loopBegin:
     if (it == end(v))
         goto loopEnd;
-    result.push_back(*it * *it);
+    *it = *it * *it;
     ++it;
     goto loopBegin;
     loopEnd:
-    return result;
+    return v;
 }
 ```
 On the first look you have no idea what this code is doing. You have to kind of interpret it in your head and follow the control flow manually to find out what's going on.
@@ -31,17 +29,15 @@ On the first look you have no idea what this code is doing. You have to kind of 
 ## While loop
 The next more readable step would be to use a loop as control structure.
 ```c++
-vector<int> squareVec2(const vector<int>& v)
+vector<int> squareVec2(vector<int> v)
 {
-    vector<int> result;
-    result.reserve(v.size());
     auto it = begin(v);
     while (it != end(v))
     {
-        result.push_back(*it * *it);
+        *it = *it * *it;
         ++it;
     }
-    return result;
+    return v;
 }
 ```
 This is bit better, at least you can immediatly see that there is some kind of loop, but most people would probably use a
@@ -49,15 +45,13 @@ This is bit better, at least you can immediatly see that there is some kind of l
 
 ## For loop
 ```c++
-vector<int> squareVec3(const vector<int>& v)
+vector<int> squareVec3(vector<int> v)
 {
-    vector<int> result;
-    result.reserve(v.size());
     for (auto it = begin(v); it != end(v); ++it)
     {
-        result.push_back(*it * *it);
+        *it = *it * *it;
     }
-    return result;
+    return v;
 }
 ```
 Here you can immediately see that the algorithm iterates ofter the elements of `v` but you still have to read the whole line `for (auto it = begin(v); it != end(v); ++it)` until you know that every single element is used and not e.g. every second, since the increase could also be `it += 2` or something else instead of `++it`.
@@ -65,40 +59,24 @@ Here you can immediately see that the algorithm iterates ofter the elements of `
 
 ## Range-based for loop
 ```c++
-vector<int> squareVec4(const vector<int>& v)
+vector<int> squareVec4(vector<int> v)
 {
-    vector<int> result;
-    result.reserve(v.size());
-    for (int i : v)
+    for (int& i : v)
     {
-        result.push_back(i*i);
+        i = i * i;
     }
-    return result;
+    return v;
 }
+
 ```
 This time the `for` line already tells the reader that probably every element of `v` is used, but still only probably. One still has to look into the body of the for loop and look for `if`, `continue` or even `break` statements to really know that `result` is guaranteed to have the same size as `v` in the end.
 
 Many people stop here, but we can do better in terms of readability ease.
 
 
-## std::accumulate
-OK, how can we express more clearly without explicit comments what our code does, i.e. make it self explaining?
-```c++
-vector<int> squareVec5(const vector<int>& v)
-{
-    return accumulate(begin(v), end(v), vector<int>(),
-                      [](vector<int> acc, int i)
-    {
-        acc.push_back(i*i);
-        return acc;
-    });
-}
-```
-We use `std::accumulate`. Everybody reading this knows without thinking, that every element of `v` will be iterated over and that these values probably will be used to generate one resulting value. But apart from the performance problem of this solution, the "loop header" still does not say something about the shape of the result.
-
-
 ## std::transform
-Eventually this is our final form.
+OK, how can we express more clearly without explicit comments what our code does, i.e. make it self explaining?
+
 ```c++
 vector<int> squareVec6(const vector<int>& v)
 {
@@ -113,7 +91,7 @@ vector<int> squareVec6(const vector<int>& v)
 ```
 `std::transform` tells the reader at one glance that `v.size()` elements will be pushed into `result` and that every single element from `v` will be used to generate exactly one new element for `result`.
 Now one just has to look at `return i*i` and he directly knows everything.
-This is much easier than to decypher a for loop every time.
+This is much easier than decyphering a for loop every time.
 
 
 ## Range-based for vs. [`<algorithm>`](http://en.cppreference.com/w/cpp/algorithm)
@@ -128,6 +106,7 @@ for (int i : v)
 
 Here a more expressive version would be:
 ```c++
+vector<int> result;
 copy_if(begin(v), end(v), back_inserter(result), [](int i)
 {
     return i % 2 == 0;
@@ -143,16 +122,14 @@ Also passing along a strategy in form of a [`std::function`](http://en.cpprefere
 ## Convenience wrappers
 If you just can not stand the manual usage of `begin(v)` and `end(v)` you are free to write a wrapper in case you have to use `std::transform` often enough:
 ```c++
-template <typename T>
-vector<T> transformVec(const vector<T>& v, const function<T(T)>& op)
+template <typename T, typename F>
+vector<T> transformVec(vector<T> v, F op)
 {
-    vector<T> result;
-    result.reserve(v.size());
-    transform(begin(v), end(v), back_inserter(result), [&op](int i)
+    transform(begin(v), end(v), begin(v), [&op](int i)
     {
         return op(i);
     });
-    return result;
+    return v;
 }
 
 vector<int> squareVec7(const vector<int>& v)
@@ -169,13 +146,14 @@ vector<int> squareVec7(const vector<int>& v)
 "But I have to use the hand written for loop for better performance!" - Nope, you do not have to.
 Even if the `std::transform` version looks like much abstraction induced function call overhead, especially with the lambda function, there is none. It is all optimized away by the compiler.
 
-For 100 million values the different implementations ([source code](https://gist.github.com/Dobiasd/839acc2bc7a1f48a5063)) took the following cpu times on my machine:
+For 50000 runs over 10000 values the different implementations ([source code](https://gist.github.com/Dobiasd/839acc2bc7a1f48a5063)) took the following cpu times on my machine:
 ```
-goto            - elapsed time: 0.906895s
-while           - elapsed time: 0.915255s
-for             - elapsed time: 0.910748s
-range-based for - elapsed time: 0.933982s
-std::transform  - elapsed time: 0.903244s
+goto                    - elapsed time: 0.538397s
+while                   - elapsed time: 0.538062s
+for                     - elapsed time: 0.537738s
+range-based for         - elapsed time: 0.538066s
+std::transform          - elapsed time: 0.537909s
+wrapped std::transform  - elapsed time: 0.537213s
 ```
 
 
@@ -186,4 +164,4 @@ Sure, readability also has something to with taste or to be precise familiarity,
 ## Further reading
 With [effective stl](http://www.amazon.com/dp/0201749629) Scott Meyers has written a very nice book covering this and more in depths.
 Herb Sutter's [talk about lambdas](https://www.youtube.com/watch?v=rcgRY7sOA58) can also help to get more into this topic.
-Also you can [discuss this article on reddit](http://www.reddit.com/r/programming/comments/22q18m/c_from_goto_to_stdtransform/).
+Also you can [discuss this article on reddit](http://redd.it/22q18m).

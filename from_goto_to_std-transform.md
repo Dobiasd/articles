@@ -97,6 +97,7 @@ This is much easier than decyphering a for loop every time.
 ## Range-based for vs. [`<algorithm>`](http://en.cppreference.com/w/cpp/algorithm)
 A for loop also beginning with `for (int i : v)` could do something totally unrelated to `std::transform`. E.g. it could implement a filter:
 ```c++
+vector<int> result;
 for (int i : v)
 {
     if (i % 2 == 0)

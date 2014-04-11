@@ -60,7 +60,7 @@ vector<int> squareVec3(const vector<int>& v)
     return result;
 }
 ```
-Here you can immediatly see that the algorithm iterates ofter the elements of `v` but you still have to read the whole line `for (auto it = begin(v); it != end(v); ++it)` until you know that every single element is used and not e.g. every second, since the increase could also be `it += 2` or something else instead of `++it`.
+Here you can immediately see that the algorithm iterates ofter the elements of `v` but you still have to read the whole line `for (auto it = begin(v); it != end(v); ++it)` until you know that every single element is used and not e.g. every second, since the increase could also be `it += 2` or something else instead of `++it`.
 
 
 ## Range-based for loop

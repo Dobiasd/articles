@@ -115,7 +115,7 @@ vector<int> squareVec6(const vector<int>& v)
 Now one just has to look at `return i*i` and he directly knows everything.
 This is much easier than to decypher a for loop every time.
 
-## Range-based for vs. `[<algorithm>](http://en.cppreference.com/w/cpp/algorithm)`
+## Range-based for vs. `[<algorithm>]`(http://en.cppreference.com/w/cpp/algorithm)
 
 A for loop also beginning with `for (int i : v)` could do something totally unrelated to `std::transform`. E.g. it could implement a filter:
 ```c++

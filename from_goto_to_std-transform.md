@@ -174,7 +174,7 @@ For 100 million values the different implementations ([source code](https://gist
 goto            - elapsed time: 0.906895s
 while           - elapsed time: 0.915255s
 for             - elapsed time: 0.910748s
-range based for - elapsed time: 0.933982s
+range-based for - elapsed time: 0.933982s
 std::transform  - elapsed time: 0.903244s
 ```
 

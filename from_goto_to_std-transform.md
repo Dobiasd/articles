@@ -146,11 +146,11 @@ Even if the `std::transform` version looks like much abstraction induced functio
 
 For 100 million values the different implementations ([source code](https://gist.github.com/Dobiasd/839acc2bc7a1f48a5063)) took the following cpu times on my machine:
 ```
-goto            - elapsed time: 0.470183s
-while           - elapsed time: 0.470266s
-for             - elapsed time: 0.471321s
-range based for - elapsed time: 0.471496s
-std::transform  - elapsed time: 0.470662s
+goto            - elapsed time: 0.922896s
+while           - elapsed time: 0.926507s
+for             - elapsed time: 0.91674s
+range based for - elapsed time: 0.924664s
+std::transform  - elapsed time: 0.913984s
 ```
 
 

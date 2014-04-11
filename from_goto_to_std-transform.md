@@ -165,4 +165,4 @@ Sure, readability also has something to with taste or to be precise familiarity,
 ## Further reading
 With [effective stl](http://www.amazon.com/dp/0201749629) Scott Meyers has written a very nice book covering this and more in depths.
 Herb Sutter's [talk about lambdas](https://www.youtube.com/watch?v=rcgRY7sOA58) can also help to get more into this topic.
-Also you can [discuss this article on reddit](http://redd.it/22q18m).
+Also you can discuss this article on [reddit](http://redd.it/22q18m) or [Hacker News](https://news.ycombinator.com/item?id=7571490).

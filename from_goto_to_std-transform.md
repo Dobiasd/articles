@@ -155,7 +155,7 @@ std::transform  - elapsed time: 0.470662s
 
 
 ## Conclusion
-Sure, readability has also something to with taste or to be precise familiarity, for in my opinion you should avoid explicit loops and make use of the cool stuff in the [`<algorithm>` header](http://en.cppreference.com/w/cpp/algorithm) for better maintainability of your C++ software. Once you get used to it you will enjoy every for loop you do *not* have to read. ;-)
+Sure, readability also has something to with taste or to be precise familiarity, for in my opinion you should avoid explicit loops and make use of the cool stuff in the [`<algorithm>` header](http://en.cppreference.com/w/cpp/algorithm) for better maintainability of your C++ software. Once you get used to it you will enjoy every for loop you do *not* have to read. ;-)
 
 
 ## Further readings

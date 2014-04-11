@@ -67,8 +67,8 @@ vector<int> squareVec4(vector<int> v)
     }
     return v;
 }
-
 ```
+
 This time the `for` line already tells the reader that probably every element of `v` is used, but still only probably. One still has to look into the body of the for loop and look for `if`, `continue` or even `break` statements to really know that `result` is guaranteed to have the same size as `v` in the end.
 
 Many people stop here, but we can do better in terms of readability ease.
@@ -113,6 +113,7 @@ copy_if(begin(v), end(v), back_inserter(result), [](int i)
     return i % 2 == 0;
 });
 ```
+
 `transform` and `copy_if` show the [map](http://en.wikipedia.org/wiki/Map_%28higher-order_function%29) [filter](http://en.wikipedia.org/wiki/Filter_%28higher-order_function%29) difference more clearly than the two for loops with the same header and just a differing body.
 
 "But the range-based for loop is shorter and thus more readable." you say? In this very small example, this may be the case, but if the loop body would be much longer, the character count difference dissolves and you will be happy that you do not have to look at the body at all in the `transform`/`find_if` version to figure out what it is doing.

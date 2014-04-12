@@ -122,27 +122,24 @@ Also passing along a strategy in form of a [`std::function`](http://en.cpprefere
 
 
 ## Convenience wrappers
-If you just can not stand the manual usage of `begin(v)` and `end(v)` you are free to write a wrapper in case you have to use `std::transform` often enough:
+If you just can not stand the manual usage of `begin(v)` and `end(v)` you are free to write a wrapper in case you have to use `transform` often enough:
 ```c++
-template <typename T, typename F>
-vector<T> transformVec(vector<T> v, F op)
+template<typename Container, typename Functor>
+Container transformCont(Container xs, Functor op)
 {
-    transform(begin(v), end(v), begin(v), [&op](int i)
-    {
-        return op(i);
-    });
-    return v;
+    transform(begin(xs), end(xs), begin(xs), op);
+    return xs;
 }
 
-vector<int> squareVec7(const vector<int>& v)
+vector<int> squareVec6(const vector<int>& v)
 {
-    return transformVec<int>(v, [](int i)
+    return transformCont(v, [](int i)
     {
         return i*i;
     });
 }
 ```
-
+Even though `transformCont` now uses this now uses a range-based
 
 ## Performance
 "But I have to use the hand written for loop for better performance!" - Nope, you do not have to.

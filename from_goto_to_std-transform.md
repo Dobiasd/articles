@@ -69,7 +69,7 @@ vector<int> squareVec4(vector<int> v)
 }
 ```
 
-This time the `for` line already tells the reader that probably every element of `v` is used, but still only probably. One still has to look into the body of the for loop and look for `if`, `continue` or even `break` statements to really know that `result` is guaranteed to have the same size as `v` in the end.
+This time the `for` line already tells the reader that probably every element of `v` is used, but still only probably. One still has to look into the body of the for loop and look for `if`, `continue` or even `break` statements to really know that every single elemnt in `v` will be iterated over the end. Also the header does not tell, what will happen to the elements.
 
 Many people stop here, but we can do better in terms of readability ease.
 

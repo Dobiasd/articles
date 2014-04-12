@@ -78,15 +78,13 @@ Many people stop here, but we can do better in terms of readability ease.
 OK, how can we express more clearly without explicit comments what our code does, i.e. make it self explaining?
 
 ```c++
-vector<int> squareVec6(const vector<int>& v)
+vector<int> squareVec5(vector<int> v)
 {
-    vector<int> result;
-    result.reserve(v.size());
-    transform(begin(v), end(v), back_inserter(result), [](int i)
+    transform(begin(v), end(v), begin(v), [](int i)
     {
         return i*i;
     });
-    return result;
+    return v;
 }
 ```
 `std::transform` tells the reader at one glance that all `v.size()` elements of `v` will be transformed into something else.

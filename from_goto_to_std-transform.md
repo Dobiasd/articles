@@ -139,7 +139,6 @@ vector<int> squareVec6(const vector<int>& v)
     });
 }
 ```
-Even though `transformCont` now uses this now uses a range-based
 
 ## Performance
 "But I have to use the hand written for loop for better performance!" - Nope, you do not have to.

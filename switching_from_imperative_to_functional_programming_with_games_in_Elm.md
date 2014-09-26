@@ -30,7 +30,7 @@ gave it a shot and read trough all the
 [tutorials/articles](http://elm-lang.org/Learn.elm) while constantly [playing
 around](http://elm-lang.org/try) with the stuff I just found out.
 
-After solving the challenges in the [pongtutorial]
+After solving the challenges in the [pong tutorial]
 (http://elm-lang.org/blog/games-in-elm/part-0/Making-Pong.html) I
 decided to write this [Breakout clone](https://github.com/Dobiasd/Breakout),
 which turned out to be a very interesting and fun undertaking. **[Try it

@@ -1,8 +1,8 @@
 # Switching from imperative to functional programming with games in Elm
 
 Imperative programming was my thing since I was a school boy. I wrote
-some small small games and [demoscene](http://en.wikipedia.org/wiki/Demoscene)
-effects, and now develop software (mainly computer vision stuff) for a living.
+some small games and [demoscene](http://en.wikipedia.org/wiki/Demoscene)
+effects, and now develop software (primarily computer vision stuff) for a living.
 Recently it was mainly C++ and some Python I worked with. During the last
 year, [David](https://raw.github.com/quchen), a good friend and Haskell
 expert, tried to evangelize me with the benefits of functional programming

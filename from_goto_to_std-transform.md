@@ -54,7 +54,7 @@ vector<int> squareVec3(vector<int> v)
     return v;
 }
 ```
-Here you can immediately see that the algorithm iterates ofter the elements of `v` but you still have to read the whole line `for (auto it = begin(v); it != end(v); ++it)` until you know that every single element is used and not e.g. every second, since the increase could also be `it += 2` or something else instead of `++it`.
+Here you can immediately see that the algorithm iterates ofter the elements of `v` but you still have to read the whole line `for (auto it = begin(v); it != end(v); ++it)` until you know that every single element is used and not e.g. every second, since the increase could also be `it += 2` or something else instead of `++it`. Still a `++it` could be hidden somewhere in the loop body.
 
 
 ## Range-based for loop
@@ -69,9 +69,9 @@ vector<int> squareVec4(vector<int> v)
 }
 ```
 
-This time the `for` line already tells the reader that probably every element of `v` is used, but still only probably. One still has to look into the body of the for loop and look for `if`, `continue` or even `break` statements to really know that every single elemnt in `v` will be iterated over the end. Also the header does not tell, what will happen to the elements.
+This time the `for` line already tells the reader that probably every element of `v` is used, but still only probably. One still has to look into the body of the for loop and look for `if`, `continue` or even `break` statements to really know that every single elemnt in `v` will be iterated over the end. Also the header does not tell what will happen to the elements.
 
-Many people stop here, but we can do better in terms of readability ease.
+Many people stop here, but we can continue do better in terms of readability ease.
 
 
 ## std::transform
@@ -89,7 +89,7 @@ vector<int> squareVec5(vector<int> v)
 ```
 `std::transform` tells the reader at one glance that all `v.size()` elements of `v` will be transformed into something else.
 Now one just has to look at `return i*i` and he directly knows everything.
-This is much easier than decyphering a for loop every time.
+This should be much easier than decyphering a for loop every single time.
 
 
 ## Range-based for vs. [`<algorithm>`](http://en.cppreference.com/w/cpp/algorithm)
@@ -112,7 +112,12 @@ copy_if(begin(v), end(v), back_inserter(result), [](int i)
 });
 ```
 
-`transform` and `copy_if` show the [map](http://en.wikipedia.org/wiki/Map_%28higher-order_function%29) [filter](http://en.wikipedia.org/wiki/Filter_%28higher-order_function%29) difference more clearly than the two for loops with the same header and just a differing body.
+`transform` and `copy_if` show the [map](http://en.wikipedia.org/wiki/Map_%28higher-order_function%29) [filter](http://en.wikipedia.org/wiki/Filter_%28higher-order_function%29) difference more clearly than the two range-based for loops with the same header and just a differing body.
+
+`copy_if` immediately tells the reader of our code that only elements from `v` will show up in `result` and that `result.size() <= v.size()`. Additionally bugs caused by inattentiveness like infinite loops or invalid iterators are ruled out automatically by this style compared to `for (auto it = ...)` versions.
+
+This higher level ob abstraction not only gives our code a self-documenting flavour but also makes it easier to perhaps later replace `copy_if` with a hypothetical `copy_if_multithread` or something like that.
+
 
 "But the range-based for loop is shorter and thus more readable." you say? In this very small example, this may be the case, but if the loop body would be much longer, the character count difference dissolves and you will be happy that you do not have to look at the body at all in the `transform`/`find_if` version to figure out what it is doing.
 
@@ -154,7 +159,7 @@ wrapped std::transform  - elapsed time: 0.537213s
 
 
 ## Conclusion
-Sure, readability also has something to with taste or to be precise familiarity, for in my opinion you should avoid explicit loops and make use of the cool stuff in the [`<algorithm>` header](http://en.cppreference.com/w/cpp/algorithm) for better maintainability of your C++ software. Once you get used to it you will enjoy every for loop you do *not* have to read. ;-)
+Sure, readability also has something to with taste or to be precise familiarity, but in my opinion you should avoid explicit loops and make use of the cool stuff in the [`<algorithm>` header](http://en.cppreference.com/w/cpp/algorithm) for better maintainability of your C++ software. Once you get used to the odd lambda syntax in C++ you will enjoy every for loop you do *not* have to read. ;-)
 
 
 ## Further reading

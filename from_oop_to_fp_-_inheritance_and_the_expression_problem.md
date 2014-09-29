@@ -505,7 +505,7 @@ data Base = Base {step : (Int -> Base), display : String}
 -- Foo.elm
 module Foo where
 
-import Base(Base)
+import Base(Base(Base))
 
 foo : Int -> Base
 foo i = Base {step=(stepFoo i), display=(displayFoo i)}
@@ -522,7 +522,7 @@ displayFoo i = show i
 -- Bar.elm
 module Bar where
 
-import Base(Base)
+import Base(Base(Base))
 
 bar : String -> Base
 bar s = Base {step=(stepBar s), display=(displayBar s)}
@@ -537,7 +537,7 @@ displayBar s = s
 
 ```haskell
 -- Main.elm
-import Base(Base)
+import Base(Base(Base))
 import Foo(foo)
 import Bar(bar)
 
@@ -559,7 +559,7 @@ main =
         l = [foo 0, bar ""]
 
         -- Step every object two times.
-        l' = (stepAll . stepAll) l
+        l' = (stepAll >> stepAll) l
     in
         -- Show result.
         plainText <| displayAll l'

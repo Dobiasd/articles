@@ -21,6 +21,8 @@ You are writing a some code that is partly self-explanatory. It would be nicer w
 
 Perhaps even more important than fast typing is the skill to use keyboard shortcuts efficiently. Not having to look at your fingers while using them also helps, since you can react much better. If I see someone looking at his keyboard while editing text, I always think of a tennis player not watching the ball and his opponent, but staring at his racket the whole game. It gets even more funny, if their IDE is constantly providing the correct autocomplete suggestions, but they just don't notice it.
 The keyboard should not feel like an external device you are trying to manipulate but like a natural extension of your body that enhances your capabilities.
+In this condition your typing is less likely to destructively interrupt your train of thought due to its duration and shift of focus.
+
 
 So if you do not have to carry the constant burden of having to watch your fingers, some things become much easier. If you know the shortcuts, you automatically start to use "ctrl+f, F3" for searching something instead of scrolling with your mouse, write stuff in text files instead of paper ([greppability](http://en.wiktionary.org/wiki/greppable) is a big advantage.), etc.
 

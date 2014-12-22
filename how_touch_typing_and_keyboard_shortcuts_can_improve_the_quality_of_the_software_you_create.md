@@ -46,4 +46,4 @@ Having your flow interrupted while programming is rarely a good thing. Causes fo
 * Additionally, become a master at rearranging text (select, copy, paste, etc.) with your keyboard only. To practice it you can go to the [EditGym](http://www.editgym.com).
 
 
-So, do you think CEOs should give their developers [black keyboards](http://www.daskeyboard.com/daskeyboard-4-ultimate/) and throw their mice out of the window to increase their productivity in the long run? ;-) ([comment on reddit](todo: reddit link))
+So, do you think CEOs should give their developers [black keyboards](http://www.daskeyboard.com/daskeyboard-4-ultimate/) and throw their mice out of the window to increase their productivity in the long run? ;-) ([comment on reddit](http://www.reddit.com/r/programming/comments/2q3uwe/how_touch_typing_and_keyboard_shortcuts_can/))

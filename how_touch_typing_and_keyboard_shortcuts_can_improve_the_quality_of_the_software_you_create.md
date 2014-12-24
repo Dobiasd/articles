@@ -39,7 +39,7 @@ On the other hand, if the person by your side would be much faster than you, the
 
 Fast typing (+blind, +shortcuts) can not only improve your speed but particularly also the quality you produce.
 
-Having your flow interrupted while programming is rarely a good thing. Causes for this include disruptive colleagues/managers, slow hardware (compile times etc.) and tying disability. If you not yet have eliminated the third one, I suggest the following:
+Having your flow interrupted while programming is rarely a good thing. Causes for this include disruptive colleagues/managers, slow hardware (compile times etc.) and tying disability. If you not yet have eliminated the third one (and I've seen it many times even in experienced developers), I suggest the following:
 
 * Learn to type without looking at your fingers. Just using a Sharpie to paint your keys black can work wonders. Perhaps use a game like [Z-Type](http://phoboslab.org/ztype/).
 * Find and Memorize the keyboard shortcuts for your operating system and software.

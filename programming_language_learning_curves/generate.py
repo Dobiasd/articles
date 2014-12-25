@@ -32,7 +32,7 @@ def defaults1():
 def defaults2(title, loc='upper right', filename=None):
   plt.legend(prop=prop, loc=loc)
   plt.title(title, fontproperties=prop)
-  plt.xlabel('time', fontproperties=prop)
+  plt.xlabel('experience', fontproperties=prop)
   if not filename:
     filename = title.lower()
   plt.savefig(filename.lower() + '.png', dpi=75)

@@ -1,4 +1,4 @@
-# Learning Curves (of programming languages)
+# Learning Curves (for different programming languages)
 
 ![Javascript](programming_language_learning_curves/javascript.png)
 ![Java](programming_language_learning_curves/java.png)

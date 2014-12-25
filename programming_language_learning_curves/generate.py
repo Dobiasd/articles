@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.font_manager as fm
 import matplotlib
 
-prop = fm.FontProperties(fname='Humor-Sans.ttf', size=16)
+prop = fm.FontProperties(fname='Humor-Sans.ttf', size=18)
 
 def annotate(text, pos, to):
   plt.annotate(text, xy=to, arrowprops=dict(arrowstyle='->'), xytext=pos,
@@ -35,7 +35,7 @@ def defaults2(title, loc='upper right', filename=None):
   plt.xlabel('time', fontproperties=prop)
   if not filename:
     filename = title.lower()
-  plt.savefig(filename.lower() + '.png')
+  plt.savefig(filename.lower() + '.png', dpi=75)
   plt.clf()
 
 def javascript():
@@ -132,13 +132,13 @@ def cpp():
 def haskell():
   defaults1()
 
-  annotate('My brain hurts!', (3, 20), (2, 8))
-  annotate('My brain hurts!', (3, 20), (6, 8))
-  annotate('My brain hurts!', (3, 20), (10, 8))
-  annotate('My brain hurts!', (3, 20), (14, 8))
-  annotate('My brain hurts!', (3, 20), (18, 8))
-  annotate('My brain hurts!', (3, 20), (22, 8))
-  annotate('My brain hurts!', (3, 20), (26, 8))
+  annotate('My brain hurts!', (1, 20), (2, 8))
+  annotate('My brain hurts!', (1, 20), (6, 8))
+  annotate('My brain hurts!', (1, 20), (10, 8))
+  annotate('My brain hurts!', (1, 20), (14, 8))
+  annotate('My brain hurts!', (1, 20), (18, 8))
+  annotate('My brain hurts!', (1, 20), (22, 8))
+  annotate('My brain hurts!', (1, 20), (26, 8))
 
   annotate('Monads', (25, 40), (40, 20))
   annotate('Monads', (25, 40), (40, 30))

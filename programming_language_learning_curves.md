@@ -1,5 +1,8 @@
 # Learning Curves (for different programming languages)
 
+    Self-assessment equals subjective skill.
+    Productivity roughly equals objective skill.
+
 ![Javascript](programming_language_learning_curves/javascript.png)
 ![Java](programming_language_learning_curves/java.png)
 ![C++](programming_language_learning_curves/cpp.png)

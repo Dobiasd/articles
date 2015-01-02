@@ -498,7 +498,7 @@ follows:
 -- Base.elm
 module Base where
 
-data Base = Base {step : (Int -> Base), display : String}
+type Base = Base {step : (Int -> Base), display : String}
 ```
 
 ```haskell
@@ -515,7 +515,7 @@ stepFoo : Int -> Int -> Base
 stepFoo i delta = foo <| i + delta
 
 displayFoo : Int -> String
-displayFoo i = show i
+displayFoo i = toString i
 ```
 
 ```haskell
@@ -529,7 +529,7 @@ bar s = Base {step=(stepBar s), display=(displayBar s)}
 
 -- Concat delta as string to internal state.
 stepBar : String -> Int -> Base
-stepBar s delta = bar <| s ++ show delta
+stepBar s delta = bar <| s ++ toString delta
 
 displayBar : String -> String
 displayBar s = s
@@ -537,6 +537,10 @@ displayBar s = s
 
 ```haskell
 -- Main.elm
+import List
+import Text(plainText)
+import String
+
 import Base(Base(Base))
 import Foo(foo)
 import Bar(bar)
@@ -545,22 +549,22 @@ stepOne : Base -> Base
 stepOne (Base b) = b.step 1
 
 -- Steps every object in l by 1.
-stepAll : [Base] -> [Base]
-stepAll l = map (\(Base b) -> b.step 1) l
+stepAll : List Base -> List Base
+stepAll l = List.map (\(Base b) -> b.step 1) l
 
 -- Displays all objects in l beneath each other.
-displayAll : [Base] -> String
-displayAll l = concat (intersperse "\n" <| map (\(Base b) -> b.display) l)
+displayAll : List Base -> String
+displayAll = List.map (\(Base b) -> b.display) >> String.join "\n"
 
 main =
     let
         -- Fill a list with "derived instances".
-        l : [Base]
+        l : List Base
         l = [foo 0, bar ""]
 
         -- Step every object two times.
         l' = (stepAll >> stepAll) l
     in
         -- Show result.
-        plainText <| displayAll l'
+        displayAll l' |> plainText
 ```

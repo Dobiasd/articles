@@ -4,7 +4,7 @@ Imperative programming was my thing since I was a school boy. I wrote
 some small games and [demoscene](http://en.wikipedia.org/wiki/Demoscene)
 effects, and now develop software (primarily computer vision stuff) for a living.
 Recently it was mainly C++ and some Python I worked with. During the last
-year, [David](https://raw.github.com/quchen), a good friend and Haskell
+year, [David](https://github.com/quchen), a good friend and Haskell
 expert, tried to evangelize me with the benefits of functional programming
 (FP). So I read [SICP](http://mitpress.mit.edu/sicp) and
 [LYAH](http://learnyouahaskell.com). I actually understood some parts,
@@ -31,7 +31,7 @@ gave it a shot and read trough all the
 around](http://elm-lang.org/try) with the stuff I just found out.
 
 After solving the challenges in the [pong tutorial]
-(http://elm-lang.org/blog/games-in-elm/part-0/Making-Pong.html) I
+(http://elm-lang.org/blog/Pong.elm) I
 decided to write this [Breakout clone](https://github.com/Dobiasd/Breakout),
 which turned out to be a very interesting and fun undertaking. **[Try it
 out!](http://daiw.de/games/breakout)** :-)
@@ -65,7 +65,7 @@ also possible with some imperative languages.
 The much more astonishing fact
 for me was, that I did not need many of these cycles. Sometimes I wrote code
 for nearly an hour and as soon as [Elm's Haskell like type
-system](http://elm-lang.org/learn/Getting-started-with-Types.elm) did not give
+system](http://elm-lang.org/learn/Understanding-Types.elm) did not give
 me errors any more while compiling, the code just worked! There was very
 rarely a need to debug it at all! I guess this comes from the notion, that if
 you look at a pure functions you just have to think about what it stands for
@@ -95,20 +95,18 @@ l = map ((^)2) [1..10]
 
 Sure, what is more readable/pretty is also a matter or habit/taste. But
 beside the terseness there come other benefits with the abstract separation
-of the control structure, e.g. if you want to decide [from the outside]
-(http://share-elm.com/sprout/527e00f0e4b06194fd2d191f) what to do with the
-values:
+of the control structure, e.g. if you want to decide from the outside
+what to do with the values:
 
 ```haskell
-buildPairs l f = zip l <| map f l
+buildPairs l f = map2 (,) l <| map f l
 l1 = buildPairs [1..5] ((^)2)
 l2 = buildPairs [1..5] sqrt
 l3 = buildPairs [1..5] ((*)2)
 l4 = buildPairs [1..5] ((+)1)
 ```
 
-You can also decide [which direction]
-(http://share-elm.com/sprout/527e0130e4b06194fd2d1920) you prefer to read:
+You can also decide which direction you prefer to read:
 
 ```haskell
 la = map ((^)2) [1..10]    -- normal function application
@@ -152,36 +150,42 @@ inputs.
 *   The **view** finally brings the game state onto the
 screen.
 
-Let's examine how this can look in a [very much simplified
-version](http://share-elm.com/sprout/527ac4dde4b06194fd2d16ed) of our desired
-game:
+Let's examine how this can look in a very much simplified version of our desired game:
 
 ```haskell
+-- skeleton
+
+import List(map, map2)
+import Text(plainText)
+
 import Keyboard
+import Time(Time, fps)
+import Signal(Signal, (<~), (~), foldp)
+import Signal
 import Window
 
 
 -- model
 
 direction : Signal Int
-direction = lift .x Keyboard.arrows
+direction = Signal.map .x Keyboard.arrows
 
-type Input = { dir:Int, delta:Time }
+type alias Input = { dir:Int, delta:Time }
 
 input : Signal Input
 input = (Input <~ direction ~ fps 60)
 
-type Positioned a = { a | x:Float, y:Float }
+type alias Positioned a = { a | x:Float }
 
-type Player = Positioned {}
+type alias Player = Positioned {}
 
-player : Float -> Float -> Player
-player x y = { x=x, y=y }
+player : Float -> Player
+player x = { x=x }
 
-type Game = { player:Player }
+type alias Game = { player:Player }
 
 defaultGame : Game
-defaultGame = { player = player 0 0 }
+defaultGame = { player = player 0 }
 
 
 -- updates
@@ -199,7 +203,7 @@ gameState = foldp stepGame defaultGame input
 
 -- view
 
-main = lift asText gameState
+main = Signal.map (toString >> plainText) gameState
 ```
 
 
@@ -213,7 +217,7 @@ is not clear to you what a signal is, I suggest you first read Evan's article
 Programming?](http://elm-lang.org/learn/What-is-FRP.elm) before continuing
 here. I will wait here for you to return. =)
 
-`type Input = { dir:Int,
+`type alias Input = { dir:Int,
 delta:Time }` just tells us, that all the inputs we are interested in are the
 direction the user is going to with the arrow keys and a time delta. This
 delta holds the time passed since the last update. We aim for 60 [frames per
@@ -254,9 +258,8 @@ all corners of this deep new gaming concept, but at some point we want more.
 We want bricks and a ball to smash them into pieces.
 
 So how do we now get
-from [this skeleton](http://share-elm.com/sprout/527ac4dde4b06194fd2d16ed) to
-[the final
-game](https://github.com/Dobiasd/Breakout/blob/master/Main.elm)?
+from our skeleton to
+[the final game](https://github.com/Dobiasd/Breakout/blob/master/Main.elm)?
 
 First let
 us complete our model and our view, and then write the update code to will
@@ -270,12 +273,12 @@ contains not just the player, but also the bricks still left in the game, the
 ball and the number of spare balls.
 
 ```haskell
-type Game = { state:State
-            , gameBall:Ball
-            , player:Player
-            , bricks:[Brick]
-            , spareBalls:Int
-            , contacts:Int }
+type alias Game = { state:State
+                  , gameBall:Ball
+                  , player:Player
+                  , bricks:List Brick
+                  , spareBalls:Int
+                  , contacts:Int }
 ```
 
 It should be obvious for what the single record entries stand, and
@@ -291,7 +294,7 @@ playing phase (`Play`) or be over and thus be `Won` or `Lost`.
 This leads
 to the following ADT:
 
-`data State = Play | Serve | Won | Lost`
+`type State = Play | Serve | Won | Lost`
 
 The rest
 is quite trivial, I guess. Please [tell](mailto:harry@daiw.de)
@@ -311,26 +314,20 @@ More
 interesting is how we get the game to always use the browser windows maximally
 while preserving the correct aspect ratio. In the view configuration we
 defined `(gameWidth,gameHeight) = (600,400)` but on some devices this may be
-too small or even too big. Elm makes the scaling a charm. `display` just
-creates a form with the default game width and height, but the function we
-actually lift to handle our `gameState` signal is
-`displayFullScreen`.
+too small or even too big. Elm makes the scaling a charm. We define everything
+in out default size, but use `displayFullScreen` to fit it to our screen.
 
 ```haskell
-main = lift2 displayFullScreen Window.dimensions <| dropRepeats gameState
-
-displayFullScreen : (Int,Int) -> Game -> Element
-displayFullScreen (w,h) game =
+displayFullScreen : (Int,Int) -> Form -> Element
+displayFullScreen (w,h) content =
   let
     gameScale = min (toFloat w / gameWidth) (toFloat h / gameHeight)
   in
-    collage w h [display game |> scale gameScale]
-
-main = lift2 displayFullScreen Window.dimensions <| dropRepeats gameState
+    collage w h [content |> scale gameScale]
 ```
 
 `displayFullScreen` just
-calls [`scale`](http://docs.elm-lang.org/library/Graphics/Collage.elm#scale)
+calls [`scale`](http://package.elm-lang.org/packages/elm-lang/core/1.0.0/Graphics-Collage#scale)
 with our filled `Form` and the needed scale factor.
 This does not mean, that
 the game is rendered to 600x400 and then the resulting image is scaled, no.
@@ -341,12 +338,11 @@ scale factors far away from '1.0'. :)
 
 ### Updates
 
-The Updates are
-the coolest part since it is here where all the action actually
+The Updates are the coolest part since it is here where all the action actually
 happens.
 
 Let's see, we
-[`foldp`](http://docs.elm-lang.org/library/Signal.elm#foldp) over our
+[`foldp`](http://package.elm-lang.org/packages/elm-lang/core/1.0.0/Signal#foldp) over our
 `defaultGame` with `stepGame`, so let's look at this.
 
 ```haskell
@@ -377,7 +373,7 @@ stepPlay {delta} ({gameBall,player,bricks,spareBalls,contacts} as game) =
     spareBalls' = if ballLost then spareBalls - 1 else spareBalls
     state' = if | gameOver -> Lost
                 | ballLost -> Serve
-                | isEmpty bricks -> Won
+                | List.isEmpty bricks -> Won
                 | otherwise -> Play
     ((ball', bricks'), contacts') =
       stepBall delta gameBall player bricks contacts
@@ -401,7 +397,8 @@ returns new values for them. The number of paddle ball contacts may also be
 increased.
 
 ```haskell
-stepBall : Time -> Ball -> Player -> [Brick] -> Int -> ((Ball,[Brick]), Int)
+stepBall : Time.Time -> Ball -> Player -> List Brick -> Int
+           -> ((Ball, List Brick), Int)
 stepBall t ({x,y,vx,vy} as ball) p bricks contacts =
   let
     hitPlayer = (ball `within` p)
@@ -413,16 +410,16 @@ stepBall t ({x,y,vx,vy} as ball) p bricks contacts =
     ball' = stepObj t { ball | vx <- newVx ,
                                vy <- stepV vy hitPlayer hitCeiling }
   in
-    (foldr goBrickHits (ball',[]) bricks, contacts')
+    (List.foldr goBrickHits (ball',[]) bricks, contacts')
 ```
 
 First it checks for paddle player
 collisions and updates the ball's velocity and the contact count
 accordingly.
 
-The return type (`((Ball,[Brick]), Int)`) may look somewhat
+The return type (`((Ball,List Brick), Int)`) may look somewhat
 odd at first glance, but thanks to [pattern
-matching](http://elm-lang.org/learn/Pattern-Matching.elm) it did not pose a
+matching](http://elm-lang.org/learn/Union-Types.elm) it did not pose a
 problem for the caller (stepPlay):
 `((ball', bricks'), contacts') =
 stepBall ...`
@@ -439,7 +436,7 @@ contains the already changed ball and at first no bricks at
 all:
 
 ```haskell
-goBrickHits : Brick -> (Ball,[Brick]) -> (Ball,[Brick])
+goBrickHits : Brick -> (Ball,List Brick) -> (Ball,List Brick)
 goBrickHits brick (ball,bricks) =
   let
     hit = ball `within` brick

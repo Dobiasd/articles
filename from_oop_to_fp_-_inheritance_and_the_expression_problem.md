@@ -568,3 +568,5 @@ main =
         -- Show result.
         displayAll l' |> plainText
 ```
+
+[Discuss on reddit](http://www.reddit.com/r/haskell/comments/1quhrl/from_object_oriented_programming_to_functional/)

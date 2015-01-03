@@ -472,3 +472,5 @@ FP in general) and how this awesome language will develop during the next
 years.
 
 And David, you were right. FP really rocks. ;-)
+
+[Discuss on reddit](http://www.reddit.com/r/programming/comments/1q4exc/switching_from_imperative_to_functional/)

@@ -5,7 +5,7 @@ This repository serves as a programming-related brain dump.
 
 ### C++
 
-[C++ - From goto to std::transform](https://github.com/Dobiasd/articles/blob/master/from_goto_to_std-transform.md)
+[From goto to std::transform](https://github.com/Dobiasd/articles/blob/master/from_goto_to_std-transform.md)
 
 ### Elm
 

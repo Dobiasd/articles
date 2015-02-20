@@ -207,11 +207,11 @@ import Base
 
 -- Steps every object in l by 1.
 stepAll :: [Base] -> [Base]
-stepAll l = map (\b -> step b 1) l
+stepAll = map (`step` 1)
 
 -- Displays all objects in l beneath each other.
 displayAll :: [Base] -> IO ()
-displayAll l = putStrLn $ concat (intersperse "\n" $ map display l)
+displayAll l = putStrLn $ intercalate "\n" (map display l)
 
 main :: IO ()
 main =
@@ -334,11 +334,11 @@ import Bar
 
 -- Steps every object in l by 1.
 stepAll :: [Base] -> [Base]
-stepAll l = map (\b -> step b 1) l
+stepAll = map (`step` 1)
 
 -- Displays all objects in l beneath each other.
 displayAll :: [Base] -> IO ()
-displayAll l = putStrLn $ concat (intersperse "\n" $ map display l)
+displayAll l = putStrLn $ intercalate "\n" (map display l)
 
 main :: IO ()
 main =

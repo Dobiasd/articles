@@ -256,8 +256,7 @@ But still, if we would like to add a new object, we would have to edit
 Vice versa, the OOP solution (without [visitor pattern](http://en.wikipedia.org/wiki/Visitor_pattern)) would make it difficult to add a new
 function. We would have to edit the files of all derived classes.
 
-Perhaps this is not a big surprise. In OOP our code is structured by classes,
-in FP it is structured by functions.
+Perhaps this is not a big surprise. In OOP our code is structured by objects (I mean classes), in FP it is structured by functions.
 
 Depending on whether we more often have to add classes or function,
 one or the other approach would be preferable.

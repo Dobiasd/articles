@@ -475,4 +475,4 @@ years.
 
 And David, you were right. FP really rocks. ;-)
 
-[Discuss on reddit](http://www.reddit.com/r/programming/comments/1q4exc/switching_from_imperative_to_functional/)
+Discuss on [reddit](http://www.reddit.com/r/programming/comments/1q4exc/switching_from_imperative_to_functional/) or [HN](https://news.ycombinator.com/item?id=9556530)

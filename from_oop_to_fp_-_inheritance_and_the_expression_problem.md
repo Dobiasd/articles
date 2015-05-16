@@ -504,7 +504,7 @@ type Base = Base {step : (Int -> Base), display : String}
 -- Foo.elm
 module Foo where
 
-import Base(Base(Base))
+import Base exposing (Base(Base))
 
 foo : Int -> Base
 foo i = Base {step=(stepFoo i), display=(displayFoo i)}
@@ -521,7 +521,7 @@ displayFoo i = toString i
 -- Bar.elm
 module Bar where
 
-import Base(Base(Base))
+import Base exposing (Base(Base))
 
 bar : String -> Base
 bar s = Base {step=(stepBar s), display=(displayBar s)}
@@ -536,24 +536,26 @@ displayBar s = s
 
 ```haskell
 -- Main.elm
-import List
-import Text(plainText)
-import String
+-- Main.elm
+import Base exposing (Base(Base))
+import Foo exposing (foo)
+import Bar exposing (bar)
 
-import Base(Base(Base))
-import Foo(foo)
-import Bar(bar)
+import Graphics.Element exposing (leftAligned)
+import List exposing (..)
+import String
+import Text
 
 stepOne : Base -> Base
 stepOne (Base b) = b.step 1
 
 -- Steps every object in l by 1.
 stepAll : List Base -> List Base
-stepAll l = List.map (\(Base b) -> b.step 1) l
+stepAll l = map (\(Base b) -> b.step 1) l
 
 -- Displays all objects in l beneath each other.
 displayAll : List Base -> String
-displayAll = List.map (\(Base b) -> b.display) >> String.join "\n"
+displayAll = map (\(Base b) -> b.display) >> intersperse "\n" >> String.concat
 
 main =
     let
@@ -565,7 +567,7 @@ main =
         l' = (stepAll >> stepAll) l
     in
         -- Show result.
-        displayAll l' |> plainText
+        l' |> displayAll |> Text.fromString |> leftAligned
 ```
 
 [Discuss on reddit](http://www.reddit.com/r/haskell/comments/1quhrl/from_object_oriented_programming_to_functional/)

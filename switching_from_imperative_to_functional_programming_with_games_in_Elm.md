@@ -155,12 +155,13 @@ Let's examine how this can look in a very much simplified version of our desired
 ```haskell
 -- skeleton
 
-import List(map, map2)
-import Text(plainText)
+import List exposing (map, map2)
 
+import Graphics.Element exposing (show, Element)
 import Keyboard
-import Time(Time, fps)
-import Signal(Signal, (<~), (~), foldp)
+import Text
+import Time exposing (Time, fps)
+import Signal exposing (Signal, (<~), (~), foldp)
 import Signal
 import Window
 
@@ -203,7 +204,8 @@ gameState = foldp stepGame defaultGame input
 
 -- view
 
-main = Signal.map (toString >> plainText) gameState
+main : Signal Element
+main = Signal.map show gameState
 ```
 
 

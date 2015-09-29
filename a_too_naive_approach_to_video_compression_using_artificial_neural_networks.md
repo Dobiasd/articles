@@ -18,7 +18,7 @@ It is composed of three neurons in the input layer and 2 neurons in the output l
 
 If you put values (usually 0 <= value <= 1) onto the input neurons, they propagate through the net to the right according to the weights of the connections. Every neuron has an [activation function](https://en.wikipedia.org/wiki/Sigmoid_function), which basically maps its summed input values back onto the interval [0,1]:
 
-![nn](a_too_naive_approach_to_video_compression_using_artificial_neural_networks_files/tanh.png)
+![tanh](a_too_naive_approach_to_video_compression_using_artificial_neural_networks_files/tanh.png)
 
 (image source: [Wikipedia](https://de.wikipedia.org/wiki/Tangens_Hyperbolicus_und_Kotangens_Hyperbolicus#/media/File:Hyperbolic_Tangent.svg))
 

@@ -58,7 +58,7 @@ I experimented with different layer configurations and training parameters but d
 
 Conclusion
 ----------
-We can save a version of the video smaller than the raw format, and we see some blurry dream-like effects, but have nothing suitable for real world video compression.
+We can save a version of the video smaller than the raw format, and we see some blurry dream/ghost/drug-like effects, but have nothing suitable for real world video compression.
 If you would like to play around with the source code, e.g. use settings, try out another video etc., you can find it here: [https://gist.github.com/Dobiasd/9234a8fe7ba958f79227](https://gist.github.com/Dobiasd/9234a8fe7ba958f79227)
 If case you want to want to test different possibilies to decode the frame number for the input neurons, have a look at the instance of `NumToNNValuesFunc`.
 

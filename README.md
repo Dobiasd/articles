@@ -24,3 +24,5 @@ This repository serves as a programming-related brain dump.
 ### Misc
 
 [How touch typing and keyboard shortcuts can improve the quality of the software you create](https://github.com/Dobiasd/articles/blob/master/how_touch_typing_and_keyboard_shortcuts_can_improve_the_quality_of_the_software_you_create.md)
+
+[A too naive approach to video compression using artificial neural networks](https://github.com/Dobiasd/articles/blob/master/a_too_naive_approach_to_video_compression_using_artificial_neural_networks.md)

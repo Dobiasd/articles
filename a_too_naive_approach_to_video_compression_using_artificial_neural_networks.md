@@ -31,6 +31,8 @@ Our test video consists of 84 single frames with a resolution of 480*360 pixels 
 [![(Picture missing, uh oh)](a_too_naive_approach_to_video_compression_using_artificial_neural_networks_files/original_snapshot.jpg)][sourcevideo]
 [sourcevideo]: https://www.youtube.com/watch?v=GqusTv0wp4c
 
+[youtube link](https://www.youtube.com/watch?v=GqusTv0wp4c)
+
 If you save it raw with 3 bytes per pixel (B, G and R) it is about 43 MB in size.
 
 Neural Network without compression
@@ -49,6 +51,8 @@ After about one hour of training on all my four CPU cores with [resilient backpr
 
 [![(Picture missing, uh oh)](a_too_naive_approach_to_video_compression_using_artificial_neural_networks_files/nn_snapshot.jpg)][nnvideo]
 [nnvideo]: https://www.youtube.com/watch?v=Qku14b_v-B8
+
+[youtube link](https://www.youtube.com/watch?v=Qku14b_v-B8)
 
 I experimented with different layer configurations and training parameters but did not obtained significantly better results.
 

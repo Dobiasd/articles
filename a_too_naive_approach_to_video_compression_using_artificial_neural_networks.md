@@ -12,7 +12,7 @@ First, some background
 (Feel free to skip this section if you already have a basic idea of how ANNs work.)
 An artificial neural network consists of neurons and the connections between them. The most simple neural network it a feed forward perceptron. It has no circles in its directed graph. Here is a very small one:
 
-![nn](a_too_naive_approach_to_video_compression_using_artificial_neural_networks_files/nn.png)
+![nn](a_too_naive_approach_to_video_compression_using_artificial_neural_networks_files/nn.jpg)
 
 It is composed of three neurons in the input layer and 2 neurons in the output layer. But there could a an arbitrary number of additional layers, called hidden layers, between them.
 

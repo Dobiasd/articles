@@ -44,13 +44,11 @@ After a very short training phase, the weights converge to the raw pixel values.
 
 Neural Network with compression
 -------------------------------
-The idea now is that we do not need to store all pixel values as weights. Since almost every video has recurring patters and constant or single-colored sectors it could be possible to store the information needed to reproduce frames sufficiently similar the the original ones with less than 43545600 weights.
-So we introduce two hidden layers.
+The idea now is that we do not need to store all pixel values as weights. Since almost every video has recurring patters and constant or single-colored sectors it could be possible to store the information needed to reproduce frames sufficiently similar the the original ones with less than 43545600 weights. So we introduce two hidden layers.
 
 `layersizes = [84, 10, 10, 518400]`
 
-Now our net only weights 5184940 (84*10 + 10*10 + 10*518400) connections, i.e. roughly 12% of the prior version.
-So if we store our weights as 4-byte floats, we have 20 MB (20739760 bytes) in storage size. This is less than half the size of an uncompressed video format using 3 bytes per pixel, but still about 50 times the size of an H264 (1010 kBit/s) compressed version of the video with 0.36 MB (380007 bytes).
+Now our net only weights 5184940 (84*10 + 10*10 + 10*518400) connections, i.e. roughly 12% of the prior version. So if we store our weights as 4-byte floats, we have 20 MB (20739760 bytes) in storage size. This is less than half the size of an uncompressed video format using 3 bytes per pixel, but still about 50 times the size of an H264 (1010 kBit/s) compressed version of the video with 0.36 MB (380007 bytes).
 
 After about one hour of training on all my four CPU cores with [resilient backpropagation](https://en.wikipedia.org/wiki/Rprop) the result looks as follows:
 
@@ -66,6 +64,7 @@ Conclusion
 We can save a version of the video smaller than the raw format, and we see some blurry dream/ghost/drug-like effects, but have nothing suitable for real world video compression. Compression time, file size and video quality are terrible.
 
 If you would like to play around with the source code, e.g. use different settings, try out another input video etc., you can find it here: [https://gist.github.com/Dobiasd/9234a8fe7ba958f79227](https://gist.github.com/Dobiasd/9234a8fe7ba958f79227)
+
 Different possibilies to decode the frame number for the input neurons are already given by the instances of `NumToNNValuesFunc`.
 
 Further links

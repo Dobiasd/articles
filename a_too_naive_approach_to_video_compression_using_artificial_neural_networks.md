@@ -27,7 +27,7 @@ The only modifiable thing of the net are the weights of the connections, so all 
 
 Test Video
 ----------
-Our test video consists of 84 single frames with a resolution of 480*360 pixels at 25 frames per second. And it looks like this:
+Our test video consists of 84 single frames with a resolution of 480 * 360 pixels at 25 frames per second. And it looks like this:
 
 [![(Picture missing, uh oh)](a_too_naive_approach_to_video_compression_using_artificial_neural_networks_files/original_snapshot.jpg)][sourcevideo]
 [sourcevideo]: https://www.youtube.com/watch?v=GqusTv0wp4c
@@ -38,7 +38,7 @@ If you save it raw with 3 bytes per pixel (B, G and R) it is about 43 MB in size
 
 Neural Network without compression
 ----------------------------------
-If we now construct a neural network with 84 input neurons, no hidden layer and 518400 (480*360*3) output neorons, it can easily be trained to learn the video perfectly. [Overfitting](https://en.wikipedia.org/wiki/Overfitting) is not a problem here, but even wanted. Every entry in the training data represents one frame. In the input layer only the neuron representing the current frame number is set to 1 while all others are 0. E.g. frame number 3/8 would be coded in the input layer with `[0,0,1,0,0,0,0,0]`. The output layer gets every pixel value (converted from [0,255] to [0.0,1.0]) mapped onto it.
+If we now construct a neural network with 84 input neurons, no hidden layer and 518400 (480 * 360 * 3) output neorons, it can easily be trained to learn the video perfectly. [Overfitting](https://en.wikipedia.org/wiki/Overfitting) is not a problem here, but even wanted. Every entry in the training data represents one frame. In the input layer only the neuron representing the current frame number is set to 1 while all others are 0. E.g. frame number 3/8 would be coded in the input layer with `[0,0,1,0,0,0,0,0]`. The output layer gets every pixel value (converted from [0,255] to [0.0,1.0]) mapped onto it.
 
 After a very short training phase, the weights converge to the raw pixel values. But of course nothing is gained here, since there is no compression. We solely developed a fancy way to store raw pixel values in the form of 43545600 (84 * 480 * 360 * 3) connection weights.
 
@@ -48,7 +48,7 @@ The idea now is that we do not need to store all pixel values as weights. Since 
 
 `layersizes = [84, 10, 10, 518400]`
 
-Now our net only weights 5184940 (84*10 + 10*10 + 10*518400) connections, i.e. roughly 12% of the prior version. So if we store our weights as 4-byte floats, we have 20 MB (20739760 bytes) in storage size. This is less than half the size of an uncompressed video format using 3 bytes per pixel, but still about 50 times the size of an H264 (1010 kBit/s) compressed version of the video with 0.36 MB (380007 bytes).
+Now our net only weights 5184940 (84 * 10 + 10 * 10 + 10 * 518400) connections, i.e. roughly 12% of the prior version. So if we store our weights as 4-byte floats, we have 20 MB (20739760 bytes) in storage size. This is less than half the size of an uncompressed video format using 3 bytes per pixel, but still about 50 times the size of an H264 (1010 kBit/s) compressed version of the video with 0.36 MB (380007 bytes).
 
 After about one hour of training on all my four CPU cores with [resilient backpropagation](https://en.wikipedia.org/wiki/Rprop) the result looks as follows:
 

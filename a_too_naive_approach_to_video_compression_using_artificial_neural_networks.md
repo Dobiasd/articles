@@ -73,3 +73,5 @@ In case you are wondering, if there are any successful attempts to use neural ne
 
 * [Inceptionism: Going Deeper into Neural Networks](http://googleresearch.blogspot.com/2015/06/inceptionism-going-deeper-into-neural.html)
 * [New algorithm gives photos Picasso-style makeovers](http://mashable.com/2015/08/29/computer-photos/)
+
+[discussion on reddit](https://www.reddit.com/r/programming/comments/3mvnz6/a_too_naive_approach_to_video_compression_using/)

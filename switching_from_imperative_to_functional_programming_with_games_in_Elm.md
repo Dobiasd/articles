@@ -161,7 +161,7 @@ import Graphics.Element exposing (show, Element)
 import Keyboard
 import Text
 import Time exposing (Time, fps)
-import Signal exposing (Signal, (<~), (~), foldp)
+import Signal exposing (Signal, foldp)
 import Signal
 import Window
 
@@ -174,7 +174,7 @@ direction = Signal.map .x Keyboard.arrows
 type alias Input = { dir:Int, delta:Time }
 
 input : Signal Input
-input = (Input <~ direction ~ fps 60)
+input = Signal.map2 Input direction (fps 60)
 
 type alias Positioned a = { a | x:Float }
 
@@ -194,9 +194,9 @@ defaultGame = { player = player 0 }
 stepGame : Input -> Game -> Game
 stepGame {dir,delta} ({player} as game) =
   let
-    player' = { player | x <- player.x + delta * toFloat dir }
+    player' = { player | x = player.x + delta * toFloat dir }
   in
-    { game | player <- player' }
+    { game | player = player' }
 
 gameState : Signal Game
 gameState = foldp stepGame defaultGame input
@@ -351,11 +351,11 @@ Let's see, we
 stepGame : Input -> Game -> Game
 stepGame ({dir,delta} as input) ({state,player} as game) =
   let
-    func = if | state == Play  -> stepPlay
-              | state == Serve -> stepServe
-              | otherwise      -> stepGameOver
+    func = if state == Play then stepPlay
+           else if state == Serve then stepServe
+           else stepGameOver
   in
-    func input { game | player <- stepPlayer delta dir player }
+    func input { game | player = stepPlayer delta dir player }
 ```
 
 Since the paddle can be moved regardless of the game state, the
@@ -373,18 +373,18 @@ stepPlay {delta} ({gameBall,player,bricks,spareBalls,contacts} as game) =
     ballLost = gameBall.y - gameBall.r < -halfHeight
     gameOver = ballLost && spareBalls == 0
     spareBalls' = if ballLost then spareBalls - 1 else spareBalls
-    state' = if | gameOver -> Lost
-                | ballLost -> Serve
-                | List.isEmpty bricks -> Won
-                | otherwise -> Play
+    state' = if gameOver then Lost
+             else if ballLost then Serve
+             else if List.isEmpty bricks then Won
+             else Play
     ((ball', bricks'), contacts') =
       stepBall delta gameBall player bricks contacts
   in
-    { game | state      <- state'
-           , gameBall   <- ball'
-           , bricks     <- bricks'
-           , spareBalls <- max 0 spareBalls' -- No -1 when game is lost.
-           , contacts   <- contacts' }
+    { game | state      = state'
+           , gameBall   = ball'
+           , bricks     = bricks'
+           , spareBalls = max 0 spareBalls' -- No -1 when game is lost.
+           , contacts   = contacts' }
 ```
 
 If our ball is lost and we do not have any
@@ -409,8 +409,8 @@ stepBall t ({x,y,vx,vy} as ball) p bricks contacts =
                weightedAvg [p.vx, vx] [traction, 1-traction] else
                stepV vx (x < (ball.r-halfWidth)) (x > halfWidth-ball.r)
     hitCeiling = (y > halfHeight - ball.r)
-    ball' = stepObj t { ball | vx <- newVx ,
-                               vy <- stepV vy hitPlayer hitCeiling }
+    ball' = stepObj t { ball | vx = newVx ,
+                               vy = stepV vy hitPlayer hitCeiling }
   in
     (List.foldr goBrickHits (ball',[]) bricks, contacts')
 ```
@@ -443,9 +443,9 @@ goBrickHits brick (ball,bricks) =
   let
     hit = ball `within` brick
     bricks' = if hit then bricks else brick::bricks
-    ball' = if hit then { ball | vy <- -ball.vy } else ball
+    ball' = if hit then speedUp { ball | vy = -ball.vy } else ball
   in
-    (if hit then speedUp ball' else ball', bricks')
+    (ball', bricks')
 ```
 
 Initially it checks if the

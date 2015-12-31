@@ -26,7 +26,7 @@ continuing.
 Whatever it was, I more or less accidentally stumbled upon
 [Elm](http://elm-lang.org). The [examples](http://elm-lang.org/Examples.elm)
 did not look so scary like many type theory filled Haskell tutorials, so I
-gave it a shot and read trough all the
+gave it a shot and read through all the
 [tutorials/articles](http://elm-lang.org/Learn.elm) while constantly [playing
 around](http://elm-lang.org/try) with the stuff I just found out.
 

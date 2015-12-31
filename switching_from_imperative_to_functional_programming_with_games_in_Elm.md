@@ -69,7 +69,7 @@ system](http://elm-lang.org/learn/Understanding-Types.elm) did not give
 me errors any more while compiling, the code just worked! There was very
 rarely a need to debug it at all! I guess this comes from the notion, that if
 you look at a pure functions you just have to think about what it stands for
-and not what I will do to something else under certain circumstances etc. Also
+and not what it will do to something else under certain circumstances etc. Also
 when just thinking in [expressions and no more in
 statements](http://stackoverflow.com/questions/4728073/what-is-the-difference-between-an-expression-and-a-statement-in-python),
 there is not so much control flow you have to emulate in your head. And it is

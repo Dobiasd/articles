@@ -482,7 +482,7 @@ Everything is neatly arranged in the modules of the actual type.
 ---------------------------------------
 
 If there already is a more idiomatic solution in Haskell for this, or you
-have an Idea for a more elegant approach, please [tell](mailto:harry@daiw.de)
+have an Idea for a more elegant approach, please [tell](mailto:editgym@gmail.com)
 [me](https://www.facebook.com/Dohbi). :)
 
 ---------------------------------------

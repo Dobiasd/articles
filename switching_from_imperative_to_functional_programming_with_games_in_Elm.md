@@ -299,7 +299,7 @@ to the following ADT:
 `type State = Play | Serve | Won | Lost`
 
 The rest
-is quite trivial, I guess. Please [tell](mailto:harry@daiw.de)
+is quite trivial, I guess. Please [tell](mailto:editgym@gmail.com)
 [me](https://www.facebook.com/Dohbi) if I am wrong with this assumption.
 ;-)
 
@@ -461,7 +461,7 @@ still in the game. Et voilà. Who needs `for`-loops anymore?
 OK, that's it. Since at the moment of writing I'm quite new to all this,
 I guess there is still much room for improvement of the code and this
 article.
-If you have suggestions please [let me know](mailto:harry@daiw.de). :-)
+If you have suggestions please [let me know](mailto:editgym@gmail.com). :-)
 
 
 ## Conclusion

@@ -1,0 +1,34 @@
+Elm.Foo = Elm.Foo || {};
+Elm.Foo.make = function (_elm) {
+   "use strict";
+   _elm.Foo = _elm.Foo || {};
+   if (_elm.Foo.values)
+   return _elm.Foo.values;
+   var _op = {},
+   _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _A = _N.Array.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Foo",
+   $Base = Elm.Base.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $String = Elm.String.make(_elm);
+   var displayFoo = function (i) {
+      return $String.show(i);
+   };
+   var foo = function (i) {
+      return $Base.Base({_: {}
+                        ,display: displayFoo(i)
+                        ,step: stepFoo(i)});
+   };
+   var stepFoo = F2(function (i,
+   delta) {
+      return foo(i + delta);
+   });
+   _elm.Foo.values = {_op: _op
+                     ,foo: foo
+                     ,stepFoo: stepFoo
+                     ,displayFoo: displayFoo};
+   return _elm.Foo.values;
+};

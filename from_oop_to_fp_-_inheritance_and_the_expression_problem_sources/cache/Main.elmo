@@ -1,0 +1,69 @@
+Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _op = {},
+   _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _A = _N.Array.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main",
+   $Bar = Elm.Bar.make(_elm),
+   $Base = Elm.Base.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Foo = Elm.Foo.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Text = Elm.Text.make(_elm);
+   var displayAll = function (l) {
+      return $List.concat($List.intersperse("\n")(A2($List.map,
+      function (_v0) {
+         return function () {
+            switch (_v0.ctor)
+            {case "Base":
+               return _v0._0.display;}
+            _E.Case($moduleName,
+            "on line 14, column 62 to 71");
+         }();
+      },
+      l)));
+   };
+   var stepAll = function (l) {
+      return A2($List.map,
+      function (_v3) {
+         return function () {
+            switch (_v3.ctor)
+            {case "Base":
+               return _v3._0.step(1);}
+            _E.Case($moduleName,
+            "on line 10, column 31 to 39");
+         }();
+      },
+      l);
+   };
+   var main = function () {
+      var l = _L.fromArray([$Foo.foo(0)
+                           ,$Bar.bar("")]);
+      var l$ = function ($) {
+         return stepAll(stepAll($));
+      }(l);
+      return $Text.plainText(displayAll(l$));
+   }();
+   var stepOne = function (_v6) {
+      return function () {
+         switch (_v6.ctor)
+         {case "Base":
+            return _v6._0.step(1);}
+         _E.Case($moduleName,
+         "on line 6, column 20 to 28");
+      }();
+   };
+   _elm.Main.values = {_op: _op
+                      ,stepOne: stepOne
+                      ,stepAll: stepAll
+                      ,displayAll: displayAll
+                      ,main: main};
+   return _elm.Main.values;
+};

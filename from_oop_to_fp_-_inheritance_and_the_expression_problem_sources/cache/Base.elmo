@@ -1,0 +1,20 @@
+Elm.Base = Elm.Base || {};
+Elm.Base.make = function (_elm) {
+   "use strict";
+   _elm.Base = _elm.Base || {};
+   if (_elm.Base.values)
+   return _elm.Base.values;
+   var _op = {},
+   _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _A = _N.Array.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Base";
+   var Base = function (a) {
+      return {ctor: "Base",_0: a};
+   };
+   _elm.Base.values = {_op: _op
+                      ,Base: Base};
+   return _elm.Base.values;
+};

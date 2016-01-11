@@ -495,79 +495,116 @@ follows:
 
 ```haskell
 -- Base.elm
-module Base where
+module Base (..) where
 
-type Base = Base {step : (Int -> Base), display : String}
+
+type Base
+    = Base { step : Int -> Base, display : String }
+
 ```
 
 ```haskell
 -- Foo.elm
-module Foo where
+module Foo (..) where
 
 import Base exposing (Base(Base))
 
+
 foo : Int -> Base
-foo i = Base {step=(stepFoo i), display=(displayFoo i)}
+foo i =
+    Base { step = (stepFoo i), display = (displayFoo i) }
+
+
 
 -- Add delta to internal state.
+
+
 stepFoo : Int -> Int -> Base
-stepFoo i delta = foo <| i + delta
+stepFoo i delta =
+    foo <| i + delta
+
 
 displayFoo : Int -> String
-displayFoo i = toString i
+displayFoo i =
+    toString i
+
 ```
 
 ```haskell
 -- Bar.elm
-module Bar where
+module Bar (..) where
 
 import Base exposing (Base(Base))
 
+
 bar : String -> Base
-bar s = Base {step=(stepBar s), display=(displayBar s)}
+bar s =
+    Base { step = (stepBar s), display = (displayBar s) }
+
+
 
 -- Concat delta as string to internal state.
+
+
 stepBar : String -> Int -> Base
-stepBar s delta = bar <| s ++ toString delta
+stepBar s delta =
+    bar <| s ++ toString delta
+
 
 displayBar : String -> String
-displayBar s = s
+displayBar s =
+    s
+
 ```
 
 ```haskell
 -- Main.elm
--- Main.elm
+module Main (..) where
+
 import Base exposing (Base(Base))
 import Foo exposing (foo)
 import Bar exposing (bar)
-
 import Graphics.Element exposing (leftAligned)
 import List exposing (..)
 import String
 import Text
 
+
 stepOne : Base -> Base
-stepOne (Base b) = b.step 1
+stepOne (Base b) =
+    b.step 1
+
+
 
 -- Steps every object in l by 1.
+
+
 stepAll : List Base -> List Base
-stepAll l = map (\(Base b) -> b.step 1) l
+stepAll l =
+    map (\(Base b) -> b.step 1) l
+
+
 
 -- Displays all objects in l beneath each other.
+
+
 displayAll : List Base -> String
-displayAll = map (\(Base b) -> b.display) >> intersperse "\n" >> String.concat
+displayAll =
+    map (\(Base b) -> b.display) >> intersperse "\n" >> String.concat
+
 
 main =
     let
         -- Fill a list with "derived instances".
         l : List Base
-        l = [foo 0, bar ""]
+        l = [ foo 0, bar "" ]
 
         -- Step every object two times.
         l' = (stepAll >> stepAll) l
     in
         -- Show result.
         l' |> displayAll |> Text.fromString |> leftAligned
+
 ```
 
 [Discuss on reddit](http://www.reddit.com/r/haskell/comments/1quhrl/from_object_oriented_programming_to_functional/)

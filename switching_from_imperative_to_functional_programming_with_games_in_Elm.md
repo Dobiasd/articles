@@ -205,6 +205,56 @@ gameState = foldp stepGame defaultGame input
 -- view
 
 main : Signal Element
+main = Signal.map show gameStateimport List exposing (map, map2)
+
+import Graphics.Element exposing (show, Element)
+import Keyboard
+import Text
+import Time exposing (Time, fps)
+import Signal exposing (Signal, foldp)
+import Signal
+import Window
+
+
+-- model
+
+direction : Signal Int
+direction = Signal.map .x Keyboard.arrows
+
+type alias Input = { dir:Int, delta:Time }
+
+input : Signal Input
+input = Signal.map2 Input direction (fps 60)
+
+type alias Positioned a = { a | x:Float }
+
+type alias Player = Positioned {}
+
+player : Float -> Player
+player x = { x=x }
+
+type alias Game = { player:Player }
+
+defaultGame : Game
+defaultGame = { player = player 0 }
+
+
+-- updates
+
+stepGame : Input -> Game -> Game
+stepGame {dir,delta} ({player} as game) =
+  let
+    player' = { player | x = player.x + delta * toFloat dir }
+  in
+    { game | player = player' }
+
+gameState : Signal Game
+gameState = foldp stepGame defaultGame input
+
+
+-- view
+
+main : Signal Element
 main = Signal.map show gameState
 ```
 
@@ -219,8 +269,8 @@ is not clear to you what a signal is, I suggest you first read Evan's article
 Programming?](http://elm-lang.org/learn/What-is-FRP.elm) before continuing
 here. I will wait here for you to return. =)
 
-`type alias Input = { dir:Int,
-delta:Time }` just tells us, that all the inputs we are interested in are the
+`type alias Input =
+    { space : Bool, dir : Int, delta : Time.Time }` just tells us, that all the inputs we are interested in are the
 direction the user is going to with the arrow keys and a time delta. This
 delta holds the time passed since the last update. We aim for 60 [frames per
 second](http://elm-lang.org/edit/examples/Reactive/Fps.elm).
@@ -275,12 +325,14 @@ contains not just the player, but also the bricks still left in the game, the
 ball and the number of spare balls.
 
 ```haskell
-type alias Game = { state:State
-                  , gameBall:Ball
-                  , player:Player
-                  , bricks:List Brick
-                  , spareBalls:Int
-                  , contacts:Int }
+type alias Game =
+    { state : State
+    , gameBall : Ball
+    , player : Player
+    , bricks : List Brick
+    , spareBalls : Int
+    , contacts : Int
+    }
 ```
 
 It should be obvious for what the single record entries stand, and
@@ -296,7 +348,11 @@ playing phase (`Play`) or be over and thus be `Won` or `Lost`.
 This leads
 to the following ADT:
 
-`type State = Play | Serve | Won | Lost`
+`type State
+    = Play
+    | Serve
+    | Won
+    | Lost`
 
 The rest
 is quite trivial, I guess. Please [tell](mailto:editgym@gmail.com)
@@ -320,12 +376,12 @@ too small or even too big. Elm makes the scaling a charm. We define everything
 in out default size, but use `displayFullScreen` to fit it to our screen.
 
 ```haskell
-displayFullScreen : (Int,Int) -> Form -> Element
-displayFullScreen (w,h) content =
-  let
-    gameScale = min (toFloat w / gameWidth) (toFloat h / gameHeight)
-  in
-    collage w h [content |> scale gameScale]
+displayFullScreen : ( Int, Int ) -> Form -> Element
+displayFullScreen ( w, h ) content =
+    let
+        gameScale = min (toFloat w / gameWidth) (toFloat h / gameHeight)
+    in
+        collage w h [ content |> scale gameScale ]
 ```
 
 `displayFullScreen` just
@@ -349,13 +405,17 @@ Let's see, we
 
 ```haskell
 stepGame : Input -> Game -> Game
-stepGame ({dir,delta} as input) ({state,player} as game) =
-  let
-    func = if state == Play then stepPlay
-           else if state == Serve then stepServe
-           else stepGameOver
-  in
-    func input { game | player = stepPlayer delta dir player }
+stepGame ({ dir, delta } as input) ({ state, player } as game) =
+    let
+        func =
+            if state == Play then
+                stepPlay
+            else if state == Serve then
+                stepServe
+            else
+                stepGameOver
+    in
+        func input { game | player = stepPlayer delta dir player }
 ```
 
 Since the paddle can be moved regardless of the game state, the
@@ -368,23 +428,40 @@ state.
 
 ```haskell
 stepPlay : Input -> Game -> Game
-stepPlay {delta} ({gameBall,player,bricks,spareBalls,contacts} as game) =
-  let
-    ballLost = gameBall.y - gameBall.r < -halfHeight
-    gameOver = ballLost && spareBalls == 0
-    spareBalls' = if ballLost then spareBalls - 1 else spareBalls
-    state' = if gameOver then Lost
-             else if ballLost then Serve
-             else if List.isEmpty bricks then Won
-             else Play
-    ((ball', bricks'), contacts') =
-      stepBall delta gameBall player bricks contacts
-  in
-    { game | state      = state'
-           , gameBall   = ball'
-           , bricks     = bricks'
-           , spareBalls = max 0 spareBalls' -- No -1 when game is lost.
-           , contacts   = contacts' }
+stepPlay { delta } ({ gameBall, player, bricks, spareBalls, contacts } as game) =
+    let
+        ballLost = gameBall.y - gameBall.r < -halfHeight
+
+        gameOver = ballLost && spareBalls == 0
+
+        spareBalls' =
+            if ballLost then
+                spareBalls - 1
+            else
+                spareBalls
+
+        state' =
+            if gameOver then
+                Lost
+            else if ballLost then
+                Serve
+            else if List.isEmpty bricks then
+                Won
+            else
+                Play
+
+        ( ( ball', bricks' ), contacts' ) =
+            stepBall delta gameBall player bricks contacts
+    in
+        { game
+            | state = state'
+            , gameBall = ball'
+            , bricks = bricks'
+            , spareBalls =
+                max 0 spareBalls'
+                -- No -1 when game is lost.
+            , contacts = contacts'
+        }
 ```
 
 If our ball is lost and we do not have any
@@ -399,20 +476,34 @@ returns new values for them. The number of paddle ball contacts may also be
 increased.
 
 ```haskell
-stepBall : Time.Time -> Ball -> Player -> List Brick -> Int
-           -> ((Ball, List Brick), Int)
-stepBall t ({x,y,vx,vy} as ball) p bricks contacts =
-  let
-    hitPlayer = (ball `within` p)
-    contacts' = if hitPlayer then contacts + 1 else contacts
-    newVx = if hitPlayer then
-               weightedAvg [p.vx, vx] [traction, 1-traction] else
-               stepV vx (x < (ball.r-halfWidth)) (x > halfWidth-ball.r)
-    hitCeiling = (y > halfHeight - ball.r)
-    ball' = stepObj t { ball | vx = newVx ,
-                               vy = stepV vy hitPlayer hitCeiling }
-  in
-    (List.foldr goBrickHits (ball',[]) bricks, contacts')
+stepBall : Time.Time -> Ball -> Player -> List Brick -> Int -> ( ( Ball, List Brick ), Int )
+stepBall t ({ x, y, vx, vy } as ball) p bricks contacts =
+    let
+        hitPlayer = (ball `within` p)
+
+        contacts' =
+            if hitPlayer then
+                contacts + 1
+            else
+                contacts
+
+        newVx =
+            if hitPlayer then
+                weightedAvg [ p.vx, vx ] [ traction, 1 - traction ]
+            else
+                stepV vx (x < (ball.r - halfWidth)) (x > halfWidth - ball.r)
+
+        hitCeiling = (y > halfHeight - ball.r)
+
+        ball' =
+            stepObj
+                t
+                { ball
+                    | vx = newVx
+                    , vy = stepV vy hitPlayer hitCeiling
+                }
+    in
+        ( List.foldr goBrickHits ( ball', [] ) bricks, contacts' )
 ```
 
 First it checks for paddle player
@@ -438,14 +529,24 @@ contains the already changed ball and at first no bricks at
 all:
 
 ```haskell
-goBrickHits : Brick -> (Ball,List Brick) -> (Ball,List Brick)
-goBrickHits brick (ball,bricks) =
-  let
-    hit = ball `within` brick
-    bricks' = if hit then bricks else brick::bricks
-    ball' = if hit then speedUp { ball | vy = -ball.vy } else ball
-  in
-    (ball', bricks')
+goBrickHits : Brick -> ( Ball, List Brick ) -> ( Ball, List Brick )
+goBrickHits brick ( ball, bricks ) =
+    let
+        hit = ball `within` brick
+
+        bricks' =
+            if hit then
+                bricks
+            else
+                brick :: bricks
+
+        ball' =
+            if hit then
+                speedUp { ball | vy = -ball.vy }
+            else
+                ball
+    in
+        ( ball', bricks' )
 ```
 
 Initially it checks if the

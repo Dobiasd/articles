@@ -201,57 +201,6 @@ stepGame {dir,delta} ({player} as game) =
 gameState : Signal Game
 gameState = foldp stepGame defaultGame input
 
-
--- view
-
-main : Signal Element
-main = Signal.map show gameStateimport List exposing (map, map2)
-
-import Graphics.Element exposing (show, Element)
-import Keyboard
-import Text
-import Time exposing (Time, fps)
-import Signal exposing (Signal, foldp)
-import Signal
-import Window
-
-
--- model
-
-direction : Signal Int
-direction = Signal.map .x Keyboard.arrows
-
-type alias Input = { dir:Int, delta:Time }
-
-input : Signal Input
-input = Signal.map2 Input direction (fps 60)
-
-type alias Positioned a = { a | x:Float }
-
-type alias Player = Positioned {}
-
-player : Float -> Player
-player x = { x=x }
-
-type alias Game = { player:Player }
-
-defaultGame : Game
-defaultGame = { player = player 0 }
-
-
--- updates
-
-stepGame : Input -> Game -> Game
-stepGame {dir,delta} ({player} as game) =
-  let
-    player' = { player | x = player.x + delta * toFloat dir }
-  in
-    { game | player = player' }
-
-gameState : Signal Game
-gameState = foldp stepGame defaultGame input
-
-
 -- view
 
 main : Signal Element

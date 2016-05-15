@@ -1,5 +1,7 @@
 # Switching from imperative to functional programming with games in Elm
 
+**Remark: The code and some of the concepts in this article are incompatible with Elm versions > 0.16.**
+
 Imperative programming was my thing since I was a school boy. I wrote
 some small games and [demoscene](http://en.wikipedia.org/wiki/Demoscene)
 effects, and now develop software (primarily computer vision stuff) for a living.
@@ -32,7 +34,7 @@ around](http://elm-lang.org/try) with the stuff I just found out.
 
 After solving the challenges in the [pong tutorial]
 (http://elm-lang.org/blog/Pong.elm) I
-decided to write this [Breakout clone](https://github.com/Dobiasd/Breakout),
+decided to write this [Breakout clone](https://github.com/Dobiasd/Breakout/tree/5412c8ea7c4d4fd995de43f47e7a6793532c8297),
 which turned out to be a very interesting and fun undertaking. **[Try it
 out!](http://daiw.de/games/breakout)** :-)
 
@@ -260,7 +262,7 @@ We want bricks and a ball to smash them into pieces.
 
 So how do we now get
 from our skeleton to
-[the final game](https://github.com/Dobiasd/Breakout/blob/master/Main.elm)?
+[the final game](https://github.com/Dobiasd/Breakout/blob/5412c8ea7c4d4fd995de43f47e7a6793532c8297/Main.elm)?
 
 First let
 us complete our model and our view, and then write the update code to will
@@ -286,7 +288,7 @@ type alias Game =
 
 It should be obvious for what the single record entries stand, and
 their particular types are in the
-[source](https://github.com/Dobiasd/Breakout/blob/master/Main.elm).
+[source](https://github.com/Dobiasd/Breakout/blob/5412c8ea7c4d4fd995de43f47e7a6793532c8297/Main.elm).
 (`contacts` is just used to count the number of paddle ball collisions for the
 overall score.)
 

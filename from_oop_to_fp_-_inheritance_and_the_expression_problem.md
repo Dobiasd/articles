@@ -176,7 +176,7 @@ of different subtypes in the same list,
 It also would be cool if it can be used in
 [Elm](http://elm-lang.org/learn/Syntax.elm) too, so let us
 [avoid](http://lukepalmer.wordpress.com/2010/01/24/haskell-antipattern-existential-typeclass/)
-[existential types](http://www.haskell.org/haskellwiki/Existential_type) and the solution ([1](https://channel9.msdn.com/shows/Going+Deep/C9-Lectures-Dr-Ralf-Laemmel-Advanced-Functional-Programming-The-Expression-Problem/), [2](https://channel9.msdn.com/Shows/Going+Deep/C9-Lectures-Dr-Ralf-Lmmel-Advanced-Functional-Programming-Type-Classes)) provided by Dr. Ralf Lämmel for now. ^_-)
+[existential types](http://www.haskell.org/haskellwiki/Existential_type) and the solution ([part 1](https://channel9.msdn.com/shows/Going+Deep/C9-Lectures-Dr-Ralf-Laemmel-Advanced-Functional-Programming-The-Expression-Problem/), [part 2](https://channel9.msdn.com/Shows/Going+Deep/C9-Lectures-Dr-Ralf-Lmmel-Advanced-Functional-Programming-Type-Classes)) provided by Dr. Ralf Lämmel for now. ^_-)
 
 So the usual haskell approach could look like this:
 
@@ -477,12 +477,6 @@ and easily add them to our world.
 We do not have to edit central monster functions for the actions of all the
 different types.
 Everything is neatly arranged in the modules of the actual type.
-
----------------------------------------
-
-If there already is a more idiomatic solution in Haskell for this, or you
-have an Idea for a more elegant approach, please [tell](mailto:editgym@gmail.com)
-[me](https://www.facebook.com/Dohbi). :)
 
 ---------------------------------------
 

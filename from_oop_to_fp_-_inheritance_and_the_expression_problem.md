@@ -495,7 +495,7 @@ follows:
 
 ```haskell
 -- Base.elm
-module Base (..) where
+module Base exposing (..)
 
 
 type Base
@@ -505,7 +505,7 @@ type Base
 
 ```haskell
 -- Foo.elm
-module Foo (..) where
+module Foo exposing (..)
 
 import Base exposing (Base(Base))
 
@@ -532,7 +532,7 @@ displayFoo i =
 
 ```haskell
 -- Bar.elm
-module Bar (..) where
+module Bar exposing (..)
 
 import Base exposing (Base(Base))
 
@@ -559,15 +559,14 @@ displayBar s =
 
 ```haskell
 -- Main.elm
-module Main (..) where
+module Main exposing (..)
 
 import Base exposing (Base(Base))
+import Html
 import Foo exposing (foo)
 import Bar exposing (bar)
-import Graphics.Element exposing (leftAligned)
 import List exposing (..)
 import String
-import Text
 
 
 stepOne : Base -> Base
@@ -590,20 +589,22 @@ stepAll l =
 
 displayAll : List Base -> String
 displayAll =
-    map (\(Base b) -> b.display) >> intersperse "\n" >> String.concat
+    map (\(Base b) -> b.display) >> intersperse " - " >> String.concat
 
 
 main =
     let
         -- Fill a list with "derived instances".
         l : List Base
-        l = [ foo 0, bar "" ]
+        l =
+            [ foo 0, bar "" ]
 
         -- Step every object two times.
-        l' = (stepAll >> stepAll) l
+        l' =
+            (stepAll >> stepAll) l
     in
         -- Show result.
-        l' |> displayAll |> Text.fromString |> leftAligned
+        l' |> displayAll |> Html.text
 
 ```
 

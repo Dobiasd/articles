@@ -1,6 +1,6 @@
 # Switching from imperative to functional programming with games in Elm
 
-**Remark: The code and some of the concepts in this article are incompatible with Elm versions > 0.16.**
+**Remark: The code and some of the concepts in this article are incompatible with Elm versions > 0.16. Thus the links to the code point to the old version, that is compatible with Elm 0.16. You can find the updated version of the game (for Elm 0.17) [here](https://github.com/Dobiasd/Breakout)**
 
 Imperative programming was my thing since I was a school boy. I wrote
 some small games and [demoscene](http://en.wikipedia.org/wiki/Demoscene)

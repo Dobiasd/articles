@@ -1,4 +1,4 @@
-# Functional programming in C++ with the FunctionalPlus library; today: Hackerrank challange "Gemstones"
+# Functional programming in C++ with the FunctionalPlus library; today: HackerRank challange "Gemstones"
 
 
 Functional programming becomes more prominent even in C++ these days, but sometimes the resulting code can feel awkward - especially with all the iterators one has to provide for the STL algorithms. **[FunctionalPlus](https://github.com/Dobiasd/FunctionalPlus)** (a small header-only library) can help overcome this issue and make your code concise and readable again.

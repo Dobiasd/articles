@@ -23,7 +23,7 @@ should produce the following output
 
     2
 
-since only `o` and `s` can be found in all four lines. The challange calls these characters "gems".
+since only `e` and `s` can be found in all four lines. The challange calls these characters "gems".
 
 
 ## Getting the data

@@ -163,7 +163,6 @@ Putting everything together, our solution looks like this:
 
 ```c++
 #include <fplus/fplus.hpp>
-#include <iostream>
 
 std::string process(const std::string& input)
 {

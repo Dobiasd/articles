@@ -1,6 +1,6 @@
 # Switching from imperative to functional programming with games in Elm
 
-**Remark: The code and some of the concepts in this article are incompatible with Elm versions > 0.16. Thus the links to the code point to the old version, that is compatible with Elm 0.16. You can find the updated version of the game (for Elm 0.17) [here](https://github.com/Dobiasd/Breakout)**
+**Remark: The code and some of the concepts in this article are incompatible with Elm versions > 0.16. Thus the links to the code point to the old version, that is compatible with Elm 0.16. You can find the updated version of the game ([for Elm 0.17](http://elm-lang.org/blog/farewell-to-frp)) [here](https://github.com/Dobiasd/Breakout)**
 
 Imperative programming was my thing since I was a school boy. I wrote
 some small games and [demoscene](http://en.wikipedia.org/wiki/Demoscene)
@@ -217,7 +217,7 @@ the import stuff should be clear. Now, `direction` is a signal that has a
 value of -1, 0 or 1 and updates if the user presses or releases a key. If it
 is not clear to you what a signal is, I suggest you first read Evan's article
 [What is Functional Reactive
-Programming?](http://elm-lang.org/learn/What-is-FRP.elm) before continuing
+Programming?](https://web.archive.org/web/20141004072658/http://elm-lang.org/learn/What-is-FRP.elm) before continuing
 here. I will wait here for you to return. =)
 
 `type alias Input =

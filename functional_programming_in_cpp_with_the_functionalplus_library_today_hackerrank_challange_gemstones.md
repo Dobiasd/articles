@@ -192,4 +192,4 @@ int main()
 }
 ```
 
-This is code I personally would love to maintain compared to what an imperative version could look like. What do you think? I would be happy to read your comments in the [reddit discussion](https://www.reddit.com/r/programming/comments/543rav/functional_programming_in_c_with_the/).
+What do you think? Is this code you personally would like to maintain compared to what an imperative version could look like? I would be happy to read your comments in the [reddit discussion](https://www.reddit.com/r/programming/comments/543rav/functional_programming_in_c_with_the/).

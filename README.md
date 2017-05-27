@@ -7,6 +7,8 @@ This repository serves as a programming-related brain dump.
 
 [From goto to std::transform](https://github.com/Dobiasd/articles/blob/master/from_goto_to_std-transform.md)
 
+[Functional programming in C++ with the FunctionalPlus library; today: HackerRank challange "Gemstones"](https://github.com/Dobiasd/articles/blob/master/functional_programming_in_cpp_with_the_functionalplus_library_today_hackerrank_challange_gemstones.md)
+
 ### Elm
 
 [Switching from imperative to functional programming with games in Elm](https://github.com/Dobiasd/articles/blob/master/switching_from_imperative_to_functional_programming_with_games_in_Elm.md)

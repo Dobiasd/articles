@@ -9,6 +9,8 @@ This repository serves as a programming-related brain dump.
 
 [Functional programming in C++ with the FunctionalPlus library; today: HackerRank challange "Gemstones"](https://github.com/Dobiasd/articles/blob/master/functional_programming_in_cpp_with_the_functionalplus_library_today_hackerrank_challange_gemstones.md)
 
+[Creating a replacement for the switch statement in C++ that also works for strings](https://github.com/Dobiasd/articles/blob/master/creating_a_replacement_for_the_switch_statement_in_cpp_that_also_works_for_strings.md)
+
 ### Elm
 
 [Switching from imperative to functional programming with games in Elm](https://github.com/Dobiasd/articles/blob/master/switching_from_imperative_to_functional_programming_with_games_in_Elm.md)

@@ -167,4 +167,4 @@ With [effective stl](http://www.amazon.com/dp/0201749629) Scott Meyers has writt
 Herb Sutter's [talk about lambdas](https://www.youtube.com/watch?v=rcgRY7sOA58) can also help to get more into this topic.
 Also you can discuss this article on [reddit](http://redd.it/22q18m) or [Hacker News](https://news.ycombinator.com/item?id=7571490).
 
-By the way, if you are interested in learning more about functional programming using C++ [my video course on Udemy](https://www.udemy.com/functional-programming-using-cpp) might be something for you.
+By the way, if you are interested in learning more about functional programming using C++ you might enjoy [my video course on Udemy](https://www.udemy.com/functional-programming-using-cpp).

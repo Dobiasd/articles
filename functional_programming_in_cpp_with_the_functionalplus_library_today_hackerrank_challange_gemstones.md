@@ -194,4 +194,4 @@ int main()
 
 What do you think? Is this code you personally would like to maintain compared to what an imperative version could look like? I would be happy to read your comments in the [reddit discussion](https://www.reddit.com/r/programming/comments/543rav/functional_programming_in_c_with_the/).
 
-By the way, if you are interested in learning more about functional programming using C++ [my video course on Udemy](https://www.udemy.com/functional-programming-using-cpp) might be something for you.
+By the way, if you are interested in learning more about functional programming using C++ you might enjoy [my video course on Udemy](https://www.udemy.com/functional-programming-using-cpp).

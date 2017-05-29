@@ -151,7 +151,7 @@ Remember that some run-time overhead (hashing, lookup, no perfect forwarding in 
 
 If you are interested in learning more about functional programming using C++ you might enjoy [my video course on Udemy](https://www.udemy.com/functional-programming-using-cpp). I promise it contains code more useful in everyday usage than this article. ;)
 
-What do you think about our little switch replacement? I would be happy to read your comments in the [reddit discussion](https://www.reddit.com/r/programming/todo).
+What do you think about our little switch replacement? I would be happy to read your comments in the [reddit discussion](https://www.reddit.com/r/programming/comments/6e0hzr/creating_a_replacement_for_the_switch_statement/).
 
 
 

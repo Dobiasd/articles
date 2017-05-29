@@ -40,7 +40,7 @@ int main()
 
 Sure, we could [hash the string](https://stackoverflow.com/a/16388610/1866775) to an integral, but using it [probably](https://en.wikipedia.org/wiki/Murphy%27s_law) will give us [headaches](https://en.wikipedia.org/wiki/Hash_table#Collision_resolution) at some point in the future. Long `if - else if` chains also are not always nice to read.
 
-So let's - just out of curiosity - create a replacement `switch`, that at least is suitable for our particular use case. Perhaps we learn something interesting on our way.
+So let's - just out of curiosity, and as an exercise - create a replacement `switch`, that at least is suitable for our particular use case. Perhaps we learn something interesting on our way.
 
 OK, what does a `switch` actually do? It takes a mapping from possible values to statements, a default statement and of course the value to match. Since functions are first-class citizens in C++, we should be able to write our `switch2` without ugly [macros](http://en.cppreference.com/w/cpp/preprocessor/replace).
 
@@ -89,7 +89,7 @@ It could be done using lambdas:
             [](){ say("wat?"); });
 ```
 
-But that adds quite some syntactical noise. So let's try to find a way to defer a function call in some other way. This is surprisingly easy in C++. We just need a function that takes another function `f` and a list of arguments and returns a nullary function, that runs f with the given arguments when called. As an exercise we can write it on our own instead of using [`std::bind`](http://en.cppreference.com/w/cpp/utility/functional/bind).
+But that adds quite some syntactical noise. So let's try to find a way to defer a function call in some other way. This is surprisingly easy in C++. We just need a function that takes another function `f` and a list of arguments and returns a nullary function, that runs f with the given arguments when called. Since we are doing some mental gymnastics exercise here anyway, we can write it on our own instead of using [`std::bind`](http://en.cppreference.com/w/cpp/utility/functional/bind).
 
 ```c++
 template<typename F, typename... Args>

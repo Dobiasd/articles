@@ -147,6 +147,8 @@ void switch2(const Key_t& key,
 
 Now `switch2` takes a `vector` with key-function pairs. If the resulting dictionary does not have the same number of entries as the vector, at least one key was present more than once and our debugger will tell us immediately on the first call of switch with this invalid set of keys.
 
+Remember that some run-time overhead (hashing, lookup, no perfect forwarding in `defer`) is involved in using `switch2`, and that it possibly could show up in your profiler if used in a time-critical section of your code.
+
 If you are interested in learning more about functional programming using C++ you might enjoy [my video course on Udemy](https://www.udemy.com/functional-programming-using-cpp). I promise it contains code more useful in everyday usage than this article. ;)
 
 What do you think about our little switch replacement? I would be happy to read your comments in the [reddit discussion](https://www.reddit.com/r/programming/todo).

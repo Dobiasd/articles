@@ -104,9 +104,11 @@ Now we are in the lucky situation to be able to do the following:
 
 This reads not *that* bad. We need to write `defer` but we do not need `break` statements any more, which can accidentally be forgotten easily in usual `switch` blocks. But the most important thing is we can now talk to our awesome AI for hours.
 
-What do you think about it? I would be happy to read your comments in the [reddit discussion](https://www.reddit.com/r/programming/todo).
+If you are interested in learning more about functional programming using C++ you might enjoy [my video course on Udemy](https://www.udemy.com/functional-programming-using-cpp). I promise it contains code more useful in everyday usage than this article. ;)
 
-By the way, if you are interested in learning more about functional programming using C++ you might enjoy [my video course on Udemy](https://www.udemy.com/functional-programming-using-cpp). I promise it contains code more useful in everyday usage than this article. ;)
+What do you think about our little switch replacement? I would be happy to read your comments in the [reddit discussion](https://www.reddit.com/r/programming/todo).
+
+
 
 ---
 

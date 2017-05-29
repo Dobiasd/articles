@@ -47,10 +47,10 @@ OK, what does a `switch` actually do? It takes a mapping from possible values to
 A possible implementation could look as follows:
 
 ```c++
-template<typename Key_t, typename F_t = std::function<void()>>
+template<typename Key_t>
 void switch2(const Key_t& key,
-    const std::unordered_map<Key_t, F_t>& dict,
-    const F_t& def)
+    const std::unordered_map<Key_t, std::function<void()>>& dict,
+    const std::function<void()>& def)
 {
     const auto it = dict.find(key);
     if (it != dict.end())
@@ -79,7 +79,17 @@ Naively we could try to use it like that:
 
 But even if it would compile (which it does not), it would immediately run all three calls do `say` and the call to `quit` before any switching happens.
 
-So we need a way to defer a function call. This is surprisingly easy in C++. We just need a function that takes another function `f` and a list of arguments and returns a nullary function, that runs f with the given arguments when called.
+It could be done using lambdas:
+
+```c++
+        switch2(input, {
+            {"hi", [](){ say("hey"); }},
+            {"whazzup", [](){ say("wazzuuuup"); }},
+            {"bye", [&](){ quit("see ya", &running); }}},
+            [](){ say("wat?"); });
+```
+
+But that adds quite some syntactical noise. So let's try to find a way to defer a function call in some other way. This is surprisingly easy in C++. We just need a function that takes another function `f` and a list of arguments and returns a nullary function, that runs f with the given arguments when called.
 
 ```c++
 template<typename F, typename... Args>
@@ -104,6 +114,39 @@ Now we are in the lucky situation to be able to do the following:
 
 This reads not *that* bad. We need to write `defer` but we do not need `break` statements any more, which can accidentally be forgotten easily in usual `switch` blocks. But the most important thing is we can now talk to our awesome AI for hours.
 
+Is there an advantage over an `if - else if` chain like the following you ask?
+
+```c++
+        if (input == "hi") say("hey"); else
+        if (input == "whazzup") say("wazzuuuup"); else
+        if (input == "bye") quit("see ya", &running); else
+            say("wat?");
+```
+
+And that is a very good question. Up to now there was none, but one fruit is hanging quite low.
+
+In longer chains it can happen that one case is covered more than once, which produces strongly unwanted run-time behavior. With our `switch2` we can prevent this from happening - not at compile time but at least at run time.
+
+```c++
+template<typename Key_t>
+void switch2(const Key_t& key,
+    const std::vector<std::pair<Key_t, std::function<void()>>>& pairs,
+    const std::function<void()>& def)
+{
+    std::unordered_map<Key_t, std::function<void()>> dict;
+    for (const auto& entry : pairs)
+        dict.insert(entry);
+    assert(dict.size() == pairs.size());
+    const auto it = dict.find(key);
+    if (it != dict.end())
+        it->second();
+    else
+        def();
+}
+```
+
+Now `switch2` takes a `vector` with key-function pairs. If the resulting dictionary does not have the same number of entries as the vector, at least one key was present more than once and our debugger will tell us immediately on the first call of switch with this invalid set of keys.
+
 If you are interested in learning more about functional programming using C++ you might enjoy [my video course on Udemy](https://www.udemy.com/functional-programming-using-cpp). I promise it contains code more useful in everyday usage than this article. ;)
 
 What do you think about our little switch replacement? I would be happy to read your comments in the [reddit discussion](https://www.reddit.com/r/programming/todo).
@@ -115,16 +158,23 @@ What do you think about our little switch replacement? I would be happy to read 
 full code:
 
 ```c++
+#include <cassert>
 #include <functional>
 #include <iostream>
+#include <set>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
-template<typename Key_t, typename F_t = std::function<void()>>
+template<typename Key_t>
 void switch2(const Key_t& key,
-    const std::unordered_map<Key_t, F_t>& dict,
-    const F_t& def)
+    const std::vector<std::pair<Key_t, std::function<void()>>>& pairs,
+    const std::function<void()>& def)
 {
+    std::unordered_map<Key_t, std::function<void()>> dict;
+    for (const auto& entry : pairs)
+        dict.insert(entry);
+    assert(dict.size() == pairs.size());
     const auto it = dict.find(key);
     if (it != dict.end())
         it->second();
@@ -163,7 +213,7 @@ int main()
 
         switch2(input, {
             {"hi", defer(say, "hey")},
-            {"whazzup", defer(say, "wazzuuuup")},
+            {"hi", defer(say, "wazzuuuup")},
             {"bye", defer(quit, "see ya", &running)}},
             defer(say, "wat?"));
     }

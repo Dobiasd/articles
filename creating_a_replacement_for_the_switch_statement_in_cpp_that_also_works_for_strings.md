@@ -215,7 +215,7 @@ int main()
 
         switch2(input, {
             {"hi", defer(say, "hey")},
-            {"hi", defer(say, "wazzuuuup")},
+            {"whazzup", defer(say, "wazzuuuup")},
             {"bye", defer(quit, "see ya", &running)}},
             defer(say, "wat?"));
     }

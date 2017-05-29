@@ -89,7 +89,7 @@ It could be done using lambdas:
             [](){ say("wat?"); });
 ```
 
-But that adds quite some syntactical noise. So let's try to find a way to defer a function call in some other way. This is surprisingly easy in C++. We just need a function that takes another function `f` and a list of arguments and returns a nullary function, that runs f with the given arguments when called.
+But that adds quite some syntactical noise. So let's try to find a way to defer a function call in some other way. This is surprisingly easy in C++. We just need a function that takes another function `f` and a list of arguments and returns a nullary function, that runs f with the given arguments when called. As an exercise we can write it on our own instead of using [`std::bind`](http://en.cppreference.com/w/cpp/utility/functional/bind).
 
 ```c++
 template<typename F, typename... Args>

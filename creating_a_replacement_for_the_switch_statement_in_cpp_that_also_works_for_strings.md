@@ -38,7 +38,7 @@ int main()
 }
 ```
 
-Sure, we could [hash the string](https://stackoverflow.com/a/16388610/1866775) to an integral, but using it [probably](https://en.wikipedia.org/wiki/Murphy%27s_law) will give us [headaches](https://en.wikipedia.org/wiki/Hash_table#Collision_resolution) at some point in the future. Long `if - else if` chains also are not always nice to read.
+Sure, we could [hash the string](https://stackoverflow.com/a/16388610/1866775) to an integral, and we probably will not run into [collisions](https://en.wikipedia.org/wiki/Hash_table#Collision_resolution) with that approach, but it restricts the case values to compile time constants, which would render it impossible to for example get them from an external configuration. Long `if - else if` chains also are not always nice to read.
 
 So let's - just out of curiosity, and as an exercise - create a replacement `switch`, that at least is suitable for our particular use case. Perhaps we learn something interesting on our way.
 

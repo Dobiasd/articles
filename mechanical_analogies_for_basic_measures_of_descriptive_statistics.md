@@ -14,8 +14,10 @@ Let's assume we would cut a thick, but flat, wooden model from a distribution li
 
 ![pdf_with_mean](mechanical_analogies_for_basic_measures_of_descriptive_statistics/pdf_with_mean.png)
 
-The mean is the center of gravity in regards to the x-axis. So we could hang it on a thread as a crib mobile at this position, and it would not tilt.
-Also, we could balance it on a rod aligned with the mean line.
+The mean is the center of gravity in regards to the x-axis. So we could balance it on a rod aligned with the mean line.
+
+Also, we could hang it on a thread at one point on the mean line, and it would not tilt. I think this would make a very nice crib mobile. :)
+
 
 ## Median
 
@@ -27,4 +29,4 @@ We cut our wooden distribution model in two parts along the median, both halves 
 
 ![rotation](mechanical_analogies_for_basic_measures_of_descriptive_statistics/pdf_rotation.png)
 
-We spin our model around its vertical axis. It spins around its mean if we don't attach it so something. And the moment of inertia for this rotation is equivalent to the variance of our distribution. So the variance is proportional to the torque needed for some angular acceleration.
+We spin our model around its vertical axis. It spins around its mean if we don't attach it to something. And the moment of inertia for this rotation is equivalent to the variance of our distribution. So the variance is proportional to the torque needed for some angular acceleration.

@@ -25,6 +25,12 @@ This repository serves as a programming-related brain dump.
 
 [From Object Oriented Programming to Functional Programming - Inheritance and the Expression Problem](https://github.com/Dobiasd/articles/blob/master/from_oop_to_fp_-_inheritance_and_the_expression_problem.md)
 
+### Statistics
+
+[Basic measures of descriptive statistics](https://github.com/Dobiasd/articles/blob/master/basic_measures_of_descriptive_statistics.md)
+
+[Mechanical analogies for basic measures of descriptive statistics](https://github.com/Dobiasd/articles/blob/master/mechanical_analogies_for_basic_measures_of_descriptive_statistics.md)
+
 ### Misc
 
 [How touch typing and keyboard shortcuts can improve the quality of the software you create](https://github.com/Dobiasd/articles/blob/master/how_touch_typing_and_keyboard_shortcuts_can_improve_the_quality_of_the_software_you_create.md)

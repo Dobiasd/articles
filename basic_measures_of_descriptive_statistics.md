@@ -67,7 +67,7 @@ Your online shop grows, and you get more samples (purchases). The histogram now 
 
 ![many_values_histogram](basic_measures_of_descriptive_statistics/many_values_histogram.png)
 
-Now we can fit a curve to it and normalize it in such a way, that the area under the curve (the integral) equals `1`. The result is called the probability density function (PDF). It represents the probability (y-axis) of purchase with a certain dollar value to occur.
+Now we can fit a curve to it and normalize it in such a way, that the area under the curve (the integral) equals `1`. The result is called the probability density function (PDF). It represents the probability (y-axis) of purchase with a certain dollar value to occur. In that particular case, it has a positive skew, i.e., a longer tail at the right side.
 
 ![pdf](basic_measures_of_descriptive_statistics/pdf.png)
 
@@ -87,12 +87,12 @@ Due to this property, the median is also called the "50th percentile". Other per
 
 ### Interquartile range
 
-Quartiles are the three cuts, dividing a distribution into four groups of the same size:
+The Quartiles are the three cuts, dividing a distribution into four groups of the same size:
 - 25th percentile
 - 50th percentile (median)
 - 75th percentile
 
-We can use them to overcome a problem of the variance (or standard distribution), i.e., weighting outliers too much in certain situations. Distributions with long thin tails in either direction can bloat those measures quite a lot, which may be unwanted.
+We can use them to overcome a problem of the variance (or standard distribution), i.e., weighting outliers too much in certain situations. Distributions with long thin tails (high "kurtosis") in either direction can bloat those measures quite a lot, which may be unwanted.
 
 If we instead use the range from the 25th percentile to the 75th percentile as a measure of how spread out the distribution is, we are more resilient towards outliers.
 
@@ -101,6 +101,8 @@ If we instead use the range from the 25th percentile to the 75th percentile as a
 This range is called the IQR (interquartile range).
 
 `IQR = 75th_percentile - 25th_percentile ≈ 11.6844 - 4.8349 = 6.8495`
+
+One way to eliminate outliers completely before calculating the other measures would be to only consider the values in the IQR. This process is called a 50% winsorization. A more typical value for winsorizing however would be 90%, i.e., dropping only the bottom and top 5% of the initial values.
 
 ---
 

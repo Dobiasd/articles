@@ -13,6 +13,8 @@ What follows are some basic statistical measures and how they are calculated.
 
 ## Location parameters
 
+The most common measures of central tendency.
+
 ### Mean
 
 The (arithmetic) mean is just the sum of all values divided by the number of values.
@@ -27,7 +29,7 @@ The median is the value of the middle position after sorting the numbers.
 
 `median = middle_value([2, 4, 4, 7, 11, 17, 18]) = 7`
 
-While from the mean amount and the number of users we can, of course, get back to the overall amount easily: `overall_amount = mean * number_of_values`, from the median this is not possible. However, the median better represents the *typical* value. It is less vulnerable to outliers, i.e., the medians of `[2, 4, 4, 7, 11, 17, 18]` and `[2, 4, 4, 7, 11, 17, 918]` are the same (`7`), while the mean differs a lot. The median is also called the 50th percentile because 50% of the values are below it (and the other 50% are above).
+While from the mean amount and the number of users we can, of course, get back to the overall amount easily: `overall_amount = mean * number_of_values`, from the median this is not possible. However, the median better represents the *typical* value. It is less vulnerable to outliers, i.e., the medians of `[2, 4, 4, 7, 11, 17, 18]` and `[2, 4, 4, 7, 11, 17, 918]` are the same (`7`), while the mean differs a lot. The median is also called the 50th percentile because 50% of the values are below it (and the other 50% are above). One can think of it as the value that most other values are clustered around.
 
 ### Mode
 
@@ -69,7 +71,7 @@ Now we can fit a curve to it and normalize it in such a way, that the area under
 
 ![pdf](basic_measures_of_descriptive_statistics/pdf.png)
 
-# Cumulative distribution function
+## Cumulative distribution function
 
 The integral of the PDF is the CDF (cumulative distribution function). It shows the probability that a random sample will have a value less than or equal to x.
 
@@ -80,6 +82,25 @@ What's nice about it, that we can simply read the median, i.e., the value with 1
 ![cdf_with_median](basic_measures_of_descriptive_statistics/cdf_with_median.png)
 
 Due to this property, the median is also called the "50th percentile". Other percentiles, e.g., the  90th one, are also often used. They can quickly be read from the CDF in the same way.
+
+## Scale parameters (revisited)
+
+### Interquartile range
+
+Quartiles are the three cuts, dividing a distribution into four groups of the same size:
+- 25th percentile
+- 50th percentile (median)
+- 75th percentile
+
+We can use them to overcome a problem of the variance (or standard distribution), i.e., weighting outliers too much in certain situations. Distributions with long thin tails in either direction can bloat those measures quite a lot, which may be unwanted.
+
+If we instead use the range from the 25th percentile to the 75th percentile as a measure of how spread out the distribution is, we are more resilient towards outliers.
+
+![iqr](basic_measures_of_descriptive_statistics/iqr.png)
+
+This range is called the IQR (interquartile range).
+
+`IQR = 75th_percentile - 25th_percentile ≈ 11.6844 - 4.8349 = 6.8495`
 
 ---
 

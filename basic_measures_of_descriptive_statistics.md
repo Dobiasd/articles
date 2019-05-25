@@ -80,3 +80,7 @@ What's nice about it, that we can simply read the median, i.e., the value with 1
 ![cdf_with_median](basic_measures_of_descriptive_statistics/cdf_with_median.png)
 
 Due to this property, the median is also called the "50th percentile". Other percentiles, e.g., the  90th one, are also often used. They can quickly be read from the CDF in the same way.
+
+---
+
+In case you are interested, here is a short follow-up article: [Mechanical analogies for basic measures of descriptive statistics](mechanical_analogies_for_basic_measures_of_descriptive_statistics.md)

@@ -92,7 +92,7 @@ The Quartiles are the three cuts, dividing a distribution into four groups of th
 - 50th percentile (median)
 - 75th percentile
 
-We can use them to overcome a problem of the variance (or standard distribution), i.e., weighting outliers too much in certain situations. Distributions with long thin tails (high "kurtosis") in either direction can bloat those measures quite a lot, which may be unwanted.
+We can use them to overcome a problem of the variance (or standard deviation), i.e., weighting outliers too much in certain situations. Distributions with long thin tails (high "kurtosis") in either direction can bloat those measures quite a lot, which may be unwanted.
 
 If we instead use the range from the 25th percentile to the 75th percentile as a measure of how spread out the distribution is, we are more resilient towards outliers.
 

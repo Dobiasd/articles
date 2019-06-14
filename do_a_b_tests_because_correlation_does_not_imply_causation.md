@@ -3,7 +3,7 @@
 Let's imagine we (hypothetical) collect habits and health data from people. We find that, on average, people who regularly go to the sauna had less sick days last year.
 
 ```text
-from hypothetical real-world statistics
+(totally hypothetical data)
 
            | number of people | avg sick days / person |
 |----------|------------------|------------------------|

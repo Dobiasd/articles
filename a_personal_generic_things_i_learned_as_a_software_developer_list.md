@@ -58,8 +58,8 @@ The usual testing pyramid might work perfectly in many situations:
 
 But maybe you don't need that many unit tests and better cover with integration tests if:
 
-- You are using a programming language with a strong static type system.
 - Your simple CRUD application does not have much logic to test.
+- You are using a programming language with a strong static type system, which already catches a whole class of bugs automatically.
 
 Other examples:
 
@@ -142,7 +142,8 @@ they will still make you better at your day-to-day tasks
 by expanding your perspective and bringing joy.
 
 So, don't be a "[programming-language-X] developer".
-Be a software engineer who just happens to currently use tool/language X most.
+Be a software engineer who just happens to currently use language X most,
+because it is the right tool for the job at hand.
 
 And if you don't know something, don't be scared to openly admit it.
 

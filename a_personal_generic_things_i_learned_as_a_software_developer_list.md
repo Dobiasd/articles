@@ -139,7 +139,7 @@ they will still make you better at your day-to-day tasks
 by expanding your perspective and bringing joy.
 
 So, don't be a "[programming-language-X] developer".
-Be a software engineer who just happens to currently use language X most.
+Be a software engineer who just happens to currently use tool/language X most.
 
 And if you don't know something, don't be scared to openly admit it.
 

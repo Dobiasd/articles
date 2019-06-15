@@ -61,8 +61,10 @@ But maybe you don't need that many unit tests and better cover with integration 
 - You are using a programming language with a strong static type system.
 - Your simple CRUD application does not have much logic to test.
 
-Another example: Some teams might be totally productive with weekly sprints and burn down charts,
-but that does not mean that this way of working is ideal for every team.
+Other examples:
+
+- Some teams might be totally productive with weekly sprints and burn down charts, but that does not mean that this way of working is ideal for every team.
+- If you are working with multiple people on a project and you deploy regularly, using feature branches in your VCS might be mandatory. But in an earlier project stage with maybe just one or two devs, the simplicity of pushing to master directly might make sense.
 
 ### Learn about the domain
 

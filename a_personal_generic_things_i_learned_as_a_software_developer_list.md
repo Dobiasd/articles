@@ -110,7 +110,8 @@ or leaving a part of it in a messy state because:
 Even if you might not post it as a question on stackoverflow.com
 creating a minimal example of your problem in a way that others
 could quickly understand it, often helps tremendously in finding
-the solution already. It helps to isolate the essence of the issue
+the solution already.
+This kind of "Rubber duck debugging" helps to isolate the essence of the issue
 and can bring a deep understanding of the topic with it.
 
 ## Personal advancement

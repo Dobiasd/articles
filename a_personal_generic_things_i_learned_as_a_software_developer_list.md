@@ -19,7 +19,7 @@ only to explain the "why" and not the "what" or "how".
 ### Consider the cost when deciding about optimizations
 
 We know "premature optimization is the root of all evil".
-But what if you have profiled your code and found a performance bottleneck?
+But what if you have profiled your application and found a performance bottleneck?
 If it's a library and you don't know how it will be used, go crazy with fancy optimizations.
 But if the scope is known, consider the cost (initial development and maintenance) of
 implementing an optimization.
@@ -81,7 +81,7 @@ by actually going on site and
 being confronted with the everyday problems arising in handling absurd amounts
 of sometimes fringed, wet or shrink-wrapped paper.
 
-Occasionally it even turns out the best solution does not even involve code at all.
+Occasionally it even turns out the best solution does not even involve programming at all.
 And if you are not working for an agency, this might be great,
 because the code with the least complexity and defects is no code.
 Finding this such a maximally simple solution however is rarely easy and

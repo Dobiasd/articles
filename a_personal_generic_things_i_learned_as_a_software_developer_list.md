@@ -3,21 +3,9 @@
 With this article, I'd like to contribute my two subjective cents
 to the vast space of wisdom-offering mumblings. :)
 
-## Basics > shiny things
+## On the job
 
-Having mastered just the very basics of computer science, different paradigms
-and engineering, in general, will help a lot in better using all these fancy new tools
-coming out every few months.
-If you understand the principles of
-concurrency, caching, design patterns, higher-order functions and SOLID
-you will see much more similarities between different languages/libraries/frameworks
-and thus have a much better learning curve.
-
-But this also involves low-level craftsmanship like being able to comfortably work
-with a Linux command line, git, a debugger,
-knowing your way around the shortcuts of a text editor, etc.
-
-## Write code for humans
+### Write code for humans
 
 Your code should clearly describe how it solves the domain problem
 in a way optimized for readability.
@@ -28,32 +16,27 @@ and then, when your code is almost self-documenting,
 you might even only rarely need comments, and if so
 only to explain the "why" and not the "what" or "how".
 
-## Consider the cost when deciding about optimizations
+### Consider the cost when deciding about optimizations
 
 We know "premature optimization is the root of all evil".
 But what if you have profiled your code and found a performance bottleneck?
 If it's a library and you don't know how it will be used, go crazy with fancy optimizations.
 But if the scope is known, consider the cost (initial development and maintenance) of
-implementing optimization.
+implementing an optimization.
 Sometimes CPUs and RAM modules are cheaper than man-hours.
 
-## Leave your comfort zone, regularly
+### Prototyping vs. production code
 
-In order to grow, don't be afraid of something new
-that is guaranteed to make you feel uncomfortable
-because you will be a total newbie again.
-If you have worked with PHP and Symfony for years,
-spend some time to learn a bit of Kotlin, C or Haskell.
-Even if you not (yet?) use these things professionally,
-they will still make you better at your day-to-day tasks
-by expanding your perspective and bringing joy.
+When quickly hacking together a prototype
+it might make sense to write your code "bottom-up",
+i.e., start with some tricky implementation details to prove the feasibility of a solution's core.
 
-So, don't be a "[programming-language-X] developer".
-Be a software engineer who just happens to currently use language X most.
+Also make it clear, that this is just a prototype,
+and later write new, clean and maintainable code for production.
+You might want to try to use the top-down approach here,
+so think from the outside in to obtain tidy interfaces and good abstraction layers.
 
-And if you don't know something, don't be scared to openly admit it.
-
-## Don't blindly follow some methodology
+### Don't blindly follow some methodology
 
 Some very project was developed using test-driven development? Great! Give it a try,
 but if it's not a good fit for your project, team or domain, work differently.
@@ -81,27 +64,7 @@ But maybe you don't need that many unit tests and better cover with integration 
 Another example: Some teams might be totally productive with weekly sprints and burn down charts,
 but that does not mean that this way of working is ideal for every team.
 
-## Prototyping vs. production code
-
-When quickly hacking together a prototype
-it might make sense to write your code "bottom-up",
-i.e., start with some tricky implementation details to prove the feasibility of a solution's core.
-
-Also make it clear, that this is just a prototype,
-and later write new, clean and maintainable code for production.
-Use the top-down approach here, so think from the outside in
-to get tidy interfaces and good abstraction layers.
-
-## Be a jack of all trades
-
-Even if you specialize in something by building up deep knowledge about
-some technology, domain or abstraction level,
-try to also learn more broadly.
-This involves not only knowing about low-level implementations in Fortran and
-high-level code in Ruby, but also understanding systems architecture
-and the business in general.
-
-## Learn about the domain
+### Learn about the domain
 
 Most software solves some real-world problems.
 Do not only focus on transforming some specifications into code.
@@ -124,7 +87,7 @@ involves a "consultant" mindset.
 
 > It seems that perfection is attained not when there is nothing more to add, but when there is nothing more to remove.
 
-## Weight technical dept economically
+### Weight technical dept economically
 
 When writing the code we usually want to have it nice and clean,
 so it can easily be maintained and extended.
@@ -140,7 +103,56 @@ or leaving a part of it in a messy state because:
 - the whole thing might be dropped soon anyways
 - there is something more valuable you can do with your time right now
 
-## Immerse yourself in the culture, at least a bit
+### When stuck, create a minimal example
+
+Even if you might not post it as a question on stackoverflow.com
+creating a minimal example of your problem in a way that others
+could quickly understand it, often helps tremendously in finding
+the solution already. It helps to isolate the essence of the issue
+and can bring a deep understanding of the topic with it.
+
+## Personal advancement
+
+### Basics > shiny things
+
+Having mastered just the very basics of computer science, different paradigms
+and engineering, in general, will help a lot in better using all these fancy new tools
+coming out every few months.
+If you understand the principles of
+concurrency, caching, design patterns, higher-order functions and SOLID
+you will see much more similarities between different languages/libraries/frameworks
+and thus have a much better learning curve.
+
+But this also involves low-level craftsmanship like being able to comfortably work
+with a Linux command line, git, a debugger,
+knowing your way around the shortcuts of a text editor, etc.
+
+### Leave your comfort zone, regularly
+
+In order to grow, don't be afraid of something new
+that is guaranteed to make you feel uncomfortable
+because you will be a total newbie again.
+If you have worked with PHP and Symfony for years,
+spend some time to learn a bit of Kotlin, C or Haskell.
+Even if you not (yet?) use these things professionally,
+they will still make you better at your day-to-day tasks
+by expanding your perspective and bringing joy.
+
+So, don't be a "[programming-language-X] developer".
+Be a software engineer who just happens to currently use language X most.
+
+And if you don't know something, don't be scared to openly admit it.
+
+### Be a jack of all trades
+
+Even if you specialize in something by building up deep knowledge about
+some technology, domain or abstraction level,
+try to also learn more broadly.
+This involves not only knowing about low-level implementations in Fortran and
+high-level code in Ruby, but also understanding systems architecture
+and the business in general.
+
+### Immerse yourself in the culture, at least a bit
 
 You don't have to constantly go to conferences and read Hacker News all the time.
 
@@ -151,7 +163,7 @@ but you will also absorb some idioms and unconsciously develop a map in your hea
 about what is possible. This, in turn, will help you make better decisions in your
 daily work.
 
-## Consciously devote some time to learning
+### Consciously devote some time to learning
 
 Just a few hours of explicit learning a week can not only boost your
 excitement, but also your productivity in a profitable way. This can involve:
@@ -165,15 +177,7 @@ excitement, but also your productivity in a profitable way. This can involve:
   - [The Pragmatic Programmer](https://www.amazon.com/Pragmatic-Programmer-Journeyman-Master/dp/020161622X)
   - [Structure and Interpretation of Computer Programs](https://www.amazon.com/Structure-Interpretation-Computer-Programs-Engineering/dp/0262510871)
 
-## When stuck, create a minimal example
-
-Even if you might not post it as a question on stackoverflow.com
-creating a minimal example of your problem in a way that others
-could quickly understand it, often helps tremendously in finding
-the solution already. It helps to isolate the essence of the issue
-and can bring a deep understanding of the topic with it.
-
-## Don't treat social skills as something special
+### Don't treat social skills as something special
 
 They can, and should in order to be successful, be improved like
 technical skills too by theory and practice. Since many problems,
@@ -182,7 +186,7 @@ one has to solve as a developer, are not purely technical
 reading [Dale Carnegie](https://www.amazon.com/How-Win-Friends-Influence-People/dp/0671027034)
 or something similar should pay off quickly.
 
-## Don't clutter your brain
+### Don't clutter your brain
 
 To think of cool and creative solutions, you need some space in your head.
 Try to use "external memory devices" for personal things too when possible, e.g.:

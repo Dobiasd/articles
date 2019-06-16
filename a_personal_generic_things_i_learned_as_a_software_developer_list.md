@@ -19,7 +19,7 @@ only to explain the "why" and not the "what" or "how".
 ### Consider the cost when deciding about optimizations
 
 We know "premature optimization is the root of all evil".
-But what if you have profiled your application and found a performance bottleneck?
+But what if you have profiled your code and found a performance bottleneck?
 If it's a library and you don't know how it will be used, go crazy with fancy optimizations.
 But if the scope is known, consider the cost (initial development and maintenance) of
 implementing an optimization.
@@ -44,7 +44,10 @@ but if it's not a good fit for your project, team or domain, work differently.
 > Research your own experience. Absorb what is useful, reject what is useless, add what is essentially your own.
 
 And while we are talking about testing:
-The usual testing pyramid might work perfectly in many situations:
+The usual testing pyramid,
+stating that one should have more unit tests than integration tests
+and more integration tests than system tests,
+might work perfectly in many situations:
 
 ```text
       /--------------
@@ -56,7 +59,8 @@ The usual testing pyramid might work perfectly in many situations:
 ---------------------------
 ```
 
-But maybe you don't need that many unit tests and better cover with integration tests if:
+But maybe in a situation you don't need that many unit tests
+and better cover with integration tests if:
 
 - Your simple CRUD application does not have much logic to test.
 - You are using a programming language with a strong static type system, which already catches a whole class of bugs automatically.
@@ -180,6 +184,8 @@ excitement, but also your productivity in a profitable way. This can involve:
   - [The Mythical Man-Month](https://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959)
   - [The Pragmatic Programmer](https://www.amazon.com/Pragmatic-Programmer-Journeyman-Master/dp/020161622X)
   - [Structure and Interpretation of Computer Programs](https://www.amazon.com/Structure-Interpretation-Computer-Programs-Engineering/dp/0262510871)
+
+Maybe even maintain a "Things I don't know yet, but would like to learn" list.
 
 ### Don't treat social skills as something special
 

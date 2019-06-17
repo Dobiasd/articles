@@ -166,7 +166,7 @@ You don't have to constantly go to conferences and read Hacker News all the time
 
 But checking the top posts of the last month on /r/programming now and then might be a good idea.
 
-Now only will at least know about the most important new tools and technologies,
+Not only will this help you know about the most important new tools and technologies,
 but you will also absorb some idioms and unconsciously develop a map in your head
 about what is possible. This, in turn, will help you make better decisions in your
 daily work.

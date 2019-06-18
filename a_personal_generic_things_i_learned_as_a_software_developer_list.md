@@ -63,7 +63,7 @@ But maybe in a situation you don't need that many unit tests
 and better cover with integration tests if:
 
 - Your simple CRUD application does not have much logic to test.
-- You are using a programming language with a strong static type system, which already catches a whole class of bugs automatically.
+- You are using a programming language with a strong static type system, which already catches a whole class of bugs automatically. (Actually, if possible, try to express as much in types as possible, and constrain the possible states/values of your application as vigorously as possible by using types.)
 
 Other examples:
 
@@ -116,7 +116,8 @@ creating a minimal example of your problem in a way that others
 could quickly understand it, often helps tremendously in finding
 the solution already.
 This kind of "Rubber duck debugging" helps to isolate the essence of the issue
-and can bring a deep understanding of the topic with it.
+and can bring a deep understanding of the topic with it,
+instead of solving it by cargo culting.
 
 ## Personal advancement
 

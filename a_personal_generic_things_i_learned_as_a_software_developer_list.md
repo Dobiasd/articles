@@ -208,6 +208,8 @@ Try to use "external memory devices" for personal things too when possible, e.g.
 - etc.
 
 The less stuff you have to keep in your head, the more freely you can think.
+(This btw. is also one the reasons why well-structured code is so valuable.
+It reduces cognitive load.)
 
 Also when you are totally stuck on a problem, leave it alone for some time
 and do something completely unrelated, away from the desk.

@@ -75,7 +75,7 @@ And we can only find the true causation with randomized controlled trials (A/B t
 
 ---
 
-Examples showing the absurdity:
+Examples showing the [absurdity](https://www.tylervigen.com/spurious-correlations):
 
 1) Countries with more ice-cream consumption (`X`) have more deaths by drowning (`Y`). But eating ice cream does not make you drown. It's just that in colder countries, people eat less ice cream and don't go swimming that much. Because it's cold, duh.
 

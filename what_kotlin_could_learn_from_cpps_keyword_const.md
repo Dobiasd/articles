@@ -1,6 +1,8 @@
 # What Kotlin could learn from C++'s keyword `const`
 
-Let's say, in Kotlin we have some simple 2D-vector class. It has two methods, one (`normalize`) which mutates the object, and one (`length`) which does not:
+Let's say, in Kotlin we have some simple 2D-vector class.
+It has two methods, one (`normalize`) which mutates the object,
+and one (`length`) which does not:
 
 ```kotlin
 import kotlin.math.sqrt
@@ -33,7 +35,9 @@ fun main() {
 }
 ```
 
-However, we might want to make sure `bar` can not mutate our object. It should only be allowed to call the non-mutating methods. To achieve this, we need to provide two different classes:
+However, we might want to make sure `bar` can not mutate our object.
+It should only be allowed to call the non-mutating methods.
+To achieve this, we need to provide two different classes:
 
 ```kotlin
 open class Vector(protected var x: Double, protected var y: Double) {
@@ -67,7 +71,11 @@ fun main() {
 }
 ```
 
-[`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html) and [`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html) in Kotlin's standard library follow a similar approach. Actually, Kotlin is just an example here. It's the same in other languages too.
+[`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html)
+and [`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)
+in Kotlin's standard library follow a similar approach.
+Actually, Kotlin is just an example here.
+It's the same in other languages (not just Java) too.
 
 So, let's translate this straight into C++:
 
@@ -111,7 +119,10 @@ int main() {
 }
 ```
 
-Looks fine. However, in a code review, this would raise a huge laugh since C++ provides a much better solution. Using the [`const`](https://en.cppreference.com/w/cpp/keyword/const) keyword, one can let the compiler do the tedious work of providing two different interfaces!
+Looks fine. However, in a code review,
+this would raise a huge laugh since C++ provides a much better solution.
+Using the [`const`](https://en.cppreference.com/w/cpp/keyword/const) keyword,
+one can let the compiler do the tedious work of providing two different interfaces!
 
 It looks as follows:
 
@@ -150,6 +161,10 @@ int main() {
 }
 ```
 
-By marking `vector::length` as const, but not `vector::normalize`, the compiler knows, which member functions can be called depending on the const qualification of an instance or a reference to one.
+By marking `vector::length` as const, but not `vector::normalize`,
+the compiler knows which member functions can be called
+depending on the `const` qualification of an instance or a reference to one.
 
-`bar` now takes a reference-to-const parameter, which produces the exact effect we wanted, i.e., trying to call `v.normalize()` in its body would result in a compile-time error. :tada:
+`bar` now takes a reference-to-const parameter,
+which produces the exact effect we wanted,
+i.e., trying to call `v.normalize()` in its body would result in a compile-time error. :tada:

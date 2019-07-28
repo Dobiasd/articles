@@ -120,7 +120,7 @@ int main() {
 ```
 
 Looks fine. However, in a code review,
-this would raise a huge laugh since C++ provides a much better solution.
+this would raise a huge laugh because C++ provides a much better solution.
 Using the [`const`](https://en.cppreference.com/w/cpp/keyword/const) keyword,
 one can let the compiler do the tedious work of providing two different interfaces!
 

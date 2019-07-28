@@ -18,22 +18,22 @@ class Vector(private var x: Double, private var y: Double) {
 We could now use it like that:
 
 ```kotlin
-fun bar(v: Vector) {
+fun foo(v: Vector) {
     v.normalize()
 }
 
-fun baz(v: Vector) {
+fun bar(v: Vector) {
     println(v.length())
 }
 
 fun main() {
     val myVector = Vector(3.0, 4.0)
+    foo(myVector)
     bar(myVector)
-    baz(myVector)
 }
 ```
 
-However, we might want to make sure `baz` can not mutate our object. It should only be allowed to call the non-mutating methods. To achieve this, we need to provide two different classes:
+However, we might want to make sure `bar` can not mutate our object. It should only be allowed to call the non-mutating methods. To achieve this, we need to provide two different classes:
 
 ```kotlin
 open class Vector(protected var x: Double, protected var y: Double) {
@@ -49,21 +49,21 @@ class MutableVector(x: Double, y: Double) : Vector(x, y) {
 }
 ```
 
-Now we can adjust the rest of our code, such that the desired property of `baz` is satisfied:
+Now we can adjust the rest of our code, such that the desired property of `bar` is satisfied:
 
 ```kotlin
-fun bar(v: MutableVector) {
+fun foo(v: MutableVector) {
     v.normalize()
 }
 
-fun baz(v: Vector) {
+fun bar(v: Vector) {
     println(v.length())
 }
 
 fun main() {
     val myVector = MutableVector(3.0, 4.0)
+    foo(myVector)
     bar(myVector)
-    baz(myVector)
 }
 ```
 
@@ -96,18 +96,18 @@ public:
     }
 };
 
-void bar(mutable_vector& v) {
+void foo(mutable_vector& v) {
     v.normalize();
 }
 
-void baz(vector& v) {
+void bar(vector& v) {
     std::cout << v.length() << std::endl;
 }
 
 int main() {
     mutable_vector my_vector(3.0, 4.0);
+    foo(my_vector);
     bar(my_vector);
-    baz(my_vector);
 }
 ```
 
@@ -135,21 +135,21 @@ private:
     double y_;
 };
 
-void bar(vector& v) {
+void foo(vector& v) {
     v.normalize();
 }
 
-void baz(const vector& v) {
+void bar(const vector& v) {
     std::cout << v.length() << std::endl;
 }
 
 int main() {
     vector my_vector(3.0, 4.0);
+    foo(my_vector);
     bar(my_vector);
-    baz(my_vector);
 }
 ```
 
 By marking `vector::length` as const, but not `vector::normalize`, the compiler knows, which member functions can be called depending on the const qualification of an instance or a reference to one.
 
-`baz` now takes a reference-to-const parameter, which produces the exact effect we wanted, i.e., trying to call `v.normalize()` in its body would result in a compile-time error. :tada:
+`bar` now takes a reference-to-const parameter, which produces the exact effect we wanted, i.e., trying to call `v.normalize()` in its body would result in a compile-time error. :tada:

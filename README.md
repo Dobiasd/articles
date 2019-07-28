@@ -27,7 +27,7 @@ This repository serves as a programming-related brain dump.
 
 ### Kotlin
 
-[# What Kotlin could learn from C++'s keyword `const`](https://github.com/Dobiasd/articles/blob/master/what_kotlin_could_learn_from_cpps_keyword_const.md)
+[What Kotlin could learn from C++'s keyword `const`](https://github.com/Dobiasd/articles/blob/master/what_kotlin_could_learn_from_cpps_keyword_const.md)
 
 ### Statistics
 

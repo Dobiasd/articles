@@ -186,7 +186,10 @@ error: 'this' argument to member function 'normalize' has type 'const vector', b
 :tada:
 
 Good old C++, despite all its idiosyncrasies, seems to be doing something right here. :)
+
 ([Rust too.](https://gist.github.com/Dobiasd/4d44fc681c6a51dc2e516f682e8e9366))
+
+I'd love to hear your [feedback](https://www.reddit.com/r/Kotlin/comments/cixncc/what_kotlin_could_learn_from_cs_keyword_const/).
 
 ---
 

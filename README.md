@@ -25,6 +25,10 @@ This repository serves as a programming-related brain dump.
 
 [From Object Oriented Programming to Functional Programming - Inheritance and the Expression Problem](https://github.com/Dobiasd/articles/blob/master/from_oop_to_fp_-_inheritance_and_the_expression_problem.md)
 
+### Kotlin
+
+[# What Kotlin could learn from C++'s keyword `const`](https://github.com/Dobiasd/articles/blob/master/what_kotlin_could_learn_from_cpps_keyword_const.md)
+
 ### Statistics
 
 [Basic measures of descriptive statistics](https://github.com/Dobiasd/articles/blob/master/basic_measures_of_descriptive_statistics.md)

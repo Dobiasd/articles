@@ -193,6 +193,6 @@ Edit: The Kotlin community seems to already discuss such a possible feature
 ([1](https://discuss.kotlinlang.org/t/what-is-meant-by-immutable-data/3294),
 [2](https://discuss.kotlinlang.org/t/transitive-const/576),
 [3](https://discuss.kotlinlang.org/t/object-immutability/6875)),
-however, it seems to be not too simple to integrate it into the language.
-I hope they find a way,
+however, it seems to be quite tricky to integrate it into the language.
+I hope somebody finds a clean way,
 because I'd really love to have this in my day-to-day work with Kotlin.

@@ -78,7 +78,7 @@ So, let's translate this straight into C++:
 class vector {
 public:
     vector(double x, double y): x_(x), y_(y) {}
-    double length() const {
+    double length() {
         return std::sqrt(x_ * x_ + y_ * y_);
     }
 protected:
@@ -90,7 +90,7 @@ class mutable_vector: public vector {
 public:
     mutable_vector(double x, double y): vector(x, y) {}
     void normalize() {
-        const auto l = length();
+        auto l = length();
         x_ /= l;
         y_ /= l;
     }
@@ -126,7 +126,7 @@ public:
         return std::sqrt(x_ * x_ + y_ * y_);
     }
     void normalize() {
-        const auto l = length();
+        auto l = length();
         x_ /= l;
         y_ /= l;
     }

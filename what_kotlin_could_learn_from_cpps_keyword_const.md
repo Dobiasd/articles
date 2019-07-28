@@ -167,7 +167,7 @@ depending on the `const` qualification of an instance or a reference to one.
 
 `bar` now takes a reference-to-const parameter,
 which produces the exact effect we wanted,
-i.e., trying to call `v.normalize()` in its body would result in a compile-time error:
+i.e., `v` is immutable and trying to call `v.normalize()` in its body would result in a compile-time error:
 
 ```cpp
 void bar(const vector& v) {
@@ -185,4 +185,4 @@ error: 'this' argument to member function 'normalize' has type 'const vector', b
 
 :tada:
 
-Good old C++, despite all it's idiosyncrasies, seems to be doing something right here. :)
+Good old C++, despite all its idiosyncrasies, seems to be doing something right here. :)

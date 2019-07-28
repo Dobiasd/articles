@@ -74,8 +74,8 @@ fun main() {
 [`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html)
 and [`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)
 in Kotlin's standard library follow a similar approach.
-Actually, Kotlin is just an example here.
-It's the same in other languages (not just Java) too.
+Actually, Kotlin is in good company here.
+Other languages (not just Java) utilize similar mechanisms.
 
 So, let's translate this straight into C++:
 

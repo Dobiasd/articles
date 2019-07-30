@@ -17,6 +17,10 @@ class Vector(private var x: Double, private var y: Double) {
 }
 ```
 
+Imagine `Vector` being some kind of domain entity (with an ID, etc.),
+such that `normalize` needs to mutate it
+instead of just returning a new, immutable normalized `Vector` (value object).
+
 We could now use it like that:
 
 ```kotlin

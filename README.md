@@ -44,3 +44,5 @@ This repository serves as a programming-related brain dump.
 [A too naive approach to video compression using artificial neural networks](https://github.com/Dobiasd/articles/blob/master/a_too_naive_approach_to_video_compression_using_artificial_neural_networks.md)
 
 [A personal, generic, things-I-learned-as-a-software-developer list](https://github.com/Dobiasd/articles/blob/master/a_personal_generic_things_i_learned_as_a_software_developer_list.md)
+
+[Implementation inheritance is bad - the fragile base class problem](https://github.com/Dobiasd/articles/blob/master/implementation_inheritance_is_bad_-_the_fragile_base_class_problem.md)

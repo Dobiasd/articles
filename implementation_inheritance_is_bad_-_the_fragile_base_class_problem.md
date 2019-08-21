@@ -6,7 +6,7 @@ It should only be allowed to inherit (in the sense of "implement") interfaces.
 
 A common example in favor of this argument is the so-called "fragile base class problem".
 
-Imagine you have written the following class:
+Imagine you have written the following class (using Python as an example here):
 
 ```python
 class Person:

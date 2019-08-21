@@ -70,4 +70,4 @@ However, support for inheriting implementation allows for it to happen.
 
 If you are unlucky, and the programming language you are using does support it,
 you might still want to try to avoid that feature.
-Code reuse can be achieved by composition (with delegation) instead.
+Code reuse can be achieved by composition (with [delegation](https://en.wikipedia.org/wiki/Delegation_pattern)) instead.

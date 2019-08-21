@@ -66,7 +66,8 @@ RecursionError: maximum recursion depth exceeded
 ```
 
 The occurrence of such a problem should not even be possible.
-However, support for inheriting implementation allows for it to happen.
+However, support for inheriting implementation (and method overriding)
+allows for it to happen.
 
 If you are unlucky, and the programming language you are using does support it,
 you might still want to try to avoid that feature.

@@ -122,7 +122,7 @@ I hope you also enjoyed this kind of weird exploration a bit.
 
 If you'd like to discuss it,
 or have a reasonable explanation for why this behavior can be observed,
-I'd be happy to see your comments on reddit.
+I'd be happy to see your comments on [reddit](https://www.reddit.com/r/Kotlin/comments/cura4x/when_does_a_when_expression_in_kotlin_need_to_be/).
 
 To finalize, here is a summary table to of the results:
 

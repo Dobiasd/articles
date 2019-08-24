@@ -132,8 +132,9 @@ Thus `SummingContainer` can not be used with
 This violates the [Liskov substitution principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle),
 which is bad.
 
-A language not allowing implementation inheritance at all
-would prevent this from happening.
+A language not allowing implementation inheritance
+(or at least making every class `final` by default)
+could prevent this from happening.
 
-Code reuse, in such a language, of course, would have to be achieved by other means.
+Code reuse, can be achieved by other means.
 Composition (with [delegation](https://en.wikipedia.org/wiki/Delegation_pattern)) can provide one viable way to do so.

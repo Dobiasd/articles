@@ -3,7 +3,7 @@
 Recently, while working with Kotlin (version `1.3.50`), a colleague and I recognized
 that we were unable to predict, in what cases,
 and in what way (error or just a recommendation),
-the IDE (IntelliJ IDEA) does complain about non-exhaustive when expressions.
+the IDE (IntelliJ IDEA version `2019.2.1`) does complain about non-exhaustive when expressions.
 
 So I ran a short experiment, of which I'll present the results here.
 

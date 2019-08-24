@@ -1,6 +1,6 @@
 # When does a when expression in Kotlin need to be exhaustive, and when does it not
 
-Recently, while working with Kotlin (1.3.50), a colleague and I recognized
+Recently, while working with Kotlin (version `1.3.50`), a colleague and I recognized
 that we were unable to predict, in what cases,
 and in what way (error or just a recommendation),
 the IDE (IntelliJ IDEA) does complain about non-exhaustive when expressions.
@@ -79,6 +79,7 @@ Let's explore all 16 corners of this hypercube one by one.
 ![ensu](when_does_a_when_expression_in_kotlin_need_to_be_exhaustive_and_when_does_it_not/ensu.png)
 
 The given recommendation looks as follows:
+
 ![recommendation](when_does_a_when_expression_in_kotlin_need_to_be_exhaustive_and_when_does_it_not/recommendation.png)
 
 ![cnsu](when_does_a_when_expression_in_kotlin_need_to_be_exhaustive_and_when_does_it_not/cnsu.png)
@@ -94,6 +95,7 @@ The given recommendation looks as follows:
 ![elsv](when_does_a_when_expression_in_kotlin_need_to_be_exhaustive_and_when_does_it_not/elsv.png)
 
 The error message looks as follows:
+
 ![error](when_does_a_when_expression_in_kotlin_need_to_be_exhaustive_and_when_does_it_not/error.png)
 
 ![clsv](when_does_a_when_expression_in_kotlin_need_to_be_exhaustive_and_when_does_it_not/clsv.png)
@@ -142,3 +144,5 @@ To finalize, here is a summary table to of the results:
 | class | let    | assignment | unit  | ok             |
 | enum  | let    | assignment | value | failure        |
 | class | let    | assignment | value | failure        |
+
+You can find the full source code to play around with [here](https://gist.github.com/Dobiasd/a7292aaf8f818e3303a2cfc55c69c6ab).

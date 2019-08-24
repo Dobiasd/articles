@@ -29,6 +29,8 @@ This repository serves as a programming-related brain dump.
 
 [What Kotlin could learn from C++'s keyword `const`](https://github.com/Dobiasd/articles/blob/master/what_kotlin_could_learn_from_cpps_keyword_const.md)
 
+[When does a when expression in Kotlin need to be exhaustive, and when does it not](https://github.com/Dobiasd/articles/blob/master/when_does_a_when_expression_in_kotlin_need_to_be_exhaustive_and_when_does_it_not.md)
+
 ### Statistics
 
 [Basic measures of descriptive statistics](https://github.com/Dobiasd/articles/blob/master/basic_measures_of_descriptive_statistics.md)

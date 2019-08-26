@@ -46,7 +46,6 @@ whether it makes a difference to assign the expression to a variable:
     val y = when (x) {
         ...
     }
-}
 ```
 
 This may sound absurd, but please bear with me. It will become relevant soon.

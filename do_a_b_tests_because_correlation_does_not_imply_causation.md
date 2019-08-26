@@ -77,13 +77,15 @@ And we can only find the true causation with randomized controlled trials (A/B t
 
 Examples showing the absurdity:
 
-1) Countries with more ice-cream consumption (`X`) have more deaths by drowning (`Y`). But eating ice cream does not make you drown. It's just that in colder countries, people eat less ice cream and don't go swimming that much. Because it's cold, duh.
+1) `X` might be "Kids watching more TV", and `Y` "Kids being more violent". Watching TV could cause violence or peacefulness. We don't know. Maybe violent kids just tend to watch more TV.
 
-2) `X` might be "Kids watching more TV", and `Y` "Kids being more violent". Watching TV could cause violence or peacefulness. We don't know. Maybe violent kids just tend to watch more TV.
+2) "stork population" by region strongly correlates with "human birthrate" by region. However, storks don't deliver babies. People in rural areas (storks don't live in big cities) just have more kids.
 
-3) "stork population" by region strongly correlates with "human birthrate" by region. However, storks don't deliver babies. People in rural areas (storks don't live in big cities) just have more kids.
+3) Countries with more ice-cream consumption (`X`) have more deaths by drowning (`Y`). But eating ice cream does not make you drown. It's just that in colder countries, people eat less ice cream and don't go swimming that much. Because it's cold, duh.
 
 In the media, one can find an enormous number of instances of this exact causal fallacy.
+
+Regarding the last example, i.e., the one with the ice-cream, one might think, that one can get rid of the problems, and actually check for causation, by considering only the people that actually went swimming, and then compare those that ate ice-cream during the 30 minutes before going into the water with those who did not. But now. There can still be endlessly many confounding factors. For example, people who take care of their fitness level might be less likely to eat ice-cream and also be better swimmers. Or it could be that kids tend to eat ice-cream more often and that sadly, they also are more likely to drown. One does not, and can not know about (and exclude) all these possibilities.
 
 ---
 

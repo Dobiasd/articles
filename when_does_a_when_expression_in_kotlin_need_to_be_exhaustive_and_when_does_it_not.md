@@ -39,7 +39,7 @@ fun printSomething() = println(42)
 fun returnSomething(): Int = 42
 ```
 
-The third thing explore is
+The third thing to explore is
 whether it makes a difference to assign the expression to a variable:
 
 ```kotlin

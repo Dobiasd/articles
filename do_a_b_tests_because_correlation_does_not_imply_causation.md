@@ -85,7 +85,7 @@ Examples showing the absurdity:
 
 In the media, one can find an enormous number of instances of this exact causal fallacy.
 
-Regarding the last example, i.e., the one with the ice-cream, one might think, that one can get rid of the problems, and actually check for causation, by considering only the people that actually went swimming, and then compare those that ate ice-cream during the 30 minutes before going into the water with those who did not. But now. There can still be endlessly many confounding factors. For example, people who take care of their fitness level might be less likely to eat ice-cream and also be better swimmers. Or it could be that kids tend to eat ice-cream more often and that sadly, they also are more likely to drown. One does not, and can not know about (and exclude) all these possibilities.
+Regarding the last example, i.e., the one with the ice-cream, one might think, that one just has to filter the data in better way, e.g., by considering only the people that actually went swimming, and then compare those that ate ice-cream during the 30 minutes before going into the water with those who did not. In case the ice-cream eaters would on average drown more often, would this mean eating ice-cream increases the risk or drowning? No, it would not! There can still be endlessly many confounding factors. For example, people who take care of their fitness level might be less likely to eat ice-cream and also be better swimmers. Or it could be that kids tend to eat ice-cream more often compared to adults and that sadly, they also are more likely to drown. One does not, and can not know about (and exclude) all these possibilities.
 
 ---
 

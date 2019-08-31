@@ -117,12 +117,6 @@ The error message looks as follows:
 
 That was interesting and somewhat surprising (at least to me).
 
-I hope you also enjoyed this kind of weird exploration a bit.
-
-If you'd like to discuss it, e.g.,
-reason about possible explanations for this behavior,
-I'd be happy to see your comments on [reddit](https://www.reddit.com/r/Kotlin/comments/cura4x/when_does_a_when_expression_in_kotlin_need_to_be/).
-
 To finalize, here is a summary table to of the results:
 
 | e/c   | n/l    | s/a        | u/v   | o/r/f          |
@@ -145,3 +139,6 @@ To finalize, here is a summary table to of the results:
 | class | let    | assignment | value | failure        |
 
 You can find the full source code to play around with [here](https://gist.github.com/Dobiasd/a7292aaf8f818e3303a2cfc55c69c6ab).
+
+Thanks to very helpful people on reddit ([1](https://www.reddit.com/r/Kotlin/comments/cura4x/when_does_a_when_expression_in_kotlin_need_to_be/), [2](https://www.reddit.com/r/programming/comments/cura13/when_does_a_when_expression_in_kotlin_need_to_be/)) we can read an explanation for these observations [there](https://www.reddit.com/r/Kotlin/comments/cura4x/when_does_a_when_expression_in_kotlin_need_to_be/exzm7li/).
+They show the pattern behind the behavior that seems chaotic when only observed superficially like here.

@@ -19,7 +19,7 @@ Alice facilitates Bob's mindset by
 
 Alice talks more in terms of "we" instead of "you" and "I". Alice is awesome. Do as Alice does.
 
-Carlos, their boss, is happy about this friendly culture, which
+Carlos, their CTO, is happy about this friendly culture, which
 
 - helps to reduce the bus factor thanks to shared knowledge.
 - allows everyone to grow and results in low employee churn.

@@ -48,3 +48,5 @@ This repository serves as a programming-related brain dump.
 [A personal, generic, things-I-learned-as-a-software-developer list](https://github.com/Dobiasd/articles/blob/master/a_personal_generic_things_i_learned_as_a_software_developer_list.md)
 
 [Implementation inheritance is bad - the fragile base class problem](https://github.com/Dobiasd/articles/blob/master/implementation_inheritance_is_bad_-_the_fragile_base_class_problem.md)
+
+[Refactoring suggestions are a compliment](https://github.com/Dobiasd/articles/blob/master/refactoring_suggestions_are_a_compliment.md)

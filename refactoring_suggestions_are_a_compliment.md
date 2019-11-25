@@ -13,7 +13,7 @@ Bob constantly reminds himself of these conditions. Bob is awesome. Think as Bob
 Alice facilitates Bob's mindset by
 
 - conveying that these refactorings are not urgent but still important and by keeping them at a reasonable size.
-- pointing out issues not just as "smells" but as opportunities for improvement, while also mentioning the parts she likes.
+- being aware that it is usually easier to recognize smells (opportunities for improvement) if one looks at code from a distance compared to being knee-deep in the details.
 - striving towards an agreement of two equals by explaining her points and asking questions to understand Bob's way of thinking. She does not try to use authority.
 - being open to learning why Bob's original way might be better than her suggestion.
 

@@ -102,7 +102,7 @@ Two new requirements shall be implemented:
 - A new discount mechanism shall replace the default weekday-based ones on certain special days of the year, like New Year's Eve, the Super Bowl weekend and Thanksgiving.
 
 Trying to add this to the existing code without improving it first,
-would result in a health-threatening pile of Spaghetti.
+would result in a health-threatening pile of spaghetti code.
 So let's prepare the code to make adding those features a breeze.
 To make sure we don't destroy anything along the way,
 we make sure the functionality is covered by automated unit tests. In case it's not, we create the needed test cases.
@@ -590,7 +590,10 @@ i.e., `(List<OrderLine>) -> List<SummaryLine>` in our case, as our interface dir
 
 The code now looks very nice. Yes, it's a bit longer than the original,
 and usually shorter is better.
-However, it will now be much simpler to now only to add markdown output,
+However, we converted the entangled spaghetti code to concern-separated ravioli.
+Also, most of the new code is declarative, which is good,
+because it's harder to make mistakes in it. The type system helps us here.
+It will now be much simpler to not only to add markdown output,
 but also to add new discount strategies, because they are nicely isolated.
 In addition, the understanding of what is happening is now embedded in the code,
 such that it can be understood without the need for comments,

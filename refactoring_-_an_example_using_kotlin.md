@@ -182,7 +182,7 @@ the original code is doing by reading it or maybe even stepping through it with 
 We should persist the new understanding, we gain from this, directly into the code.
 We do this by simply just renaming some variables and by using comments:
 
-![diff_a_b](refactoring_-_an_example_using_kotlin/diff_a_b.png)
+![diff_a_b](refactoring_-_an_example_using_kotlin/diff_a_b.png?raw=true)
 
 Result:
 
@@ -227,7 +227,7 @@ In the next step we should try to separate the observed concerns, i.e.:
 
 To help with this, we can convert the imperative code into something a bit more functional:
 
-![diff_b_c](refactoring_-_an_example_using_kotlin/diff_b_c.png)
+![diff_b_c](refactoring_-_an_example_using_kotlin/diff_b_c.png?raw=true)
 
 ```kotlin
 import java.time.DayOfWeek
@@ -266,7 +266,7 @@ This phase split reveals, that we are actually converting the `OrderLine`s into 
 Right now it's just a `Pair<String, Cents>`.
 So, let's call it `SummaryLines` to express this concept explicitly in our domain by using value objects:
 
-![diff_c_d](refactoring_-_an_example_using_kotlin/diff_c_d.png)
+![diff_c_d](refactoring_-_an_example_using_kotlin/diff_c_d.png?raw=true)
 
 ```kotlin
 import java.time.DayOfWeek
@@ -318,7 +318,7 @@ The logic to format a monetary amount as a string exists in more than one place.
 We can extract it out into a function,
 making the code more [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
-![diff_d_e](refactoring_-_an_example_using_kotlin/diff_d_e.png)
+![diff_d_e](refactoring_-_an_example_using_kotlin/diff_d_e.png?raw=true)
 
 ```kotlin
 import java.time.DayOfWeek
@@ -373,7 +373,7 @@ The new discount requirements, mentioned in the introduction, also fit into this
 The strategies all convert a list of some `OrderLine`s into a list of `SummaryLine`s.
 Expressing this insight in code might look as follows:
 
-![diff_e_f](refactoring_-_an_example_using_kotlin/diff_e_f.png)
+![diff_e_f](refactoring_-_an_example_using_kotlin/diff_e_f.png?raw=true)
 
 ```kotlin
 import java.time.DayOfWeek
@@ -438,7 +438,7 @@ fun summarize(order: Order): String {
 To avoid the duplication of calculating `charge` as the product of `quantity` and `article.price`,
 we move this into a secondary constructor of our `SummaryLine` class:
 
-![diff_f_g](refactoring_-_an_example_using_kotlin/diff_f_g.png)
+![diff_f_g](refactoring_-_an_example_using_kotlin/diff_f_g.png?raw=true)
 
 ```kotlin
 import java.time.DayOfWeek
@@ -505,7 +505,7 @@ fun summarize(order: Order): String {
 The decision which [strategy](https://en.wikipedia.org/wiki/Strategy_pattern)
 to use can now be separated out into some kind of [factory](https://en.wikipedia.org/wiki/Factory_method_pattern).
 
-![diff_g_h](refactoring_-_an_example_using_kotlin/diff_g_h.png)
+![diff_g_h](refactoring_-_an_example_using_kotlin/diff_g_h.png?raw=true)
 
 ```kotlin
 import java.time.DayOfWeek

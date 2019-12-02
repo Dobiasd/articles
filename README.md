@@ -51,4 +51,4 @@ This repository serves as a programming-related brain dump.
 
 [Refactoring suggestions are a compliment](https://github.com/Dobiasd/articles/blob/master/refactoring_suggestions_are_a_compliment.md)
 
-[# Refactoring - an Example (using Kotlin)](https://github.com/Dobiasd/articles/blob/master/refactoring_-_an_example_using_kotlin.md)
+[Refactoring - an Example (using Kotlin)](https://github.com/Dobiasd/articles/blob/master/refactoring_-_an_example_using_kotlin.md)

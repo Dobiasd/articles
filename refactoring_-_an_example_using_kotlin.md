@@ -17,7 +17,7 @@ because it will enable us to implement new functionality much faster and with fe
 
 This article will depict the process of applying multiple small refactorings to some exemplary piece of code
 to end up with a much more maintainable design. While doing so, the code will not break, but its intended behavior will be preserved in between the steps.
-(This article is heavily inspired by Martin Fowler. Also many thanks to [Benjamin Zikarsky](https://github.com/bzikarsky) for reviewing this article, but also for constantly helping me learn in general.)
+(This article is heavily inspired by Martin Fowler. Also many thanks to [Benjamin Zikarsky](https://github.com/bzikarsky) for reviewing this article, and also for constantly helping me learn in general.)
 
 OK, let's dive in. A part of the order system of a pizza delivery looks as follows:
 

@@ -31,7 +31,7 @@ This repository serves as a programming-related brain dump.
 
 [When does a when expression in Kotlin need to be exhaustive, and when does it not](https://github.com/Dobiasd/articles/blob/master/when_does_a_when_expression_in_kotlin_need_to_be_exhaustive_and_when_does_it_not.md)
 
-[Refactoring - an Example (using Kotlin)](https://github.com/Dobiasd/articles/blob/master/refactoring_-_an_example_using_kotlin.md)
+[Refactoring - an Example (using Kotlin)](https://github.com/Dobiasd/articles/blob/master/from_spaghetti_to_ravioli_-_a_refactoring_example_using_kotlin.md)
 
 ### Statistics
 

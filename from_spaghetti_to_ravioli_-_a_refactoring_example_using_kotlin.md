@@ -592,7 +592,7 @@ i.e., `(List<OrderLine>) -> List<SummaryLine>` in our case, as our interface dir
 
 The code now looks very nice. Yes, it's a bit longer than the original,
 and usually shorter is better.
-However, we converted the entangled spaghetti code to concern-separated ravioli.
+However, we converted the entangled spaghetti code to concern-separated - and nicely composable - ravioli.
 Also, most of the new code is declarative, which is good,
 because it's harder to make mistakes in it. The type system helps us here.
 It will now be much simpler to not only to add markdown output,

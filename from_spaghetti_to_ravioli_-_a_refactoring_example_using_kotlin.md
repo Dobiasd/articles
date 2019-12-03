@@ -1,6 +1,6 @@
 # From Spaghetti to Ravioli - a Refactoring Example (using Kotlin)
 
-![diff_a_b](from_spaghetti_to_ravioli_-_a_refactoring_example_using_kotlin/from_spaghetti_to_ravioli.png?raw=true)
+![from_spaghetti_to_ravioli](from_spaghetti_to_ravioli_-_a_refactoring_example_using_kotlin/from_spaghetti_to_ravioli.png?raw=true)
 
 After your customer has given you perfectly clear requirements
 you quickly came up with a sound architecture and implement everything in beautiful code.

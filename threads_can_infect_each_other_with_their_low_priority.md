@@ -3,7 +3,7 @@
 Imagine having something like the following situation:
 
 ```c++
-ThreadSafeQueue queue();
+ThreadSafeQueue queue;
 
 void thread_a() {
     // Infinite loop just for the sake of this example.

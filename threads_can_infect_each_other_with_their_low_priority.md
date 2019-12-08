@@ -72,11 +72,19 @@ This means the following might (read "will") happen at some point:
 
 So you thought you have the following:
 
+---
+
 ![1](threads_can_infect_each_other_with_their_low_priority/1.png?raw=true)
+
+---
 
 But in reality, you have:
 
+---
+
 ![2](threads_can_infect_each_other_with_their_low_priority/2.png?raw=true)
+
+---
 
 `thread_b` infected `thread_a` with its low priority.
 
@@ -88,7 +96,11 @@ The strength of the effect this has on latency may differ depending on what OS/s
 
 Naturally, the question arises, if this spreading can be transitive too, i.e., if, in the following graph example, the priority of `thread_e` can have an influence on the latency / observes priority of `thread_c`:
 
+---
+
 ![3](threads_can_infect_each_other_with_their_low_priority/3.png?raw=true)
+
+---
 
 The answer is: Yes, it can. It depends on how the acquisitions of the locks in `thread_d` are intertwined.
 
@@ -152,6 +164,10 @@ and you
 
 you end up with
 
+---
+
 ![4](threads_can_infect_each_other_with_their_low_priority/4.png?raw=true)
 
-Conclusion: **Just don't fiddle with thread priorities.**
+---
+
+Conclusion: **If possible, avoid headaches by just not fiddling around with thread priorities.**

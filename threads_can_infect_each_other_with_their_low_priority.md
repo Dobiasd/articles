@@ -170,4 +170,6 @@ you end up with
 
 ---
 
+This can haunt you not only when using classical mutexes, but with other [types of locking primitives](https://en.wikipedia.org/wiki/Mutual_exclusion#Types_of_mutual_exclusion_devices) too.
+
 Conclusion: **If possible, avoid headaches by just not fiddling around with thread priorities.**

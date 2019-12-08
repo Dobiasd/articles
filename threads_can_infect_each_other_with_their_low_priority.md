@@ -154,8 +154,8 @@ So, what can happen here?
 - `thread_e` does its `mutex_2.lock()`.
 - The scheduler interrupts `thread_e`.
 - `thread_d` does its `mutex_1.lock()`.
-- `thread_d` wants to do its `mutex_2.lock()`, but is blocked, because `thread_e` is already sleeping in it.
-- `thread_c` tries do it its `mutex_1.lock()`, but is blocked, because `thread_d` already has that lock.
+- `thread_d` wants to do its `mutex_2.lock()`, but is blocked, because `thread_e` is already sleeping inside `mutex_2`.
+- `thread_c` tries do it its `mutex_1.lock()`, but is blocked, because `thread_d` already has acquired `mutex_1`.
 
 Thus, `thread_c` is blocked at least as long as `thread_e` does not reach its `mutex_2.unlock()`. And this, again, can take quite a while.
 

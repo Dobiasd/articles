@@ -6,6 +6,7 @@ Imagine having something like the following situation:
 ThreadSafeQueue queue();
 
 void thread_a() {
+    // Infinite loop just for the sake of this example.
     while(true) {
         ...
         queue.push(...);

@@ -89,7 +89,7 @@ But in reality, you have:
 
 `thread_b` infected `thread_a` with its low priority.
 
-This brings us to a new axiom:
+This brings us to a new theorem:
 
 **A thread's observed priority is not higher than the lowest priority of any thread it shares a mutex with.**
 

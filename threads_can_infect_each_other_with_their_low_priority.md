@@ -172,3 +172,5 @@ and you end up with the following:
 This can haunt you not only when using classical mutexes, but with other [types of mutual exclusion devices](https://en.wikipedia.org/wiki/Mutual_exclusion#Types_of_mutual_exclusion_devices) too.
 
 Conclusion: **If possible, avoid headaches by just not fiddling around with thread priorities.**
+
+([discussion on reddit](https://www.reddit.com/r/programming/comments/e7sb5p/threads_can_infect_each_other_with_their_low/))

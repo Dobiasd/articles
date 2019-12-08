@@ -159,7 +159,7 @@ So, what can happen here?
 
 Thus, `thread_c` is blocked at least as long as `thread_e` does not reach its `mutex_2.unlock()`. And this, again, can take quite a while.
 
-So, the latency of `thread_c` was killed, transitively, by `thread_e`,
+So, the latency of `thread_c` was ruined, transitively, by `thread_e`,
 
 and you end up with the following:
 

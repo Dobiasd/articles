@@ -92,7 +92,7 @@ This brings us to a new axiom:
 
 **A thread's observed priority is not higher than the lowest priority of any thread it shares a mutex with.**
 
-The strength of the effect this ([priority inversion](https://en.wikipedia.org/wiki/Priority_inversion)) has on latency may differ depending on what OS/scheduler is used, but in general, it holds that, as soon as thread priorities are changed deliberately for any reason, one suddenly is forced to investigate the thread-mutex graph of one's application and check for lower-prioritized neighbors.
+The strength of the effect this ([priority inversion](https://en.wikipedia.org/wiki/Priority_inversion)) has on latency may differ depending on what OS/scheduler is used, but in general, it holds that, as soon as thread priorities are changed deliberately for any reason, one suddenly is forced to investigate the thread-mutex graph of one's application and check for lower-prioritized neighbors. OS schedulers might implement [different techniques](https://en.wikipedia.org/wiki/Priority_inversion#Solutions) to lessen the severity of this problem, but it's far from being solved once and for all.
 
 Naturally, the question arises, if this spreading can be transitive too, i.e., if, in the following graph example, the priority of `thread_e` can have an influence on the latency / observes priority of `thread_c`:
 

@@ -33,6 +33,8 @@ This repository serves as a programming-related brain dump.
 
 [From Spaghetti to Ravioli - a Refactoring Example (using Kotlin)](https://github.com/Dobiasd/articles/blob/master/from_spaghetti_to_ravioli_-_a_refactoring_example_using_kotlin.md)
 
+[Using `fold` to mimic mutation](https://github.com/Dobiasd/articles/blob/master/using_fold_to_mimic_mutation.md)
+
 ### Statistics
 
 [Basic measures of descriptive statistics](https://github.com/Dobiasd/articles/blob/master/basic_measures_of_descriptive_statistics.md)

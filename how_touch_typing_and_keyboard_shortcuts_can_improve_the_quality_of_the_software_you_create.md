@@ -14,7 +14,10 @@ Take cooking as an example: You are in the middle of preparing a delicious dinne
 
 Being a slow typist is like having your kitchen tools badly organized.
 
-You are writing some code that is partly self-explanatory. It would be nicer with an additional comment, but not really disastrous without it. The cost of making that tiny change, measured in time of thought-interruption and thus cognitive load, is lower if you are able to type fast. So the benefit-cost ratio can end up below the "write the comment" threshold if you are a slow typist and above it otherwise. Other thresholds could be about "use a more descriptive name for that function/variable", "make this small refactoring", "ask a question on [stackoverflow](http://stackoverflow.com)" or anything along these lines.
+You are writing some code that is partly self-explanatory. It would be nicer with, e.g., a more descriptive name for that function/variable, but not really disastrous without it. The cost/effort of making that tiny change, measured in time of thought-interruption and thus cognitive load, is lower if you are able to type fast. So the benefit-cost ratio can end up below the "make the change" threshold if you are a slow typist and above it otherwise. Effort thresholds can be about different things relevant to the quality of your work:
+- Make this small refactoring
+- Ask a question on [stackoverflow](http://stackoverflow.com)"
+- Write the better version of the commit message, pull-request description, slack message, email, ...
 
 
 ## Keyboard shortcuts

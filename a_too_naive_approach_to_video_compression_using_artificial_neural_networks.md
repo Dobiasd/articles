@@ -29,8 +29,7 @@ Test Video
 ----------
 Our test video consists of 84 single frames with a resolution of 480 * 360 pixels at 25 frames per second. And it looks like this:
 
-[![(Picture missing, uh oh)](a_too_naive_approach_to_video_compression_using_artificial_neural_networks_files/original_snapshot.jpg)][sourcevideo]
-[sourcevideo]: https://www.youtube.com/watch?v=GqusTv0wp4c
+[![(Picture missing, uh oh)](a_too_naive_approach_to_video_compression_using_artificial_neural_networks_files/original_snapshot.jpg)]
 
 [youtube link](https://www.youtube.com/watch?v=GqusTv0wp4c)
 
@@ -52,8 +51,7 @@ Now our net only weights 5184940 (84 * 10 + 10 * 10 + 10 * 518400) connections, 
 
 After about one hour of training on all my four CPU cores with [resilient backpropagation](https://en.wikipedia.org/wiki/Rprop) the result looks as follows:
 
-[![(Picture missing, uh oh)](a_too_naive_approach_to_video_compression_using_artificial_neural_networks_files/nn_snapshot.jpg)][nnvideo]
-[nnvideo]: https://www.youtube.com/watch?v=Qku14b_v-B8
+[![(Picture missing, uh oh)](a_too_naive_approach_to_video_compression_using_artificial_neural_networks_files/nn_snapshot.jpg)]
 
 [youtube link](https://www.youtube.com/watch?v=Qku14b_v-B8)
 

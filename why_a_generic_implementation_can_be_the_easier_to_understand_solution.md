@@ -1,6 +1,6 @@
 # Why a generic implementation can be the easier-to-understand solution
 
-Following YAGNI, one might avoid implementing a generic version of some algorithm if it's only needed in one place and for one specific type.
+Following YAGNI, one might avoid implementing a generic version of some algorithm if it is only needed in one place and for one specific type.
 
 In this article, I'll argue that a generic implementation might be easier to understand when maintaining code, and thus should be preferred, if feasible. (I'll use Java in the code examples, but the concept applies to other languages, like C++, Swift, (type-annotated) Python, TypeScript, Kotlin, or C#, too.)
 
@@ -38,6 +38,10 @@ static void printSpecialCustomers(List<SpecialCustomer> specialCustomers) {
 }
 ```
 
+```java
+printSpecialCustomers(ourSpecialCustomers);
+```
+
 Since only methods of `Customer` are used, a future maintainer might wonder, why the function takes `List<SpcialCustomer>` and not `List<Customer>`. Since `SpecialCustomer` is a more complex type compared to `Customer`, using it exposes more, but unneeded, possibilities to the function. The maintainer might spend time trying to find out why this was done, just to conclude that is was not needed. The following implementation would have avoided this confusion.
 
 ```java
@@ -48,7 +52,7 @@ static void printCustomers(List<Customer> customers) {
 }
 ```
 
-So even though the function is never used for `Customer`s, which are not `SpecialCustomer`s, it's the better solution, because the parameter type is more restrictive in what possible things the function could do. But it's not just helpful when maintaining the function implementation, but also when just using is, because having `Customer` instead of `SpecialCustomer` already tell the client-code developer about all the things, this function is guaranteed to not be able to do, which is all the particular `SpecialCustomer` things. Thus using `Customer` instead of `SpecialCustomer` has made things simpler.
+So even though the function is never used for `Customer`s, which are not `SpecialCustomer`s, it is the better solution, because the parameter type is more restrictive in what possible things the function could do. But it is not just helpful when maintaining the function implementation, but also when just using is, because having `Customer` instead of `SpecialCustomer` already tell the client-code developer about all the things, this function is guaranteed to not be able to do, which is all the particular `SpecialCustomer` things. Thus using `Customer` instead of `SpecialCustomer` has made things simpler.
 
 ```java
 class Order {
@@ -79,7 +83,7 @@ class ShittyOrderQueue {
 }
 ```
 
-People using this class, or reading it's implementation, might wonder why it is constrained to work with `Order`s. "Wouldn't it also work with arbitrary other Objects? And if so, why isn't it implemented that way? There must be a reason for it, and I should find out to avoid doing something unintended."
+People using this class, or reading its implementation, might wonder why it is constrained to work with `Order`s. "Wouldn't it also work with arbitrary other Objects? And if so, why isn't it implemented that way? There must be a reason for it, and I should find out to avoid doing something unintended."
 
 So it would have been much better to implement the queue it in a generic way, even though it is exclusively used for `Order`s.
 

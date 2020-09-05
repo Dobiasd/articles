@@ -74,7 +74,7 @@ class ShittyOrderQueue {
     private List<Order> orders;
 
     public void add(Order order) {
-        // todo: Sometimes just don't add the item.
+        // todo: Sometimes just don't add the order.
     }
 
     public Optional<Order> poll() {
@@ -85,7 +85,7 @@ class ShittyOrderQueue {
 
 People using this class, or reading its implementation, might wonder why it is constrained to work with `Order`s. "Wouldn't it also work with arbitrary other Objects? And if so, why isn't it implemented that way? There must be a reason for it, and I should find out to avoid doing something unintended."
 
-So it would have been much better to implement the queue it in a generic way, even though it is exclusively used for `Order`s.
+So it is much better to implement the queue it in a generic way, even though it is exclusively used for `Order`s.
 
 ```java
 class ShittyQueue<T> {
@@ -97,7 +97,6 @@ class ShittyQueue<T> {
 
     public Optional<T> poll() {
         // todo: Sometimes return not from the front of the queue.
-        return Optional.empty();
     }
 }
 ```
@@ -110,7 +109,7 @@ class ShittyQueue<T extends Order> {
 }
 ```
 
-This way makes the issue obvious since we would not use other non-needed constraints, like
+This way makes the issue obvious since you would not use other non-needed constraints, like
 
 ```java
 class ShittyQueue<T extends Comparable> {
@@ -118,7 +117,7 @@ class ShittyQueue<T extends Comparable> {
 }
 ```
 
-either, because your fellow developers (including future you) would try to understand why `T` needs to be `Comparable`. (In languages like Scala, Rust, or Haskell, one would have traits here instead, but the concept is the same.)
+either, because your fellow developers (including future you) would unnecessarily try to understand why `T` needs to implement the `Comparable` interface. (In languages like Scala, Rust, or Haskell, one would have traits here instead, but the concept is the same.)
 
 - constrained type -> unconstrained possibilities -> more cognitive load
 - uncontrained type -> constrained possibilities -> less cognitive load

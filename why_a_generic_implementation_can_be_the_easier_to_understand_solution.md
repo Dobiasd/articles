@@ -2,7 +2,7 @@
 
 Following YAGNI, one might avoid implementing a generic version of some algorithm if it is only needed in one place and for one specific type.
 
-In this article, I'll argue that a generic implementation might be easier to understand when maintaining code, and thus should be preferred, if feasible. (I'll use Java in the code examples, but the concept applies to other languages, like C++, Swift, (type-annotated) Python, TypeScript, Kotlin, or C#, too.)
+In this article, I'll argue that a generic implementation might be easier to understand when maintaining code, and thus should be preferred, if feasible. (I'll use Java in the code examples, but the concept applies to other languages, like C++, Swift, (type-annotated) Python, Kotlin, or C#, too.)
 
 Imagine you're working on the order system of a pizza delivery, which has classes like this:
 
@@ -117,7 +117,7 @@ class ShittyQueue<T extends Comparable> {
 }
 ```
 
-either, because your fellow developers (including future you) would unnecessarily try to understand why `T` needs to implement the `Comparable` interface. (In languages like Scala, Rust, or Haskell, one would have traits here instead, but the concept is the same.)
+either, because your fellow developers (including future you) would unnecessarily try to understand why `T` needs to implement the `Comparable` interface. (In languages like Scala or Rust, one would have traits here instead, but the concept is the same.)
 
 - constrained type -> unconstrained possibilities -> more cognitive load
 - uncontrained type -> constrained possibilities -> less cognitive load

@@ -54,6 +54,8 @@ static void printCustomers(List<Customer> customers) {
 
 So even though the function is never used for `Customer`s, which are not `SpecialCustomer`s, it is the better solution, because the parameter type is more restrictive in what possible things the function could do. But it is not just helpful when maintaining the function implementation, but also when just using is, because having `Customer` instead of `SpecialCustomer` already tell the client-code developer about all the things, this function is guaranteed to not be able to do, which is all the particular `SpecialCustomer` things. Thus using `Customer` instead of `SpecialCustomer` has made things simpler.
 
+To take this reasoning further, let's imagine the typical pizza-delivery-business logic of having a non-reliable order queue shall be implemented. Maybe it swaps order from time to time or even randomly drops an order now and then.
+
 ```java
 class Order {
     // ...
@@ -66,8 +68,6 @@ class Order {
     }
 }
 ```
-
-To take this reasoning further, let's imagine the typical pizza-delivery-business logic of having a non-reliable order queue shall be implemented. Maybe it swaps order from time to time or even randomly drops an order now and then.
 
 ```java
 class ShittyOrderQueue {

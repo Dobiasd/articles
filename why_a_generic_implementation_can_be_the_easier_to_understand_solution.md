@@ -55,12 +55,16 @@ interface Order {
 ```
 
 ```java
-interface ShittyOrderQueue {
-    // Sometimes just don't add the order.
-    public void add(Order order);
+class ShittyOrderQueue {
+    private List<Order> orders;
 
-    // Sometimes return not from the front of the queue.
-    public Optional<Order> poll()
+    public void add(Order order) {
+        // todo: Sometimes just don't add the order.
+    }
+
+    public Optional<Order> poll() {
+        // todo: Sometimes return not from the front of the queue.
+    }
 }
 ```
 
@@ -69,12 +73,16 @@ People using a class that implements this interface, or reading its implementati
 So it is much better to implement the queue it in a generic way, even though it will actually be used for `Order`s exclusively.
 
 ```java
-interface ShittyQueue<T> {
-    // Sometimes just don't add the item.
-    public void add(T item)
+class ShittyQueue<T> {
+    private List<T> items;
 
-    // Sometimes return not from the front of the queue.
+    public void add(T item) {
+        // todo: Sometimes just don't add the item.
+    }
+
     public Optional<T> poll() {
+        // todo: Sometimes return not from the front of the queue.
+    }
 }
 ```
 
@@ -83,7 +91,7 @@ interface ShittyQueue<T> {
 Basically, with a bit of squinting, we can look at the version specific to `Order` (`ShittyOrderQueue`) as if it was a generic implementation, just with a very strong constraint.
 
 ```java
-interface ShittyOrderQueue<T extends Order> {
+class ShittyOrderQueue<T extends Order> {
     // ...
 }
 ```
@@ -91,7 +99,7 @@ interface ShittyOrderQueue<T extends Order> {
 This way makes the issue obvious since you would not use other non-needed constraints, like
 
 ```java
-interface ShittyQueue<T extends Comparable> {
+class ShittyQueue<T extends Comparable> {
     // ...
 }
 ```

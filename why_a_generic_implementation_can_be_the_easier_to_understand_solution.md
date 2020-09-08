@@ -33,7 +33,7 @@ static void printSpecialCustomers(List<SpecialCustomer> specialCustomers) {
 printSpecialCustomers(ourSpecialCustomers);
 ```
 
-Since only methods of `Customer` are used, a future maintainer might wonder, why the function takes `List<SpcialCustomer>` and not `List<Customer>`. Since `SpecialCustomer` is a more complex type compared to `Customer`, using it exposes more (but unneeded) possibilities to the function. The maintainer might spend time trying to find out why this was done, just to conclude that is was not needed. The following implementation would have avoided this confusion.
+Since only methods of `Customer` are used, a future maintainer might wonder, why the function takes `List<SpecialCustomer>` and not `List<Customer>`. Since `SpecialCustomer` is a more complex type compared to `Customer`, using it exposes more (but unneeded) possibilities to the function. The maintainer might spend time trying to find out why this was done, just to conclude that is was not needed. The following implementation would have avoided this confusion.
 
 ```java
 static void printCustomers(List<Customer> customers) {

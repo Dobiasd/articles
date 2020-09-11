@@ -55,7 +55,7 @@ This is covariance in action:
 
 ## Contravariance
 
-Now, your next customer, Jane, wants to buy a `bike crusher` from you. You don't have one on stock, so you provide a generic `vehicle crusher` instead, which is totally ok:
+Now, your next customer, Jane, wants to buy a `bike crusher` from you. You don't have one on stock, so you provide a generic `vehicle crusher` instead, which is totally ok.
 
 ![(jane_vehicle_crusher)](covariance_and_contravariance_explained_without_code/jane_vehicle_crusher.jpg)
 
@@ -89,6 +89,7 @@ The crucial point is already in the definitions.
 - A crusher consumes.
 
 Producing things (in programming: functions returning the object in question) exhibit covariance with the class of the object (`vehicle`/`bike`).
+
 Consuming things (in programming: functions taking the object in question as an argument) exhibit contravariance with the class of the object (`vehicle`/`bike`).
 
 ## Code (if you really want to see it)

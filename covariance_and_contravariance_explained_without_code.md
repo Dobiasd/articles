@@ -140,3 +140,5 @@ john(someBikeFactory)
 jane(someVehicleCrusher)
 jane(someBikeCrusher)
 ```
+
+([discussion on reddit](https://www.reddit.com/r/programming/comments/iqqtp0/covariance_and_contravariance_explained_without/))

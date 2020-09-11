@@ -58,3 +58,5 @@ This repository serves as a programming-related brain dump.
 [Threads can infect each other with their low priority](https://github.com/Dobiasd/articles/blob/master/threads_can_infect_each_other_with_their_low_priority.md)
 
 [Why a generic implementation can be the easier-to-understand solution](https://github.com/Dobiasd/articles/blob/master/why_a_generic_implementation_can_be_the_easier_to_understand_solution.md)
+
+[Covariance and contravariance explained without code](https://github.com/Dobiasd/articles/blob/master/covariance_and_contravariance_explained_without_code.md)

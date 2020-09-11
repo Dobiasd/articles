@@ -82,11 +82,11 @@ This is contravariance in action:
 
 (The two "is a" arrows point in opposite directions.)
 
-## The difference between a factory and a crusher
+## The difference between a `factory` and a `crusher`
 
 The crucial point is already in the definitions.
-- A factory produces.
-- A crusher consumes.
+- A `factory` produces.
+- A `crusher` consumes.
 
 Producing things (in programming: functions returning the object in question) exhibit covariance with the class of the object (`vehicle`/`bike`).
 

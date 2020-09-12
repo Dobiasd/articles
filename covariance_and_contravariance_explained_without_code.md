@@ -30,7 +30,7 @@ You supply him with a `bike factory`, and he is happy because a `bike factory` i
 
 ![(john_bike_factory)](covariance_and_contravariance_explained_without_code/john_bike_factory.jpg)
 
-It would not have worked the other way around! If John would have wanted a `bike factory` and you would have delivered a `vehicle factory` instead, he would be angry.
+It would not have worked the other way around! If John would have wanted a `bike factory` and you would have delivered a `vehicle factory` instead, he would be angry, because one can not control which type of random vehicle it produces.
 
 ![(john_vehicle_factory)](covariance_and_contravariance_explained_without_code/john_vehicle_factory.jpg)
 

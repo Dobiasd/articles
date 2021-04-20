@@ -136,5 +136,5 @@ A language not allowing implementation inheritance
 (or at least making every class `final` by default)
 could prevent this from happening.
 
-Code reuse, can be achieved by other means.
+Code reuse can be achieved by other means.
 Composition (with [delegation](https://en.wikipedia.org/wiki/Delegation_pattern)) can provide one viable way to do so.

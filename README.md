@@ -60,3 +60,5 @@ This repository serves as a programming-related brain dump.
 [Why a generic implementation can be the easier-to-understand solution](https://github.com/Dobiasd/articles/blob/master/why_a_generic_implementation_can_be_the_easier_to_understand_solution.md)
 
 [Covariance and contravariance explained without code](https://github.com/Dobiasd/articles/blob/master/covariance_and_contravariance_explained_without_code.md)
+
+[How I got rid of the crosstalk in my headset](https://github.com/Dobiasd/articles/blob/master/how_i_got_rid_of_the_crosstalk_in_my_headset.md)

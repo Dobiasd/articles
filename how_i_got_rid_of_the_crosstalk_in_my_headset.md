@@ -14,7 +14,7 @@ and maybe add an adapter,
 
 because in the single-plug version, the headphone and the microphone (electrically) share the "ground", which makes the stuff you listen to (headphone) leak into the stuff the others hear coming from you (microphone).
 - When gaming online while in a Discord channel, and you do something in the game, only you are supposed to hear, the others will hear it too.
-- When on a zoom call, and you prefer listening to some music on YouTube instead of your colleagues, they hear it too. :-P
+- When on a zoom call, and you have some system sounds from notifications popping up (or prefer listening to music instead of your colleagues :-P), they hear it too.
 - ...
 
 Wait, you think, does this guy really state that there is a fundamental design flaw in the general concept of many headphone plugs?

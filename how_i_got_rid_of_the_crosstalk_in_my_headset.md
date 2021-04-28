@@ -23,8 +23,10 @@ Yes, I do! :grin:
 
 And it's not a minor effect, which you only recognize when really paying attention. Instead, it's very obvious. I've tested this with 3 different headsets on two different PCs (front and back audio ports, with the needed [adapter](how_i_got_rid_of_the_crosstalk_in_my_headset/adapter_split.jpg) to match the [ports](how_i_got_rid_of_the_crosstalk_in_my_headset/soundcard.jpg)), and the effect was strong in all cases. I invite you to experiment yourself if you have such a headset:
 - Record your voice (use Audacity, a Zoom call, whatever).
-- Play some music on your headphones (e.g., search for "fast piano music" on YouTube to have the maximum effect).
+- Play some music on your headphones.
 - Listen to the recording and be surprised.
+
+![recording_experiment](how_i_got_rid_of_the_crosstalk_in_my_headset/recording_experiment.jpg)
 
 If you are lucky and have a headset with two separate plugs, you can re-create this effect by coupling the two ground signals with adapters like this.
 

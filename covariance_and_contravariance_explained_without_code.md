@@ -92,6 +92,12 @@ Producing things (in programming: functions returning the object in question) ex
 
 Consuming things (in programming: functions taking the object in question as an argument) exhibit contravariance with the class of the object (`vehicle`/`bike`).
 
+## Additional terms
+
+- Invariance/Nonvariance: If there is no arrow in any of the two directions, the relationship is invariant.
+- Bivariance: There are arrows in both directions.
+- Variance: Variance is given if the relationship is either covariant, contravariant, or bivariant.
+
 ## Code (if you really want to see it)
 
 The below example is written in Kotlin, but the same logic applies to many other languages too.

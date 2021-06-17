@@ -64,3 +64,5 @@ If you enjoy my articles, feel free to ![buymeacoffee](https://www.buymeacoffee.
 [Covariance and contravariance explained without code](https://github.com/Dobiasd/articles/blob/master/covariance_and_contravariance_explained_without_code.md)
 
 [How I got rid of the crosstalk in my headset](https://github.com/Dobiasd/articles/blob/master/how_i_got_rid_of_the_crosstalk_in_my_headset.md)
+
+[Avoid methods to reduce coupling](https://github.com/Dobiasd/articles/blob/master/avoid_methods_to_reduce_coupling.md)

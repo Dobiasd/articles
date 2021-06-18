@@ -1,6 +1,7 @@
 # Avoid methods to reduce coupling
 
 The following uses Python only as an example to show some code. The logic applies in many other programming languages too.
+(E.g., you can find the snippets translated to Kotlin [here](https://gist.github.com/Dobiasd/6f7324630f4e589ef8f6c5dccf9b31d1).)
 
 ## Global variables (make things complicated, yada yada yada)
 

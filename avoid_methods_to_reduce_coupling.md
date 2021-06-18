@@ -176,4 +176,4 @@ foo(my_thing.x, my_thing.y)
 
 ## Conclusion
 
-When using methods functions, we suffer from a similar problem as we do when using nested functions or global variables, i.e., we lose guarantees about what a function will definitely **not** do. And the more of such guarantees we have, the lower the cognitive load is when maintaining (understanding/fixing/refactoring/extending) the code later. :-)
+When using methods, we suffer from a similar problem as we do when using nested functions or global variables, i.e., we lose guarantees about what a function will definitely **not** do. And the more of such guarantees we have, the lower the cognitive load is when maintaining (understanding/fixing/refactoring/extending) the code later. :-)

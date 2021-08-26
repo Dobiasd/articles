@@ -6,7 +6,7 @@ Recently I was playing around with the following question:
 
 > **Is it easier to fix underengineering in a codebase or overengineering?**
 
-This question naively assumes that there is a "right" level of engineering, which, in reality, of course, depends on the requirements, expected future of the project, company culture, etc. But let's pretend there is such an ideal level.
+This question naively assumes that there is a "right" level of engineering (that we mostly try to aim for), which, in reality, of course, depends on the requirements, expected future of the project, company culture, etc. But let's pretend there is such an ideal level.
 
 Let's also pretend we all have some similar understanding of what both terms mean.
 

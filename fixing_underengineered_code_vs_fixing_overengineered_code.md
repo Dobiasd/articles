@@ -6,7 +6,7 @@ Recently I was playing around with the following question:
 
 > **Is it easier to fix underengineering in a codebase or overengineering?**
 
-This question naively assumes that there is a "right" level of engineering (that we mostly try to aim for), which, in reality, of course, depends on the requirements, expected future of the project, company culture, etc. But let's pretend there is such an ideal level.
+This question naively assumes that there is a "right" level of engineering, which makes maintenance and enhancements most efficient. In reality, of course, this level depends on the requirements, expected future of the project, company culture, etc. But let's just pretend there is such an ideal, non-subjective, level.
 
 Let's also pretend we all have some similar understanding of what both terms mean.
 
@@ -30,4 +30,4 @@ While talking to people about this, I heard different opinions, many of them, na
 
 ![(puzzle_overengineering)](fixing_underengineered_code_vs_fixing_overengineered_code/puzzle_overengineering.jpg)
 
-Thus, for small projects, underengineering might be easier to fix, but once the project grows in size, overengineering is less troublesome to remove afterwards. Of course, the initial cost to develop the overengineered solution might be somewhat higher, but that's not the point of this article. :wink:
+Thus, for small projects, underengineering might be easier to fix, but once the project grows in size, overengineering is less troublesome to fix later. (Of course, the initial cost to develop the overengineered solution might be somewhat higher, but that's not the point of this article. :wink:)

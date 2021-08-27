@@ -30,4 +30,4 @@ While talking to people about this, I heard different opinions, many of them, na
 
 ![(puzzle_overengineering)](fixing_underengineered_code_vs_fixing_overengineered_code/puzzle_overengineering.jpg)
 
-Thus, for small projects, underengineering might be easier to fix, but once the project grows in size, overengineering is less troublesome to fix later. (Of course, the initial cost to develop the overengineered solution might be somewhat higher, but that's not the point of this article. :wink:)
+Thus, for small projects, underengineering might be easier to fix, but once the project grows in size, overengineering is less troublesome to fix later. (Of course, the initial cost to develop the overengineered solution might be somewhat higher, but that's not the concern of this article. :wink:)

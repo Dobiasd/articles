@@ -66,3 +66,5 @@ If you enjoy my articles, feel free to ![buymeacoffee](https://www.buymeacoffee.
 [How I got rid of the crosstalk in my headset](https://github.com/Dobiasd/articles/blob/master/how_i_got_rid_of_the_crosstalk_in_my_headset.md)
 
 [Avoid methods to reduce coupling](https://github.com/Dobiasd/articles/blob/master/avoid_methods_to_reduce_coupling.md)
+
+["A monad is just a monoid in the category of endofunctors." - explained](https://github.com/Dobiasd/articles/blob/master/a_monad_is_just_a_monoid_in_the_category_of_endofunctors_explained.md)

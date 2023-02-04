@@ -93,7 +93,7 @@ def segment_time(activity_tcx_path: str, segment: Segment):
     tcx_reader = TCXReader()
     activity = tcx_reader.read(activity_tcx_path)
     t = calc_time(segment, activity.trackpoints)  # type: ignore
-    log(f'{activity_tcx_path}: {t:.1f}')
+    log(f'{activity_tcx_path}: {t=:.1f}')
 
 
 def main() -> None:

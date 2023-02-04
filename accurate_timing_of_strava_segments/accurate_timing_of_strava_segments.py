@@ -24,11 +24,6 @@ def log(msg: str) -> None:
 
 
 def get_segment(access_token: str, segment_id: int) -> Segment:
-    access_token = "2591989105ef7cd98f70daa49e914b7031008f65"
-    if segment_id == 4391619:
-        return Segment(Point(50.884516, 7.436902), Point(50.883243, 7.441928))
-    if segment_id == 1903863:
-        return Segment(Point(50.884518, 7.600014), Point(50.883146, 7.604743))
     log(f'Loading data for segment: {segment_id}')
     url = f'https://www.strava.com/api/v3/segments/{segment_id}'
     r = requests.get(url, headers={'Authorization': f'Bearer {access_token}'}).json()

@@ -67,11 +67,13 @@ def calc_time(segment: Segment, activity: List[TCXTrackPoint]) -> List[float]:
     start: Optional[TCXTrackPoint] = None
     end: Optional[TCXTrackPoint] = None
     result: List[float] = []
-    for ap1, ap2 in zip(activity, activity[1:]):
+    for point_idx in range(len(activity[:-1])):
+        ap1 = activity[point_idx]
         step_p1 = track_point_to_point(ap1)
         # todo: Accelerate this further, e.g., using NumPy.
         if step_p1.distance(segment.p1) > 0.001 and step_p1.distance(segment.p2) > 0.001:
             continue
+        ap2 = activity[point_idx + 1]
         step_p2 = track_point_to_point(ap2)
         step = Segment(step_p1, step_p2)
         if check_passed_point(step, segment.p1):

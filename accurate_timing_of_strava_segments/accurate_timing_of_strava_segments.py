@@ -24,7 +24,7 @@ def log(msg: str) -> None:
 
 
 def get_segment(access_token: str, segment_id: int) -> Segment:
-    if segment_id == 4391619:
+    if segment_id == 4391619:  # Marienfeld Climb
         return Segment(Point(7.436902, 50.884516), Point(7.441928, 50.883243))
     log(f'Loading data for segment: {segment_id}')
     url = f'https://www.strava.com/api/v3/segments/{segment_id}'
@@ -48,8 +48,8 @@ def point_to_track_point(p: Point, t: Any) -> TCXTrackPoint:
 
 
 def check_passed_point(step: Segment, p: Point) -> bool:
-    # todo: For the segment creator, or for start/end points on a curve,
-    #       the start point might be an exact match.
+    # todo: For the segment creator, or for start/end points in a curve,
+    #       the point might be an exact match.
     #       Maybe consider processing two steps at a time.
     return step.distance(p) < min(step.p1.distance(p), step.p2.distance(p))
 
@@ -67,9 +67,7 @@ def interpolate(step: Segment,
 
 
 def are_close(tp: TCXTrackPoint, p: Point) -> bool:
-    return \
-        p.y - 0.001 <= tp.latitude <= p.y + 0.001 and \
-        p.x - 0.001 <= tp.longitude <= p.x + 0.001
+    return p.y - 0.001 <= tp.latitude <= p.y + 0.001 and p.x - 0.001 <= tp.longitude <= p.x + 0.001  # type: ignore
 
 
 def calc_time(segment: Segment, activity: List[TCXTrackPoint]) -> List[float]:
@@ -96,7 +94,7 @@ def calc_time(segment: Segment, activity: List[TCXTrackPoint]) -> List[float]:
     return result
 
 
-def segment_time(activity_tcx_path: str, segment: Segment):
+def segment_time(activity_tcx_path: str, segment: Segment) -> None:
     tcx_reader = TCXReader()
     activity = tcx_reader.read(activity_tcx_path)
     log(f'Analyzing activity: {activity_tcx_path}')

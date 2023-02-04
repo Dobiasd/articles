@@ -52,7 +52,7 @@ Instead of using the recorded GPS points closest to the segment start/end, one c
 
 ## Implementation
 
-[`accurate_timing_of_strava_segments/accurate_timing_of_strava_segments.py`] is a prototype, showing how an implementation of this could look like. ⏱️
+[`accurate_timing_of_strava_segments.py`](accurate_timing_of_strava_segments/accurate_timing_of_strava_segments.py) is a prototype, showing how an implementation of this could look like. ⏱️
 
 ## Real-life example
 

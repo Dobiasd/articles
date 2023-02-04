@@ -68,3 +68,5 @@ If you enjoy my articles, feel free to ![buymeacoffee](https://www.buymeacoffee.
 [Avoid methods to reduce coupling](https://github.com/Dobiasd/articles/blob/master/avoid_methods_to_reduce_coupling.md)
 
 ["A monad is just a monoid in the category of endofunctors." - explained](https://github.com/Dobiasd/articles/blob/master/a_monad_is_just_a_monoid_in_the_category_of_endofunctors_explained.md)
+
+[Accurate timing of Strava segments](https://github.com/Dobiasd/articles/blob/master/accurate_timing_of_strava_segments.md)

@@ -29,6 +29,8 @@ def get_segment(access_token: str, segment_id: int) -> Segment:
     r = requests.get(url, headers={'Authorization': f'Bearer {access_token}'}).json()
     start_lat, start_lng = r['start_latlng']
     end_lat, end_lng = r['end_latlng']
+    name = r['name']
+    log(f'Loaded segment: {name}')
     return Segment(Point(start_lat, start_lng), Point(end_lat, end_lng))
 
 

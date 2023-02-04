@@ -74,4 +74,4 @@ Dear Strava developers,
 
 your app is a great source of joy for KOM hunters, but the above introduces an unnecessary and avoidable random factor into the segment leaderboards. Please consider implementing the described solution to remedy the situation.
 
-And while you're at it, in 2022, you increased the minimum length for new segments to 500 m, presumably to reduce unfairness due to inaccurate measurements. The solution described here would fix this in a cleaner way, and you could reduce the minimum segment length again. (Especially for steep hills, 200 m often is more than enough.) Please remember, not all of us users are time-trialists, some are sprinters. 😉
+And while you're at it, in 2022, you increased the minimum length for new segments to 500 m, presumably to reduce unfairness due to inaccurate measurements. The solution described here would fix this in a cleaner way, and you could reduce the minimum segment length again. (Especially for steep hills, 200 m often is more than enough.) Please remember, not all of us users are time trialists, some are sprinters. 😉

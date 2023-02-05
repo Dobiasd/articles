@@ -2,7 +2,7 @@
 
 ## tl;dr
 
-Strava calculates segment times in an unnecessarily inaccurate way, resulting in unfair leaderboards. But there's an elegant way to improve the situation. 🌈
+[Strava](https://en.wikipedia.org/wiki/Strava "Strava is an app for tracking physical exercise, for example, bike rides. 🚴") calculates [segment](https://support.strava.com/hc/en-us/articles/216918167-Strava-Segments "Segments are portions of roads or trails where athletes can compare times and thus compete. 👑") times in an unnecessarily inaccurate way, resulting in unfair leaderboards. But there's an elegant way to improve the situation. 🌈
 
 ## Problem
 

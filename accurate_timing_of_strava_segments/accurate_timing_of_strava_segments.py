@@ -153,11 +153,6 @@ def find_indexes_of_trackpoints_closest_to_segment_start_or_and(
     return start_idx_dist[0], end_idx_dist[0]
 
 
-def flatten_list(nested_list: List[List[T]]) -> List[T]:
-    """Concatenate sublists."""
-    return [item for sublist in nested_list for item in sublist]
-
-
 def with_surrounding_trackpoints(
         trackpoints: List[TCXTrackPoint],
         center_idx: int) -> List[TCXTrackPoint]:

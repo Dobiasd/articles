@@ -11,7 +11,7 @@ __email__ = "editgym@gmail.com"
 
 import argparse
 import datetime
-from typing import List, TypeVar, Tuple, Callable
+from typing import List, Tuple
 
 import requests
 from sympy.geometry import Point, Line, Segment as GeoSegment
@@ -74,31 +74,13 @@ def closest_point_on_step(step_start: TCXTrackPoint,
         time=exact_time)
 
 
-T = TypeVar('T')
-
-
-def minimum_by(items: List[T], converter: Callable[[T], float]) -> T:
-    """Returns the smallest value in a list according to a conversion function."""
-    assert len(items) > 0
-    min_value = converter(items[0])
-    result = items[0]
-    for item in items:
-        value = converter(item)
-        if value < min_value:
-            min_value = value
-            result = item
-    return result
-
-
 def closest_virtual_trackpoint(point: Point, trackpoints: List[TCXTrackPoint]) -> TCXTrackPoint:
     """Find the closest trackpoints (potentially interpolated) on a polygon chain of trackpoints."""
     if len(trackpoints) == 1:
         return trackpoints[0]
     candidates = [closest_point_on_step(tp1, tp2, point)
                   for tp1, tp2 in zip(trackpoints, trackpoints[1:])]
-    return minimum_by(
-        candidates,
-        lambda candidate: float(track_point_to_point(candidate).distance(point)))
+    return min(map(lambda tp: (track_point_to_point(tp).distance(point), tp), candidates))[1]
 
 
 def calc_effort_time(segment: GeoSegment,

@@ -95,7 +95,7 @@ def is_trackpoint_close_to_point(trackpoint: TCXTrackPoint, point: Point) -> boo
         float(point.x) - 0.0005 <= trackpoint.longitude <= float(point.x) + 0.0005)
 
 
-def find_indexes_of_trackpoints_closest_to_segment_start_or_and(
+def find_indexes_of_trackpoints_closest_to_first_effort_start_and_end(
         segment: GeoSegment, trackpoints: List[TCXTrackPoint]) -> Tuple[int, int]:
     """
     This could be the replaced by any other (probably already existing) way
@@ -150,7 +150,7 @@ def calculate_effort_time(activity_tcx_path: str, segment: GeoSegment) -> None:
     trackpoints: List[TCXTrackPoint] = activity.trackpoints
 
     start_idx, end_idx = \
-        find_indexes_of_trackpoints_closest_to_segment_start_or_and(segment, trackpoints)
+        find_indexes_of_trackpoints_closest_to_first_effort_start_and_end(segment, trackpoints)
 
     segment_time = calc_effort_time(
         segment,

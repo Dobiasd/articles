@@ -84,6 +84,8 @@ def with_surrounding_trackpoints(
 
 
 # Auxiliary things
+
+
 def is_trackpoint_close_to_point(trackpoint: TCXTrackPoint, point: Point) -> bool:
     """For performance, we simply compare latitude and longitude.
     An actual implementation would do probably something

@@ -134,7 +134,9 @@ def find_indexes_of_trackpoints_closest_to_segment_start_or_and(
         # Find start of effort first.
         if is_trackpoint_close_to_point(trackpoints[point_idx], segment.p1):
             start_dist = track_point_to_point(trackpoint).distance(segment.p1)
-            if start_idx_dist[0] == invalid_idx or start_dist < start_idx_dist[1]:
+            if start_idx_dist[0] == invalid_idx or \
+                    start_dist < start_idx_dist[1] or \
+                    (trackpoint.time - trackpoints[start_idx_dist[0]].time).total_seconds() > 100:
                 start_idx_dist = point_idx, start_dist
 
         # Only consider potential end points if they came after a start point.

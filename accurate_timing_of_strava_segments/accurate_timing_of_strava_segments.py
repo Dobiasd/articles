@@ -105,6 +105,7 @@ def find_indexes_of_trackpoints_closest_to_segment_start_or_and(
     invalid_distance = 99999999.9
     start_idx_dist: Tuple[int, float] = invalid_idx, invalid_distance
     end_idx_dist: Tuple[int, float] = invalid_idx, invalid_distance
+    left_start_zone = False
     for point_idx, trackpoint in enumerate(trackpoints):
 
         # Find start of effort first.
@@ -112,8 +113,11 @@ def find_indexes_of_trackpoints_closest_to_segment_start_or_and(
             start_dist = track_point_to_point(trackpoint).distance(segment.p1)
             if start_idx_dist[0] == invalid_idx or \
                     start_dist < start_idx_dist[1] or \
-                    (trackpoint.time - trackpoints[start_idx_dist[0]].time).total_seconds() > 100:
+                    left_start_zone:
                 start_idx_dist = point_idx, start_dist
+                left_start_zone = False  # Skip previous passes though the start zone.
+        else:
+            left_start_zone = True
 
         # Only consider potential end points if they came after a start point.
         if start_idx_dist[0] != invalid_idx:

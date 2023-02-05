@@ -152,13 +152,13 @@ def calculate_effort_time(activity_tcx_path: str, segment: GeoSegment) -> None:
 
     trackpoints: List[TCXTrackPoint] = activity.trackpoints
 
-    start_idx, end_ids = \
+    start_idx, end_idx = \
         find_indexes_of_trackpoints_closest_to_segment_start_or_and(segment, trackpoints)
 
     segment_time = calc_effort_time(
         segment,
         with_surrounding_trackpoints(trackpoints, start_idx),
-        with_surrounding_trackpoints(trackpoints, end_ids))
+        with_surrounding_trackpoints(trackpoints, end_idx))
 
     log_msg(f'Segment time: {segment_time=:0.1f}')
 

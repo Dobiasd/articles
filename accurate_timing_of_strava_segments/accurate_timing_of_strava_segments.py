@@ -105,7 +105,8 @@ def find_indexes_of_trackpoints_closest_to_segment_start_or_and(
     invalid_distance = 99999999.9
     start_idx_dist: Tuple[int, float] = invalid_idx, invalid_distance
     end_idx_dist: Tuple[int, float] = invalid_idx, invalid_distance
-    left_start_zone = False
+    left_start_zone = None
+    left_end_zone = None
     for point_idx, trackpoint in enumerate(trackpoints):
 
         # Find start of effort first.
@@ -125,10 +126,17 @@ def find_indexes_of_trackpoints_closest_to_segment_start_or_and(
                 end_dist = track_point_to_point(trackpoint).distance(segment.p2)
                 if not end_idx_dist or end_dist < end_idx_dist[1]:
                     end_idx_dist = point_idx, end_dist
+                    left_end_zone = False
+        else:
+            left_end_zone = True
 
-    if not start_idx_dist:
+        if left_start_zone and left_end_zone and \
+                start_idx_dist[0] != invalid_idx and end_idx_dist[0] != invalid_idx:
+            break
+
+    if start_idx_dist[0] == invalid_idx:
         raise RuntimeError("Did not find a suitable segment start point in the activity.")
-    if not end_idx_dist:
+    if end_idx_dist[0] == invalid_idx:
         raise RuntimeError("Did not find a suitable segment end point in the acticity.")
     return start_idx_dist[0], end_idx_dist[0]
 

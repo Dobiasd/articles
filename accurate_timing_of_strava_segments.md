@@ -10,6 +10,9 @@ Strava calculates segment times in an unnecessarily inaccurate way, resulting in
 
 > When we match you to a segment, we choose the GPS points from your file that fall closest to the segment's start and end. Because of the nature of GPS and the differences in device recording intervals, it's unlikely that there will be a GPS point exactly on top of the segment's start/end. This means that you can be timed over portions of your activity that are slightly longer or shorter than the actual segment length. Everyone is susceptible to this, but you may get a short match that works in your favor or a long match that adds a few extra seconds.
 
+[and](https://support.strava.com/hc/en-us/articles/216918227-Optimizing-Segment-Creation-how-to-create-good-segments#short):
+> [...] the sampling rate of your GPS device; some devices only record a GPS point every 5 to 10 seconds
+
 [Garmin confirms that devices can have varying recording invervals](https://support.garmin.com/en-US/?faq=s4w6kZmbmK0P6l20SgpW28):
 > Smart Recording captures key data points as changes occur in direction, speed, heart rate or elevation. This method is recommended [...]
 

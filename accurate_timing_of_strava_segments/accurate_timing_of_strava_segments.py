@@ -60,17 +60,17 @@ def closest_point_on_step(step_start: TCXTrackPoint,
     distance_to_step_start = step.p1.distance(point)
     distance_to_step_end = step.p2.distance(point)
     if distance_to_step >= min(distance_to_step_start, distance_to_step_end):
-        if distance_to_step_start < distance_to_step_end:
-            return step_start
-        return step_end
-    start_projection = Line(step.p1, step.p2).projection(point)
-    start_step_fraction = float(start_projection.distance(point) / step.length)
+        return step_start if distance_to_step_start < distance_to_step_end else step_end
+
+    # Find orthogonal projection of the point onto the step.
+    projection = Line(step.p1, step.p2).projection(point)
+    step_fraction = float(projection.distance(point) / step.length)
     step_duration_s = (step_end.time - step_start.time).total_seconds()
-    dt_s = start_step_fraction * step_duration_s
+    dt_s = step_fraction * step_duration_s
     exact_time = step_start.time + datetime.timedelta(seconds=dt_s)
     return TCXTrackPoint(
-        longitude=float(start_projection.x),
-        latitude=float(start_projection.y),
+        longitude=float(projection.x),
+        latitude=float(projection.y),
         time=exact_time)
 
 

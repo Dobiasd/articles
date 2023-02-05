@@ -71,6 +71,10 @@ Taking [this segment](https://www.strava.com/segments/4391619) as an example, th
 
 When looking closer at the two activities, something seems fishy. `B` has fewer recorded GPS points than `A`. Also, the average speed of `A` seems higher when manually selecting the segment part of the activity on the analysis page.
 
+[!marienfeld_a](accurate_timing_of_strava_segments/marienfeld_a.png)
+
+(The blue points are `A`s GPS recordings closest to the segment start (green) and end (checkered).)
+
 Running the script from above, we get the following results:
 - `A`: **37.8 s** (instead of Strava's 33 s, i.e., +4.8 s difference)
 - `B`: **33.9 s** (instead of Strava's 34 s, i.e., -0.1 s difference)

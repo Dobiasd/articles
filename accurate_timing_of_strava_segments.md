@@ -61,7 +61,7 @@ This nicely fixes the problem resulting from low sampling rates, but it also fur
 
 ## Implementation
 
-[`accurate_timing_of_strava_segments.py`](accurate_timing_of_strava_segments/accurate_timing_of_strava_segments.py) is a prototype, showing how an implementation of this could look like. ⏱️
+[`accurate_timing_of_strava_segments.py`](accurate_timing_of_strava_segments/accurate_timing_of_strava_segments.py) is a Python script containing an exemplaric implementation of the described solution. ⏱️
 
 ## Real-life example
 

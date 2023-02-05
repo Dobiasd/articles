@@ -75,7 +75,7 @@ When looking closer at the two activities, something seems fishy. `B` has fewer 
 
 (The blue points are `A`s GPS recordings closest to the segment start (green) and end (checkered).)
 
-Running the script from above, we get the following results:
+Running the script linked to above, we get the following results:
 - `A`: **37.8 s** (instead of Strava's 33 s, i.e., +4.8 s difference)
 - `B`: **33.9 s** (instead of Strava's 34 s, i.e., -0.1 s difference)
 

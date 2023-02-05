@@ -11,10 +11,10 @@ __email__ = "editgym@gmail.com"
 
 import argparse
 import datetime
-from typing import List, Optional, TypeVar, Tuple
+from typing import List, TypeVar, Tuple, Callable
 
 import requests
-from sympy.geometry import Segment, Point, Line
+from sympy.geometry import Point, Line, Segment as GeoSegment
 from tcxreader.tcxreader import TCXReader, TCXTrackPoint
 
 
@@ -23,12 +23,12 @@ def log_msg(msg: str) -> None:
     print(f'{datetime.datetime.now()}: {msg}', flush=True)
 
 
-def get_segment(access_token: str, segment_id: int) -> Segment:
+def get_segment(access_token: str, segment_id: int) -> GeoSegment:
     """Download segment data using the Strava API"""
 
     # Hardcoded segment IDs, so one does not always need a valid access token.
     if segment_id == 4391619:  # Marienfeld Climb
-        return Segment(Point(7.436902, 50.884516), Point(7.441928, 50.883243))
+        return GeoSegment(Point(7.436902, 50.884516), Point(7.441928, 50.883243))
 
     log_msg(f'Loading data for segment: {segment_id}')
     url = f'https://www.strava.com/api/v3/segments/{segment_id}'
@@ -41,7 +41,7 @@ def get_segment(access_token: str, segment_id: int) -> Segment:
     end_lat, end_lng = response['end_latlng']
     name = response['name']
     log_msg(f'Loaded segment: {name}')
-    return Segment(Point(start_lng, start_lat), Point(end_lng, end_lat))
+    return GeoSegment(Point(start_lng, start_lat), Point(end_lng, end_lat))
 
 
 def track_point_to_point(trackpoint: TCXTrackPoint) -> Point:
@@ -51,53 +51,63 @@ def track_point_to_point(trackpoint: TCXTrackPoint) -> Point:
     return Point(trackpoint.longitude, trackpoint.latitude)
 
 
-def check_passed_point(step: Segment, point: Point) -> bool:
-    """For the segment creator, or for start/end points in a curve,
-    the point itself might be an exact match.
-    Maybe consider processing two steps at a time."""
-    return bool(step.distance(point) < min(step.p1.distance(point), step.p2.distance(point)))
-
-
-def project_and_interpolate(step: Segment,
-                            step_t1: datetime.datetime,
-                            step_t2: datetime.datetime,
-                            point: Point) -> Optional[TCXTrackPoint]:
+def closest_point_on_step(step_start: TCXTrackPoint,
+                          step_end: TCXTrackPoint,
+                          point: Point) -> TCXTrackPoint:
     """Find the closest point on a step (line segment) and interpolate the timestamp."""
+    step = GeoSegment(track_point_to_point(step_start), track_point_to_point(step_end))
+    distance_to_step = step.distance(point)
+    distance_to_step_start = step.p1.distance(point)
+    distance_to_step_end = step.p2.distance(point)
+    if distance_to_step >= min(distance_to_step_start, distance_to_step_end):
+        if distance_to_step_start < distance_to_step_end:
+            return step_start
+        return step_end
     start_projection = Line(step.p1, step.p2).projection(point)
     start_step_fraction = float(start_projection.distance(point) / step.length)
-    step_duration_s = (step_t2 - step_t1).total_seconds()
+    step_duration_s = (step_start.time - step_end.time).total_seconds()
     dt_s = start_step_fraction * step_duration_s
-    exact_time = step_t1 + datetime.timedelta(seconds=dt_s)
+    exact_time = step_start.time + datetime.timedelta(seconds=dt_s)
     return TCXTrackPoint(
         longitude=float(start_projection.x),
         latitude=float(start_projection.y),
         time=exact_time)
 
 
-def calc_segment_times(segment: Segment, activity: List[TCXTrackPoint]) -> List[float]:
-    """
-    Use Interpolation to calculate the precise effort times.
-    One can pass all activity trackpoints, but for performance
-    it makes sense to pre-filter and only pass the relevant ones.
-    However, we should have at least 2 points close to the segment start
-    and 2 points close to the segment end.
-    """
-    start: Optional[TCXTrackPoint] = None
-    end: Optional[TCXTrackPoint] = None
-    effort_times: List[float] = []
-    for point_idx in range(len(activity[:-2])):
-        ap1 = activity[point_idx]
-        ap2 = activity[point_idx + 1]
-        step = Segment(track_point_to_point(ap1), track_point_to_point(ap2))
-        if check_passed_point(step, segment.p1):
-            start = project_and_interpolate(step, ap1.time, ap2.time, segment.p1)
-        if start:
-            if check_passed_point(step, segment.p2):
-                end = project_and_interpolate(step, ap1.time, ap2.time, segment.p2)
-        if start and end:
-            effort_times.append((end.time - start.time).total_seconds())
-            start, end = None, None
-    return effort_times
+T = TypeVar('T')
+
+
+def minimum_by(items: List[T], converter: Callable[[T], float]) -> T:
+    """Returns the smallest value in a list according to a conversion function."""
+    assert len(items) > 0
+    min_value = converter(items[0])
+    result = items[0]
+    for item in items:
+        value = converter(item)
+        if value < min_value:
+            min_value = value
+            result = item
+    return result
+
+
+def closest_virtual_trackpoint(point: Point, trackpoints: List[TCXTrackPoint]) -> TCXTrackPoint:
+    """Find the closest trackpoints (potentially interpolated) on a polygon chain of trackpoints."""
+    if len(trackpoints) == 1:
+        return trackpoints[0]
+    candidates = [closest_point_on_step(tp1, tp2, point)
+                  for tp1, tp2 in zip(trackpoints, trackpoints[1:])]
+    return minimum_by(
+        candidates,
+        lambda candidate: float(track_point_to_point(candidate).distance(point)))
+
+
+def calc_effort_time(segment: GeoSegment,
+                     points_close_to_start: List[TCXTrackPoint],
+                     points_close_to_end: List[TCXTrackPoint]) -> float:
+    """Return the precise effort time."""
+    start = closest_virtual_trackpoint(segment.p1, points_close_to_start)
+    end = closest_virtual_trackpoint(segment.p2, points_close_to_end)
+    return float((end.time - start.time).total_seconds())
 
 
 def is_trackpoint_close_to_point(trackpoint: TCXTrackPoint, point: Point) -> bool:
@@ -110,10 +120,10 @@ def is_trackpoint_close_to_point(trackpoint: TCXTrackPoint, point: Point) -> boo
 
 
 def find_indexes_of_trackpoints_closest_to_segment_start_or_and(
-        segment: Segment, trackpoints: List[TCXTrackPoint]) -> Tuple[int, int]:
+        segment: GeoSegment, trackpoints: List[TCXTrackPoint]) -> Tuple[int, int]:
     """
     This could be the replaced by any other (probably already existing) way
-    of finding the closes points.
+    of finding the closest trackpoints.
     """
     invalid_idx = -1
     invalid_distance = 99999999.9
@@ -127,21 +137,18 @@ def find_indexes_of_trackpoints_closest_to_segment_start_or_and(
             if start_idx_dist[0] == invalid_idx or start_dist < start_idx_dist[1]:
                 start_idx_dist = point_idx, start_dist
 
-        # Only consider end points if they came after a start point.
-        if start_idx_dist[0] != invalid_idx and \
-                is_trackpoint_close_to_point(trackpoints[point_idx], segment.p2):
-            end_dist = track_point_to_point(trackpoint).distance(segment.p2)
-            if not end_idx_dist or end_dist < end_idx_dist[1]:
-                end_idx_dist = point_idx, end_dist
+        # Only consider potential end points if they came after a start point.
+        if start_idx_dist[0] != invalid_idx:
+            if is_trackpoint_close_to_point(trackpoints[point_idx], segment.p2):
+                end_dist = track_point_to_point(trackpoint).distance(segment.p2)
+                if not end_idx_dist or end_dist < end_idx_dist[1]:
+                    end_idx_dist = point_idx, end_dist
 
     if not start_idx_dist:
-        raise RuntimeError("Did not find a suitable segment start point in the acticity.")
+        raise RuntimeError("Did not find a suitable segment start point in the activity.")
     if not end_idx_dist:
         raise RuntimeError("Did not find a suitable segment end point in the acticity.")
     return start_idx_dist[0], end_idx_dist[0]
-
-
-T = TypeVar('T')
 
 
 def flatten_list(nested_list: List[List[T]]) -> List[T]:
@@ -158,7 +165,7 @@ def with_surrounding_trackpoints(
     return [trackpoints[idx] for idx in valid_idxs]
 
 
-def segment_time(activity_tcx_path: str, segment: Segment) -> None:
+def calculate_effort_time(activity_tcx_path: str, segment: GeoSegment) -> None:
     """Calculate the effort time of an activity on a specific segment."""
     tcx_reader = TCXReader()
     activity = tcx_reader.read(activity_tcx_path)
@@ -166,15 +173,15 @@ def segment_time(activity_tcx_path: str, segment: Segment) -> None:
 
     trackpoints: List[TCXTrackPoint] = activity.trackpoints
 
-    start_idx, end_ids = find_indexes_of_trackpoints_closest_to_segment_start_or_and(
-        segment, trackpoints)
+    start_idx, end_ids = \
+        find_indexes_of_trackpoints_closest_to_segment_start_or_and(segment, trackpoints)
 
-    relevant_trackpoints = \
-        with_surrounding_trackpoints(trackpoints, start_idx) \
-        + with_surrounding_trackpoints(trackpoints, end_ids)
+    segment_time = calc_effort_time(
+        segment,
+        with_surrounding_trackpoints(trackpoints, start_idx),
+        with_surrounding_trackpoints(trackpoints, end_ids))
 
-    segment_times = calc_segment_times(segment, relevant_trackpoints)
-    log_msg(f'Segment times: {segment_times=}')
+    log_msg(f'Segment time: {segment_time=:0.1f}')
 
 
 def main() -> None:
@@ -187,7 +194,7 @@ def main() -> None:
     parser.add_argument('-t', '--access_token',
                         help='See: https://developers.strava.com/docs/authentication/')
     args = parser.parse_args()
-    segment_time(args.activity_tcx_file, get_segment(args.access_token, args.segment_id))
+    calculate_effort_time(args.activity_tcx_file, get_segment(args.access_token, args.segment_id))
 
 
 if __name__ == '__main__':

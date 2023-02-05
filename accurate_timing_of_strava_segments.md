@@ -63,7 +63,7 @@ Instead of using the recorded GPS points closest to the segment start/end, one c
 
 ## Real-life example
 
-Taking [the segment "Marienfeld Climb"](https://www.strava.com/segments/4391619) as an example, the leaderboard contains the following two efforts:
+Taking [this segment](https://www.strava.com/segments/4391619) as an example, the leaderboard contains the following two efforts:
 - `A`: Jun 25 2017: 33 s
 - `B`: Sep 1, 2021: 34 s
 

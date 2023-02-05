@@ -23,31 +23,13 @@ def log_msg(msg: str) -> None:
     print(f'{datetime.datetime.now()}: {msg}', flush=True)
 
 
-def get_segment(access_token: str, segment_id: int) -> GeoSegment:
-    """Download segment data using the Strava API"""
-
-    # Hardcoded segment IDs, so one does not always need a valid access token.
-    if segment_id == 4391619:  # Marienfeld Climb
-        return GeoSegment(Point(7.436902, 50.884516), Point(7.441928, 50.883243))
-
-    log_msg(f'Loading data for segment: {segment_id}')
-    url = f'https://www.strava.com/api/v3/segments/{segment_id}'
-    response = requests.get(url,
-                            headers={'Authorization': f'Bearer {access_token}'},
-                            timeout=10
-                            ).json()
-    log_msg(response)
-    start_lat, start_lng = response['start_latlng']
-    end_lat, end_lng = response['end_latlng']
-    name = response['name']
-    log_msg(f'Loaded segment: {name}')
-    return GeoSegment(Point(start_lng, start_lat), Point(end_lng, end_lat))
+# Start of the actual algorithm
 
 
 def track_point_to_point(trackpoint: TCXTrackPoint) -> Point:
     """As an approximation for small distances,
     we assume latitude and longitude to be a Euclidean space.
-    Close to the earth's poles, this would not be ok."""
+    Very close to the earth's poles, this would not be ok."""
     return Point(trackpoint.longitude, trackpoint.latitude)
 
 
@@ -92,12 +74,22 @@ def calc_effort_time(segment: GeoSegment,
     return float((end.time - start.time).total_seconds())
 
 
+def with_surrounding_trackpoints(
+        trackpoints: List[TCXTrackPoint],
+        center_idx: int) -> List[TCXTrackPoint]:
+    """Get trackpoint surrounding a center one."""
+    all_idxs = [center_idx - 2, center_idx - 1, center_idx, center_idx + 1, center_idx + 2]
+    valid_idxs = sorted(list(set((filter(lambda idx: 0 <= idx < len(trackpoints), all_idxs)))))
+    return [trackpoints[idx] for idx in valid_idxs]
+
+
+# Auxiliary things
 def is_trackpoint_close_to_point(trackpoint: TCXTrackPoint, point: Point) -> bool:
     """For performance, we simply compare latitude and longitude.
     An actual implementation would do probably something
     that also works on the earth's poles."""
-    return bool( \
-        float(point.y) - 0.0005 <= trackpoint.latitude <= float(point.y) + 0.0005 and \
+    return bool(
+        float(point.y) - 0.0005 <= trackpoint.latitude <= float(point.y) + 0.0005 and
         float(point.x) - 0.0005 <= trackpoint.longitude <= float(point.x) + 0.0005)
 
 
@@ -135,15 +127,6 @@ def find_indexes_of_trackpoints_closest_to_segment_start_or_and(
     return start_idx_dist[0], end_idx_dist[0]
 
 
-def with_surrounding_trackpoints(
-        trackpoints: List[TCXTrackPoint],
-        center_idx: int) -> List[TCXTrackPoint]:
-    """Get trackpoint surrounding a center one."""
-    all_idxs = [center_idx - 2, center_idx - 1, center_idx, center_idx + 1, center_idx + 2]
-    valid_idxs = sorted(list(set((filter(lambda idx: 0 <= idx < len(trackpoints), all_idxs)))))
-    return [trackpoints[idx] for idx in valid_idxs]
-
-
 def calculate_effort_time(activity_tcx_path: str, segment: GeoSegment) -> None:
     """Calculate the effort time of an activity on a specific segment."""
     tcx_reader = TCXReader()
@@ -161,6 +144,27 @@ def calculate_effort_time(activity_tcx_path: str, segment: GeoSegment) -> None:
         with_surrounding_trackpoints(trackpoints, end_idx))
 
     log_msg(f'Segment time: {segment_time=:0.1f}')
+
+
+def get_segment(access_token: str, segment_id: int) -> GeoSegment:
+    """Download segment data using the Strava API"""
+
+    # Hardcoded segment IDs, so one does not always need a valid access token.
+    if segment_id == 4391619:  # Marienfeld Climb
+        return GeoSegment(Point(7.436902, 50.884516), Point(7.441928, 50.883243))
+
+    log_msg(f'Loading data for segment: {segment_id}')
+    url = f'https://www.strava.com/api/v3/segments/{segment_id}'
+    response = requests.get(url,
+                            headers={'Authorization': f'Bearer {access_token}'},
+                            timeout=10
+                            ).json()
+    log_msg(response)
+    start_lat, start_lng = response['start_latlng']
+    end_lat, end_lng = response['end_latlng']
+    name = response['name']
+    log_msg(f'Loaded segment: {name}')
+    return GeoSegment(Point(start_lng, start_lat), Point(end_lng, end_lat))
 
 
 def main() -> None:

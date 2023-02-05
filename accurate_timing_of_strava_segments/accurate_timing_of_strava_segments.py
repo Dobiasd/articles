@@ -65,7 +65,7 @@ def closest_point_on_step(step_start: TCXTrackPoint,
         return step_end
     start_projection = Line(step.p1, step.p2).projection(point)
     start_step_fraction = float(start_projection.distance(point) / step.length)
-    step_duration_s = (step_start.time - step_end.time).total_seconds()
+    step_duration_s = (step_end.time - step_start.time).total_seconds()
     dt_s = start_step_fraction * step_duration_s
     exact_time = step_start.time + datetime.timedelta(seconds=dt_s)
     return TCXTrackPoint(

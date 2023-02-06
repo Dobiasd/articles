@@ -1,0 +1,4 @@
+geopy
+requests
+sympy
+tcxreader

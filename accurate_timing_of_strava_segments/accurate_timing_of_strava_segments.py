@@ -13,6 +13,7 @@ import argparse
 import datetime
 from typing import List, Tuple
 
+import geopy.distance
 import requests
 from sympy.geometry import Point, Line, Segment as GeoSegment
 from tcxreader.tcxreader import TCXReader, TCXTrackPoint
@@ -27,9 +28,7 @@ def log_msg(msg: str) -> None:
 
 
 def track_point_to_point(trackpoint: TCXTrackPoint) -> Point:
-    """As an approximation for small distances,
-    we assume latitude and longitude to be a Euclidean space.
-    Very close to the earth's poles, this would not be ok."""
+    """Point(longitude, latitude)."""
     return Point(trackpoint.longitude, trackpoint.latitude)
 
 
@@ -38,16 +37,22 @@ def closest_point_on_step(step_start: TCXTrackPoint,
                           point: Point) -> TCXTrackPoint:
     """Find the closest point on a step (line segment) and interpolate the timestamp."""
     step = GeoSegment(track_point_to_point(step_start), track_point_to_point(step_end))
-    distance_to_step = step.distance(point)
-    distance_to_step_start = step.p1.distance(point)
-    distance_to_step_end = step.p2.distance(point)
-    if distance_to_step >= min(distance_to_step_start, distance_to_step_end):
-        return step_start if distance_to_step_start < distance_to_step_end else step_end
+
+    step_length = distance(step.p1, step.p2)
+    distance_to_step_start = distance(step.p1, point)
+    distance_to_step_end = distance(step.p2, point)
 
     # Find orthogonal projection of the point onto the step.
     projection = Line(step.p1, step.p2).projection(point)
-    step_fraction = float(projection.distance(point) / step.length)
+
+    projection_is_outside_step = \
+        distance(step.p1, projection) > step_length or \
+        distance(step.p2, projection) > step_length
+    if projection_is_outside_step:
+        return step_start if distance_to_step_start < distance_to_step_end else step_end
+
     step_duration_s = (step_end.time - step_start.time).total_seconds()
+    step_fraction = float(distance(step.p1, projection) / step_length)
     dt_s = step_fraction * step_duration_s
     exact_time = step_start.time + datetime.timedelta(seconds=dt_s)
     return TCXTrackPoint(
@@ -62,7 +67,7 @@ def closest_virtual_trackpoint(point: Point, trackpoints: List[TCXTrackPoint]) -
         return trackpoints[0]
     candidates = [closest_point_on_step(tp1, tp2, point)
                   for tp1, tp2 in zip(trackpoints, trackpoints[1:])]
-    return min(map(lambda tp: (track_point_to_point(tp).distance(point), tp), candidates))[1]
+    return min(map(lambda tp: (distance(track_point_to_point(tp), point), tp), candidates))[1]
 
 
 def calc_effort_time(segment: GeoSegment,
@@ -98,6 +103,11 @@ def is_trackpoint_close_to_point(trackpoint: TCXTrackPoint, point: Point) -> boo
         float(point.x) - 0.0005 <= trackpoint.longitude <= float(point.x) + 0.0005)
 
 
+def distance(point1: Point, point2: Point) -> float:
+    """Distance in meters between two geo coordinates"""
+    return float(geopy.distance.geodesic((point1.y, point1.x), (point2.y, point2.x)).m)
+
+
 def find_indexes_of_trackpoints_closest_to_first_effort_start_and_end(
         segment: GeoSegment, trackpoints: List[TCXTrackPoint]) -> Tuple[int, int]:
     """
@@ -114,7 +124,7 @@ def find_indexes_of_trackpoints_closest_to_first_effort_start_and_end(
 
         # Find start of effort first.
         if is_trackpoint_close_to_point(trackpoints[point_idx], segment.p1):
-            start_dist = track_point_to_point(trackpoint).distance(segment.p1)
+            start_dist = distance(track_point_to_point(trackpoint), segment.p1)
             if start_idx_dist[0] == invalid_idx or \
                     start_dist < start_idx_dist[1] or \
                     left_start_zone:
@@ -126,7 +136,7 @@ def find_indexes_of_trackpoints_closest_to_first_effort_start_and_end(
         # Only consider potential end points if they came after a start point.
         if start_idx_dist[0] != invalid_idx:
             if is_trackpoint_close_to_point(trackpoints[point_idx], segment.p2):
-                end_dist = track_point_to_point(trackpoint).distance(segment.p2)
+                end_dist = distance(track_point_to_point(trackpoint), segment.p2)
                 if not end_idx_dist or end_dist < end_idx_dist[1]:
                     end_idx_dist = point_idx, end_dist
                     left_end_zone = False
@@ -155,9 +165,14 @@ def calculate_effort_time(activity_tcx_path: str, segment: GeoSegment) -> None:
     start_idx, end_idx = find_indexes_of_trackpoints_closest_to_first_effort_start_and_end(
         segment, trackpoints)
 
+    coarse_segment_time = float(
+        (trackpoints[end_idx].time - trackpoints[start_idx].time).total_seconds()
+    )
+
     # Refinement of the coarse start_idx-to-end_idx way.
     precise_segment_time = calc_effort_time(segment, trackpoints, start_idx, end_idx)
 
+    log_msg(f'Coarse segment time: {coarse_segment_time=:0.1f}')
     log_msg(f'Precise segment time: {precise_segment_time=:0.1f}')
 
 

@@ -77,7 +77,7 @@ When looking closer at the two activities, something seems fishy. `B` has fewer 
 
 Running the script linked to above, we get the following results:
 - `A`: **37.8 s** (instead of Strava's 33 s, i.e., +4.8 s difference)
-- `B`: **33.9 s** (instead of Strava's 34 s, i.e., -0.1 s difference)
+- `B`: **34.3 s** (instead of Strava's 34 s, i.e., +0.3 s difference)
 
 This shows, `B` actually performed significantly better in that segment than `A`. 🚀
 

@@ -66,9 +66,12 @@ def closest_virtual_trackpoint(point: Point, trackpoints: List[TCXTrackPoint]) -
 
 
 def calc_effort_time(segment: GeoSegment,
-                     points_close_to_start: List[TCXTrackPoint],
-                     points_close_to_end: List[TCXTrackPoint]) -> float:
+                     trackpoints: List[TCXTrackPoint],
+                     start_idx: int,
+                     end_idx: int) -> float:
     """Return the precise effort time."""
+    points_close_to_start = with_surrounding_trackpoints(trackpoints, start_idx)
+    points_close_to_end = with_surrounding_trackpoints(trackpoints, end_idx)
     start = closest_virtual_trackpoint(segment.p1, points_close_to_start)
     end = closest_virtual_trackpoint(segment.p2, points_close_to_end)
     return float((end.time - start.time).total_seconds())
@@ -149,15 +152,13 @@ def calculate_effort_time(activity_tcx_path: str, segment: GeoSegment) -> None:
 
     trackpoints: List[TCXTrackPoint] = activity.trackpoints
 
-    start_idx, end_idx = \
-        find_indexes_of_trackpoints_closest_to_first_effort_start_and_end(segment, trackpoints)
+    start_idx, end_idx = find_indexes_of_trackpoints_closest_to_first_effort_start_and_end(
+        segment, trackpoints)
 
-    segment_time = calc_effort_time(
-        segment,
-        with_surrounding_trackpoints(trackpoints, start_idx),
-        with_surrounding_trackpoints(trackpoints, end_idx))
+    # Refinement of the coarse start_idx-to-end_idx way.
+    precise_segment_time = calc_effort_time(segment, trackpoints, start_idx, end_idx)
 
-    log_msg(f'Segment time: {segment_time=:0.1f}')
+    log_msg(f'Precise segment time: {precise_segment_time=:0.1f}')
 
 
 def get_segment(access_token: str, segment_id: int) -> GeoSegment:

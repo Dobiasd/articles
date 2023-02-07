@@ -42,7 +42,14 @@ def closest_point_on_step(step_start: TCXTrackPoint,
     distance_to_step_start = distance(step.p1, point)
     distance_to_step_end = distance(step.p2, point)
 
-    # Find orthogonal projection of the point onto the step.
+    # Find projection of the point onto the step.
+    # Actually, it should be orthogonal,
+    # but the line and point are defined by GPS coordinates
+    # so the coordinate system is warped,
+    # and thus the result is not totally correct.
+    # However, I did not find a library to calculate point-to-line projections
+    # in geo coordinates.
+
     projection = Line(step.p1, step.p2).projection(point)
 
     projection_is_outside_step = \

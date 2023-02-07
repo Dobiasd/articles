@@ -32,6 +32,19 @@ def track_point_to_point(trackpoint: TCXTrackPoint) -> Point:
     return Point(trackpoint.longitude, trackpoint.latitude)
 
 
+def geo_projection(line: GeoSegment, point: Point) -> Point:
+    """Orthogonal projection for geo coordinates."""
+    line_center: Point = (line.p1 + line.p2) / 2
+    x_scale = distance(line_center, Point(line_center.x + 0.1, line_center.y)) * 10
+    y_scale = distance(line_center, Point(line_center.x, line_center.y + 0.1)) * 10
+    euclidean_line = Line(Point(x_scale * line.p1.x, y_scale * line.p2.y),
+                          Point(x_scale * line.p2.x, y_scale * line.p2.y))
+    euclidean_point = Point(x_scale * point.x, y_scale * point.y)
+    euclidean_projection = euclidean_line.projection(euclidean_point)
+    projection = Point(euclidean_projection.x / x_scale, euclidean_projection.y / y_scale)
+    return projection
+
+
 def closest_point_on_step(step_start: TCXTrackPoint,
                           step_end: TCXTrackPoint,
                           point: Point) -> TCXTrackPoint:
@@ -42,15 +55,8 @@ def closest_point_on_step(step_start: TCXTrackPoint,
     distance_to_step_start = distance(step.p1, point)
     distance_to_step_end = distance(step.p2, point)
 
-    # Find projection of the point onto the step.
-    # Actually, it should be orthogonal,
-    # but the line and point are defined by GPS coordinates
-    # so the coordinate system is warped,
-    # and thus the result is not totally correct.
-    # However, I did not find a library to calculate point-to-line projections
-    # in geo coordinates.
-
-    projection = Line(step.p1, step.p2).projection(point)
+    # Find the orthogonal projection
+    projection = geo_projection(step, point)
 
     projection_is_outside_step = \
         distance(step.p1, projection) > step_length or \

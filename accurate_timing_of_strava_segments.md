@@ -42,7 +42,7 @@ Following from the above, when two cyclists ride (also valid for, e.g., runners,
 
 ## Solution
 
-Instead of using the recorded GPS points closest to the segment start/end, one can calculate the closes point on the polygonal chain of the activity points, deduce the timestamp by interpolating the timestamps of the neighbor points, and use that:
+Instead of using the recorded GPS points closest to the segment start/end, one can calculate the closes point on the polygonal chain of the activity points, deduce the timestamp by interpolating the timestamps of the two neighbor points, and use that:
 
 ```
             start                                     finish

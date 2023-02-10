@@ -35,13 +35,14 @@ def track_point_to_point(trackpoint: TCXTrackPoint) -> Point:
 def geo_projection(line: GeoSegment, point: Point) -> Point:
     """Orthogonal projection for geo coordinates."""
     line_center: Point = (line.p1 + line.p2) / 2
+    # If the line goes exactly through one of earth's poles, the numbers explode.
     x_scale = distance(line_center, Point(line_center.x + 0.1, line_center.y)) * 10
     y_scale = distance(line_center, Point(line_center.x, line_center.y + 0.1)) * 10
-    euclidean_line = Line(Point(x_scale * line.p1.x, y_scale * line.p2.y),
-                          Point(x_scale * line.p2.x, y_scale * line.p2.y))
-    euclidean_point = Point(x_scale * point.x, y_scale * point.y)
+    euclidean_line = Line(Point(line.p1.x / x_scale, line.p2.y / y_scale),
+                          Point(line.p2.x / x_scale, line.p2.y / y_scale))
+    euclidean_point = Point(point.x / x_scale, point.y / y_scale)
     euclidean_projection = euclidean_line.projection(euclidean_point)
-    projection = Point(euclidean_projection.x / x_scale, euclidean_projection.y / y_scale)
+    projection = Point(euclidean_projection.x * x_scale, euclidean_projection.y * y_scale)
     return projection
 
 

@@ -57,7 +57,11 @@ Instead of using the recorded GPS points closest to the segment start/end, one c
        calculated start                            calculated end
 ```
 
-This nicely fixes the problem resulting from low sampling rates, but it also further improves the precision of recordings with a high(-ish) sampling frequency (like 1 Hz).
+In case a recorded point is closest, it will simply be used without interpolation.
+
+This nicely fixes the problem resulting from low sampling rates in a stream of GPS points, but it also further improves the precision of recordings with a high(-ish) sampling frequency (like 1 Hz).
+
+(Of course, actual inaccuracies in the recorded coordinates of single GPS points can not be addressed by this.)
 
 ## Implementation
 

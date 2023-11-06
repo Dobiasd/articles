@@ -14,7 +14,7 @@
 > [...] the sampling rate of your GPS device; some devices only record a GPS point every 5 to 10 seconds
 
 [Garmin confirms that devices can have varying recording invervals](https://support.garmin.com/en-US/?faq=s4w6kZmbmK0P6l20SgpW28):
-> Smart Recording captures key data points as changes occur in direction, speed, heart rate or elevation. This method is recommended [...]
+> Smart Recording captures key data points as changes occur in direction, speed, heart rate, or elevation. This method is recommended [...]
 
 
 ## Visual depiction
@@ -83,7 +83,7 @@ Running the script linked to above, we get the following results:
 - `A`: **37.4 s** (instead of Strava's 33 s, i.e., +4.4 s difference)
 - `B`: **34.1 s** (instead of Strava's 34 s, i.e., +0.1 s difference)
 
-This shows, `B` actually performed significantly better in that segment than `A`. 🚀
+This shows, that `B` actually performed significantly better in that segment than `A`. 🚀
 
 ## Plea
 
@@ -91,4 +91,4 @@ Dear Strava developers,
 
 your app is a great source of joy for KOM hunters, but the above introduces an unnecessary and avoidable random factor into the segment leaderboards. Please consider implementing the described solution to remedy the situation.
 
-And while you're at it, in 2022, you increased the minimum length for new segments to 500 m, presumably to reduce unfairness due to inaccurate measurements. The solution described here would fix this in a cleaner way, and you could reduce the minimum segment length again. (Especially for steep hills, 200 m often is more than enough.) Please remember, not all of us users are time trialists, some are sprinters. 😉
+And while you're at it, in 2022, you increased the minimum length for new segments to 500 m, presumably to reduce unfairness due to inaccurate measurements. The solution described here would fix this more cleanly, and you could reduce the minimum segment length again. (Especially for steep hills, 200 m often is more than enough.) Please remember, not all of us users are time trialists, some are sprinters. 😉

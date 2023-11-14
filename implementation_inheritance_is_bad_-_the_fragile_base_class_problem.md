@@ -123,7 +123,7 @@ class SummingContainer(ContainerBase):
         self._values.append(value)
 ```
 
-Our new function (`ContainerBase.clear)` will break an invariant
+Our new function (`ContainerBase.clear`) will break an invariant
 of `SummingContainer`, i.e., `SummingContainer.sum` will no longer
 be guaranteed to reflect the sum of all numbers in the container.
 

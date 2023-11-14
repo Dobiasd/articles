@@ -38,7 +38,7 @@ class Person:
         self.say("Hi.")
 
     def greet_formal(self):
-        self.greet_casual()
+        self.greet_casual()  # <--- Here is the change.
         self.say("How are you?")
 ```
 

@@ -109,6 +109,6 @@ either, because your fellow developers (including future you) would unnecessaril
 - constrained type -> unconstrained possibilities -> more cognitive load
 - uncontrained type -> constrained possibilities -> less cognitive load
 
-So the rule "*Always let your functions take the widest possible types as parameters.*" not only makes sense for re-usability but also for clarity.
+So the rule "*Always let your functions take (and return) the widest possible types as parameters.*" not only makes sense for re-usability but also for clarity.
 
 In conclusion, generics, as abstraction in general, can reduce complexity. They can be helpful even if the implemented class/function is never going to be used with more than one type, because being less concrete with the types allows the code to concretely express what it does not do, resulting in decreased cognitive load.

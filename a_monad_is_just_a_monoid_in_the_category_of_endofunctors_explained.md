@@ -25,13 +25,13 @@ In functional programming, functions are first-class citizens. They can be passe
 isEven : Int -> Boolean
 
 // The function keepIf takes two parameters.
-// The first one is a function taking an a and returning Boolean.
+// The first one is a function taking an A and returning Boolean.
 // The second one is a list of elements of type A.
 // Finally, keepIf returns a sequence of elements of type A.
 keepIf : (A -> Boolean, List<A>) -> List<A>
 ```
 
-`A` being a type variable, we could call `keepIf(isEven, [1, 2, 3, 4, 5])` and get `[2, 4]`.
+`A` being a type variable, we could call `keepIf(isEven, [1, 2, 3, 4, 5])` and get `[2, 4]`. (Here, `A` is `Int`.)
 
 ### Currying
 
@@ -51,7 +51,7 @@ This converts every function of arbitrary arity into a function of arity 1.
 
 We call this process currying.
 
-`->` is right-associative, so the above equivalent to:
+`->` is right-associative, so the above is equivalent to:
 
 ```kotlin
 keepIf : (A -> Boolean) -> List<A> -> List<A>
@@ -76,7 +76,7 @@ A category is a bunch of objects with a set of morphisms (arrows).
             -----
 ```
 
-Morphisms muse be composable, so if there is a morphism `f` from `A` to `B` and a morphism `g` from `B` to `C`, then a morphism `h` from `A` to `C` must exist too.
+Morphisms must be composable, so if there is a morphism `f` from `A` to `B` and a morphism `g` from `B` to `C`, then a morphism `h` from `A` to `C` must exist too.
 
 ```kotlin
 f : A -> B
@@ -123,16 +123,16 @@ And finally, there is an identity morphism (endomorphism) for every object.
 ```
 
 The category we work with in programming is the category of types, i.e., each object represents the set of possible values for the particular type. The morphisms are our functions.
-Since in functional programming functions are data too (they can be passed around, etc.) the functions themselves are also objects (types).
+Since in functional programming functions are data too (they can be passed around, etc.) the function types themselves are also objects.
 
-Even though in this special category we can know something about the "content" objects (types) and what the morphisms (functions) do to them, from a pure category-theoretical point of view, this is not needed.
+Even though in this special category we can know something about the "content" objects (types) and what the concrete morphisms (functions) do to them, from a pure category-theoretical point of view, this is not needed.
 
 
 ## What is a functor?
 
 A functor is a structure-preserving mapping between categories.
 
-But for now, let's think about a functor in teams of a box. A typical example is the `Maybe` functor, which can either hold a value or nothing. (You might know it as `class Optional<T>` or similar, depending on the programming languages you're familiar with.)
+But for now, let's think about a functor in terms of a box. A typical example is the `Maybe` functor, which can either hold a value or nothing. (You might know it as `class Optional<T>` or similar, depending on the programming languages you're familiar with.)
 
 For `Maybe` to become a functor, we must provide a function `lift` that converts a function of type `A -> B` to one of type `Maybe<A> -> Maybe<B>`:
 
@@ -249,7 +249,7 @@ Composing functions this way is nice. In the case of `Maybe` we can think of it 
 
 We spare all the boilerplate-like plumbing code by defining it only once (generically) in the implementation of `>=>`.
 
-Btw, instead of providing `>=>`, we could also provide `>>=` ("bind") instead (`>>= : Monad<A> -> (A -> Monad<B>) -> Monad<B>`) or `join` (`join : Monad<Monad<A>> -> Monad<A>`). If `lift` and just one of the three (`>=>`/`>>=`/`join`) is given, the other two can always be derived from it, which is a fun exercise, but not needed here.
+Btw, instead of providing `>=>`, we could also provide `>>=` ("bind") (`>>= : Monad<A> -> (A -> Monad<B>) -> Monad<B>`) or `join` (`join : Monad<Monad<A>> -> Monad<A>`). If `lift` and just one of the three (`>=>`/`>>=`/`join`) is given, the other two can always be derived from it, which is a fun exercise, but not needed here.
 
 Also, a monad must satisfy some laws:
 - `inject >=> f = f` (`inject(x) >>= f = f(x)`)

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The quote in the title sparked my curiosity after I had read it in a [a blog](http://james-iry.blogspot.com/2009/05/brief-incomplete-and-mostly-wrong.html) using it jokingly. (Originally it's from a [math book](https://en.wikipedia.org/wiki/Categories_for_the_Working_Mathematician).)
+The quote in the title sparked my curiosity after I had read it on [a blog](http://james-iry.blogspot.com/2009/05/brief-incomplete-and-mostly-wrong.html) using it jokingly. (Originally it's from a [math book](https://en.wikipedia.org/wiki/Categories_for_the_Working_Mathematician).)
 
 Despite good existing explanations on the web, achieving a level of at least somewhat satisfying understanding, however, turned out to be quite a ~~struggle~~ journey for me. This article is an attempt to ease this process for other software developers a bit, and to consolidate the things I learned for myself. ;-)
 
@@ -21,7 +21,7 @@ f : Int -> String // f is a function from Int to String.
 In functional programming, functions are first-class citizens. They can be passed around, and they can be returned from functions (higher-order functions).
 
 ```kotlin
-// isEven is a function taking and integer and returning a boolean.
+// isEven is a function taking an integer and returning a boolean.
 isEven : Int -> Boolean
 
 // The function keepIf takes two parameters.
@@ -193,7 +193,7 @@ Other examples of monoids in the category of types are:
 
 These monoids so far were all commutative, i.e., `x <> y = y <> x` but that does not need to be true.
 
-Examples for non-commutative monoids are:
+Examples of non-commutative monoids are:
 - strings under concatenation with the empty string as the neutral element (similarly, lists under concatenation with the empty list as the neutral element)
 - endomorphism (`f : a -> a`) under composition (`>>`) with `identity` as the neutral element
 
@@ -274,7 +274,7 @@ The category of endofunctors is a category with the objects being the endofuncto
                 ...
 ```
 
-How would a monoid in this category look like?
+What would a monoid in this category look like?
 
 For a monoid, we need an object, which is an endofunctor now, e.g., `Maybe<T>`.
 

@@ -37,7 +37,7 @@ class foo_generator
     x = 21
     method step()
         if _state == 0
-            _state == 1
+            _state = 1
             return x
         if _state == 1
             x = 2 * x

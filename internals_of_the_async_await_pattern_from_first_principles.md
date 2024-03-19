@@ -1,4 +1,4 @@
-Internals of the async/await pattern from first principles
+# Internals of the async/await pattern from first principles
 
 Many of us are using the async/await pattern, but understanding how it works under the hood is a different beast. This article sheds some (language-agnostic) light on how the needed machinery can be implemented. These insights are helpful when usage does not go according to plan, and I find it aesthetically pleasing too.
 
@@ -271,7 +271,7 @@ class Executor
 
 While the above only shows async input (for brevity), async output works analogously.
 
-[Here, you can find a (Python) implementation of all things discussed in this article](internals_of_the_async_await_pattern_from_first_principles/internals_of_the_async_await_pattern_from_first_principles.py), including an echo-ing TCP server (heavily inspired by [the amazing workshop of David Beazley](https://www.youtube.com/watch?v=Y4Gt3Xjd7G8)).
+[Here, you can find a (Python) implementation of all things discussed in this article](internals_of_the_async_await_pattern_from_first_principles/internals_of_the_async_await_pattern_from_first_principles.py), including an echo-ing TCP server (heavily inspired by [an amazing workshop](https://www.youtube.com/watch?v=Y4Gt3Xjd7G8) of David Beazley).
 
 Now you should have a rough idea of what happens with coroutines on the language level and the tooling the async libraries provide us with. I suggest to play around with (and purposely break) the linked example Python implementation to get a better feeling for everything.
 

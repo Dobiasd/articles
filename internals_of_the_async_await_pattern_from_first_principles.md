@@ -11,7 +11,7 @@ function foo()
     x = 2 * x
     return x
 
-assert foo() == 24
+assert foo() == 42
 ```
 
 A Generator (also known as a semicoroutine, a special case of a coroutine) can return multiple times and preserve its state between invocations:

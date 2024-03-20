@@ -5,7 +5,8 @@ Many of us are using the async/await pattern, but understanding how it works und
 A normal function (also known as a subroutine) returns once:
 
 ```java
-// Using an imaginary programming language here to avoid being too specific.
+// Using an imaginary programming language to avoid eliciting language-specific associations
+// which could dilute the abstract concept with too many details.
 function foo()
     x = 21
     x = 2 * x

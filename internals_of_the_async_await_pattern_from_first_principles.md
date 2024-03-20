@@ -24,8 +24,8 @@ function foo()
     yield x
 
 g = foo()
-assert g.step() == 21
-assert g.step() == 42
+assert g.step() == 21  // Stepping the generator might look different in real languages.
+assert g.step() == 42  // But to be explicit, our imaginary language provides this method.
 ```
 
 In many programming languages, the above generator is internally (by the interpreter or compiler) converted to a state machine as follows:

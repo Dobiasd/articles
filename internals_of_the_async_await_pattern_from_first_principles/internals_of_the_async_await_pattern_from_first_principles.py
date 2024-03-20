@@ -47,6 +47,7 @@ class Executor:
 
             self.current = self._ready.popleft()
             try:
+                # Step the current coroutine for one state transition.
                 self.current.send(None)
                 # We only re-submit the coroutine when it was not removed/scheduled by async_sleep.
                 if self.current:

@@ -142,3 +142,4 @@ executor.submit(foo())
 executor.submit(bar())
 executor.submit(tcp_server())
 executor.run()
+# Cou can try it out like that (linux): nc localhost 8080

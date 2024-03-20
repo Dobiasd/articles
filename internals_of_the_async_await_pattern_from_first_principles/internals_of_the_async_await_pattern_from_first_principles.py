@@ -56,9 +56,6 @@ class Executor:
             except StopIteration:
                 pass
 
-    def wait_for_write(self, handle, coroutine) -> None:
-        self._write_pending[handle] = coroutine
-
     async def accept(self, sock) -> Tuple[Any, Tuple[str, int]]:
         self._read_pending[sock] = executor.current
         self.current = None
@@ -72,7 +69,7 @@ class Executor:
         return sock.recv(max_bytes)
 
     async def send(self, sock, data) -> None:
-        self.wait_for_write(sock, self.current)
+        self._write_pending[sock] = self.current
         self.current = None
         await YieldOnAwait()
         return sock.send(data)

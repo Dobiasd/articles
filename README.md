@@ -3,7 +3,7 @@
 
 This repository serves as a programming-related brain dump.
 
-If you enjoy my articles, feel free to ![buymeacoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png). ;-)
+If you enjoy my articles, feel free to [![buymeacoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/tobiashermann). ;-)
 
 ### C++
 

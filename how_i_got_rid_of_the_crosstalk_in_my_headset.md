@@ -1,6 +1,6 @@
 # How I got rid of the crosstalk in my headset
 
-Many modern headsets have a TRRS audio jack, combining the headphone and the microphone into one plug.
+Many modern headsets have a TRRS audio jack, combining the headphones and the microphone into one plug.
 
 ![trrs](how_i_got_rid_of_the_crosstalk_in_my_headset/trrs.jpg)
 
@@ -12,9 +12,9 @@ and maybe add an adapter,
 
 ![adapter_merge](how_i_got_rid_of_the_crosstalk_in_my_headset/adapter_merge.jpg)
 
-because in the single-plug version, the headphone and the microphone (electrically) share the "ground", which makes the stuff you listen to (headphone) leak (crosstalk) into the stuff the others hear coming from you (microphone).
+because in the single-plug version, the headphone and the microphone (electrically) share the "ground", which makes the stuff you listen to (headphones) leak (crosstalk) into the stuff the others hear coming from you (microphone).
 - When gaming online while in a Discord channel, and you do something in the game, only you are supposed to hear, the others will hear it too.
-- When on a zoom call, and you have some system sounds from notifications popping up (or prefer listening to music instead of your colleagues :-P), they hear it too.
+- When on a Zoom call, and you have some system sounds from notifications popping up (or prefer listening to music instead of your colleagues :-P), they hear it too.
 - ...
 
 Wait, you think, does this guy really state that there is a fundamental design flaw in the general concept of many headphone plugs?
@@ -62,11 +62,11 @@ From that one can see the function of each colored strand. (The pink one is some
 
 ![plug_standards](how_i_got_rid_of_the_crosstalk_in_my_headset/plug_standards.jpg)
 
-So after un-insulating the strands in the cable going to the headset, I connected them to separate plugs with terminal blocks. (You can, of course, do this much more nicely and compact by soldering, maybe even directly in the headset, replacing the cable completely.)
+So after un-insulating the strands in the cable going to the headset, I connected them to separate plugs with terminal blocks. (You can, of course, do this much more nicely and compactly by soldering, maybe even directly in the headset, replacing the cable completely.)
 
 ![terminal_blocks](how_i_got_rid_of_the_crosstalk_in_my_headset/terminal_blocks.jpg)
 
-Then, putting this all into some custom made case with strain relief,
+Then, putting this all into some custom-made case with strain relief,
 
 ![strain_relief](how_i_got_rid_of_the_crosstalk_in_my_headset/strain_relief.jpg)
 

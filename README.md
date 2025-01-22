@@ -72,3 +72,5 @@ If you enjoy my articles, feel free to [![buymeacoffee](https://www.buymeacoffee
 [Accurate timing of Strava segments](https://github.com/Dobiasd/articles/blob/master/accurate_timing_of_strava_segments.md)
 
 [Internals of the async/await pattern from first principles](https://github.com/Dobiasd/articles/blob/master/internals_of_the_async_await_pattern_from_first_principles.md)
+
+[On feeling deceived when receiving (non-labeled) LLM-generated messages](on_feeling_deceived_when_receiving_non_labeled_llm_generated_messages.md)

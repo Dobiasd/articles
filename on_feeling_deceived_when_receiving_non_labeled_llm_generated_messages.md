@@ -13,7 +13,7 @@ This extreme example shows that it's not just about the annoyance of having inve
 
 When the alleged sender did not actually write the text, these additional sides of the message are no longer real. For an unaware recipient, who (maybe subconsciously) also processes these three other sides, this can lead to incorrect assumptions and expectations in the future, and to a false feeling of connectedness.
 
-Sure, there is a spectrum from
+Sure, there is a continuous spectrum from
 - "outsourcing a conversation completely to AI"
 - over "generating only a part of a message"
 - to "just using a fact or idea that you got from an AI at some point"

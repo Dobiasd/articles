@@ -1,5 +1,4 @@
-[Dobiasd](https://github.com/dobiasd)'s articles
-================================================
+# [Dobiasd](https://github.com/dobiasd)'s articles
 
 This repository serves as a programming-related brain dump.
 
@@ -44,6 +43,8 @@ If you enjoy my articles, feel free to [![buymeacoffee](https://www.buymeacoffee
 [Mechanical analogies for basic measures of descriptive statistics](https://github.com/Dobiasd/articles/blob/master/mechanical_analogies_for_basic_measures_of_descriptive_statistics.md)
 
 [Do A/B tests - because correlation does not imply causation](https://github.com/Dobiasd/articles/blob/master/do_a_b_tests_because_correlation_does_not_imply_causation.md)
+
+[Simple collaborative filtering in pure PostgreSQL](simple_collaborative_filtering_in_pure_postgresql.md)
 
 ### Misc
 

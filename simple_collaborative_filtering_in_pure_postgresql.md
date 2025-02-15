@@ -213,6 +213,7 @@ In case it's too slow (or becomes too slow with more data), potential optimizati
 - Regularly materializing `user_similarities` (and maybe even `recommendations`) periodically
 - Limiting the number of pairs considered per user when generating `user_similarities`
 - Switch from the user-user approach to the item-item approach if this results in a smaller similarity table
+- Shard your data by certain properties of users/items, e.g., the user's country
 - Apply standard database tuning techniques
 - Use a fancier technology. PostgreSQL is great because of its simplicity and ubiquity, but at some scale, it might struggle. Other approaches could also enable techniques like decomposing the user-item matrix into the product of two smaller matrices to speed up downstream computations.
 

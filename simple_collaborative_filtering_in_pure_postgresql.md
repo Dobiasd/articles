@@ -39,7 +39,7 @@ CREATE INDEX signals_item_id_index ON signals (item_id) INCLUDE (user_id, signal
 CREATE INDEX signals_user_id_item_id_index ON signals (user_id, item_id) INCLUDE (signal);
 ```
 
-The application would continuously insert rows into the table or update existing signals on repeated interactions.
+The application would continuously insert rows into the table or [update existing signals](https://gist.github.com/Dobiasd/e12fbbb702e7da4c7677f65716fa2a27) on repeated interactions.
 
 ## Example data
 

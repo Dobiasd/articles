@@ -140,7 +140,7 @@ In the above:
 - `candidates` is the cartesian product, giving all potential user-item pairs.
 - We join with `user_similarities` to get all users with a known similarity.
 - We join with `signals` to collect the signals from these other users.
-- `signals` as `known` is only used to remove items that the user already interacted with (`WHERE known.item_id IS NULL`). It's a "`LEFT ANTI JOIN`".
+- `signals` as `known` is only used to remove items the user already interacted with (`WHERE known.item_id IS NULL`). It's a "`LEFT ANTI JOIN`".
 
 ## Example recommendations
 
@@ -206,7 +206,7 @@ SELECT * FROM user_recommendations WHERE user_id = 42 ORDER BY score DESC LIMIT 
       42 |     317 | 0.07946202537955073
 ```
 
-On my machine (with a default Postgres running in Docker), queries like this take (after some warmup of the Postgres engine) ~170 ms, which is not bad for the fact that we applied almost zero optimizations so far.
+On my machine (with a default Postgres running in Docker), queries like this take (after some warmup of the Postgres engine) ~170 ms, which is not bad because we applied almost zero optimizations so far.
 
 ## Potential optimizations
 

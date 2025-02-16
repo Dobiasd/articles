@@ -24,7 +24,7 @@ This article demonstrates user-user collaborative filtering (with support for ne
 
 The sum of all user-item interactions gives a signal. Any interval could be chosen (e.g., 1 to 5 stars). In our case, we use:
 
-- `-1.0`: most negative
+- `-1.0`: most negative (If you don't intend to provide negative signals, e.g. "dislikes", `0.0` works fine too.)
 - ` 1.0`: most positive
 
 ```sql
@@ -110,6 +110,8 @@ The diagonal of this matrix is not interesting, because it's just the fact, that
 Also, the matrix is symmetric (because our user similarity metric is commutative), so only one half (top-right triangle) is needed. But later queries will become simpler by not getting rid of the second half, so we keep it.
 
 For bigger datasets, this matrix is likely very sparse, i.e., many user pairs have no overlap, and thus no similarity between them can be calculated.
+
+Negative user similarities can only occur when you use negative signals (`signals.signal < 0.0`). They mean, that this other user has opposite preferences.
 
 ## Generating recommendations
 

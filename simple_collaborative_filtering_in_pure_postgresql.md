@@ -206,7 +206,7 @@ SELECT * FROM user_recommendations WHERE user_id = 42 ORDER BY score DESC LIMIT 
       42 |     317 | 0.07946202537955073
 ```
 
-On my machine (with a default Postgres running in Docker), queries like this take (after some warmup of the Postgres engine) ~170 ms, which is not bad because we applied almost zero optimizations so far.
+On my machine (with a default Postgres running in Docker), queries like this take (after some warmup of the Postgres engine) ~200 ms, which is not bad because we applied almost zero optimizations so far.
 
 ## Potential optimizations
 

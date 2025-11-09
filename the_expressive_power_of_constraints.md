@@ -45,7 +45,7 @@ Given
 
 ```
 class Foo
-    name: string
+    name: Name
     age: int
     ...
 ```
@@ -53,7 +53,7 @@ class Foo
 this
 
 ```
-function say_hello_to(name: string)
+function say_hello_to(name: Name)
     print("Hello, {name}.")
 ```
 

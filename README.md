@@ -77,3 +77,5 @@ If you enjoy my articles, feel free to [![buymeacoffee](https://www.buymeacoffee
 [On feeling deceived when receiving (non-labeled) LLM-generated messages](on_feeling_deceived_when_receiving_non_labeled_llm_generated_messages.md)
 
 [The expressive power of constraints](the_expressive_power_of_constraints.md)
+
+[LLM agents demystified](llm_agents_demystified.md)

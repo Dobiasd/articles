@@ -54,7 +54,7 @@ simply says
 
 > split_lines is a function taking a string and a bool and returns a container (i.e. `list`/`vector`/etc. ) of strings.
 
-Type annotations make it easier to find and understand function templates in `fplus` with some practice. If you are looking for a function implementing a certain small task, you can use the [API-search website](http://www.editgym.com/fplus-api-search/), where you can search by name, description or aforementioned annotation. Later we will see, why searching by type can come in very handy.
+Type annotations make it easier to find and understand function templates in `fplus` with some practice. If you are looking for a function implementing a certain small task, you can use the [API-search website](http://www.daiw.de/fplus-api-search/), where you can search by name, description or aforementioned annotation. Later we will see, why searching by type can come in very handy.
 
 
 ## The core algorithm
@@ -128,7 +128,7 @@ resulting in
 
     ((Set, Set) -> Set, [Set]) -> Set
 
-Wouldn't it be nice, if FunctionalPlus already provided such a thing? ;-) A quick request to the [API search](http://www.editgym.com/fplus-api-search/) gives the following result:
+Wouldn't it be nice, if FunctionalPlus already provided such a thing? ;-) A quick request to the [API search](http://www.daiw.de/fplus-api-search/) gives the following result:
 
 ![api_search_fold_left_1_001](/functional_programming_in_cpp_with_the_functionalplus_library_today_hackerrank_challange_gemstones/api_search_fold_left_1_001.png)
 
